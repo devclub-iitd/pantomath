@@ -11,7 +11,7 @@ ACADEMICS_URL = 'https://academics1.iitd.ac.in/Academics/'
 
 
 
-def getGrades(username,password):
+def getGradeSheet(username,password):
 
     def connect(self):      #some code to deal with certificate validation
         sock = socket.create_connection((self.host, self.port),
@@ -91,7 +91,7 @@ def getGrades(username,password):
     return grades_str
 
 
-def getGradeSheet(username,password):
+def getGrades(username,password):
 
     def connect(self):      #some code to deal with certificate validation
             sock = socket.create_connection((self.host, self.port),
