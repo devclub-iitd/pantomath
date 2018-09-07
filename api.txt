@@ -1,5 +1,5 @@
 // Public API for academics1
-GET: /api/getGrades                 // Get user grades of the current semester
+POST: /api/grades                 // Get user grades of the current semester
     params:
         body:
             username                // kerberos username
@@ -18,7 +18,7 @@ GET: /api/getGrades                 // Get user grades of the current semester
         } 
 
 
-GET: /api/getGradesheet             // Get cumulative user gradesheet
+POST: /api/gradesheet             // Get cumulative user gradesheet
     params:
         body:
             username                // kerberos username
@@ -45,11 +45,10 @@ GET: /api/getGradesheet             // Get cumulative user gradesheet
         } 
 
 
-GET: /api/getRegisteredCourses                 // Get all courses and related information of the registered courses
+GET: /api/registeredCourses         // Get all courses and related information of the registered courses for that person, from our database
     params:
         body:
             username                // kerberos username
-            password                // kerberos password 
     return:
         status_code
         error: false/true
@@ -64,7 +63,7 @@ GET: /api/getRegisteredCourses                 // Get all courses and related in
         } 
 
 
-GET: /api/getStudentInfo            // Get all relevant Form A information of the student
+POST: /api/getStudentInfo            // Get all relevant Form A information of the student
     params:
         body:
             username                // kerberos username
@@ -82,32 +81,85 @@ GET: /api/getStudentInfo            // Get all relevant Form A information of th
         } 
 
 
-
+// verify outh token env variable
 // Private API for academics1
-POST: /api/getOfferedCourses            // Fetch all the offered courses and store in our database
+POST: /api/updateAllOfferedCourses            // Fetch all the offered courses and store in our database
     params:
         body:
             username                // kerberos username
             password                // kerberos password 
+            devclub_secret          // A secret token for verifying use
     return:
         status_code
         error: false/true
         message: "..string"
 
 
-POST: /api/getRegisteredStudents    // Fetch all the registered students in this course and store in our database
+POST: /api/updateAllHistoricalOfferedCourses  // Fetch all the offered courses till now in IITD and store in our database
+    params:
+        body:
+            username                // kerberos username
+            password                // kerberos password 
+            devclub_secret          // A secret token for verifying use
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+
+
+GET: /api/getAllOfferedCourses            // Fetch all the offered courses
+    params:
+        body:
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+
+
+GET: /api/getAllHistoricalOfferedCourses  // Fetch all the offered courses till now in IITD
+    params:
+        body:
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+
+
+// get all profs list => LDAP
+
+
+
+POST: /api/updateRegisteredStudents    // Fetch all the registered students in this course and store in our database
     params:
         body:
             username                // kerberos username
             password                // kerberos password 
             course_code             // the course_code whose data is to be fetched
+            devclub_secret          // A secret token for verifying use
     return:
         status_code
         error: false/true
         message: "..string"
 
 
-// Public LDAP API
+GET: /api/getRegisteredStudents    // Fetch all the registered students in this course and store in our database
+    params:
+        body:
+            course_code             // the course_code whose data is to be fetched
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+        data: [
+            {
+                name: "...",
+                entry: "...",
+                group: "..."
+            }
+        ]
+
+
+// Public LDAP API => can be queried from terminal
 GET: /api/getDepartmentStudentRecords    // Fetch list of students and entry numbers in this department
     params:
         body:

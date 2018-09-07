@@ -1,0 +1,12 @@
+{
+    entry_number: {
+        registered_courses: {
+            course_code: {
+                course_name: "xxx",
+                course_slot: X,
+                course_group: X,
+                course_credits: X
+            }, ...
+        }
+    }, ...
+}
