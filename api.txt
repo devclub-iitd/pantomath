@@ -1,0 +1,173 @@
+// Public API for academics1
+GET: /api/getGrades                 // Get user grades of the current semester
+    params:
+        body:
+            username                // kerberos username
+            password                // kerberos password 
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+        data: {                   // grades json object
+            course_code: {
+                course_name: "xxx",
+                course_category: "XX",
+                course_credits: X,
+                grade: "X"
+            }, ...
+        } 
+
+
+GET: /api/getGradesheet             // Get cumulative user gradesheet
+    params:
+        body:
+            username                // kerberos username
+            password                // kerberos password 
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+        data: {                     // grades json object
+            semester: {             // Semester information
+                cgpa: x.xxx,
+                sgpa: x.xxx,
+                earned_credits: xx,
+                total_credits: xx,
+                grades: {
+                    course_code: {
+                        course_name: "xxx",
+                        course_category: "XX",
+                        course_credits: X,
+                        grade: "X"
+                    }, ...
+                }
+            }, ...
+        } 
+
+
+GET: /api/getRegisteredCourses                 // Get all courses and related information of the registered courses
+    params:
+        body:
+            username                // kerberos username
+            password                // kerberos password 
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+        data: {                   // registered courses json object
+            course_code: {
+                course_name: "xxx",
+                course_slot: X,
+                course_group: X,
+                course_credits: X
+            }, ...
+        } 
+
+
+GET: /api/getStudentInfo            // Get all relevant Form A information of the student
+    params:
+        body:
+            username                // kerberos username
+            password                // kerberos password 
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+        data: {                   // Form A information
+            email: "..String",
+            dob: "DD-MM-YYYY",
+            gender: "M/F",
+            bloodGroup: "XY",
+            contactNo.: "..String"
+        } 
+
+
+
+// Private API for academics1
+POST: /api/getOfferedCourses            // Fetch all the offered courses and store in our database
+    params:
+        body:
+            username                // kerberos username
+            password                // kerberos password 
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+
+
+POST: /api/getRegisteredStudents    // Fetch all the registered students in this course and store in our database
+    params:
+        body:
+            username                // kerberos username
+            password                // kerberos password 
+            course_code             // the course_code whose data is to be fetched
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+
+
+// Public LDAP API
+GET: /api/getDepartmentStudentRecords    // Fetch list of students and entry numbers in this department
+    params:
+        body:
+            department_code         // the department code whose data is to be fetched
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+        data: [
+            {
+                entry: "..String",
+                name: "..String"
+            }, ...
+        ]
+
+GET: /api/getAllDepartmentRecords    // Fetch list of students and entry numbers in all departments
+    params:
+        body:
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+        data: [
+            {
+                department: "..String",
+                entry: "..String",
+                name: "..String"
+            }, ...
+        ]
+
+
+// -------------- (Optional -- Will be added later) ---------------
+
+// Public NGU API
+GET: /api/getNguCredits             // Fetch the NGU credit information of the student
+    params:
+        body:
+            username                // kerberos username
+            password                // kerberos password 
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+        data: {                     // NGU data
+            NGU_category: {         // NDN/NEN/NLN/..
+                credits_required: X,
+                credits_approved: X,
+                credits_pending: X
+            }, ...
+        }
+
+
+// Public Timetable API
+GET: /api/getSchedule             // Fetch the user schedule
+    params:
+        body:
+            username                // kerberos username
+            password                // kerberos password 
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+        pdfData: "TBD"
