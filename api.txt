@@ -54,16 +54,17 @@ GET: /api/registeredCourses         // Get all courses and related information o
         error: false/true
         message: "..string"
         data: {                   // registered courses json object
-            course_code: {
-                course_name: "xxx",
-                course_slot: X,
-                course_group: X,
-                course_credits: X
-            }, ...
+            "name" : name
+            "courses": [
+                        {   
+                            "code": "xxx",
+                            "slot": X,
+                        },...
+                    ]
         } 
 
 
-POST: /api/getStudentInfo            // Get all relevant Form A information of the student
+POST: /api/getStudentInfo            // Get all relevant Form A information of the student - get from ldap
     params:
         body:
             username                // kerberos username
