@@ -40,7 +40,7 @@ POST: /api/gradesheet             // Get cumulative user gradesheet
                         course_credits: X,
                         grade: "X"
                     }, ...
-                }
+                }   
             }, ...
         } 
 

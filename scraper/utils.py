@@ -1,11 +1,16 @@
-import mechanize
-import cookielib
+
 from bs4 import BeautifulSoup,NavigableString
 import html2text
-import string
 import socket
-import httplib
 import ssl
+import robobrowser
+import http
+from requests import Session
+import json
+
+session = Session()
+session.verify = False # Skip SSL verification
+session.proxies = {'http': 'http://proxy22.iitd.ac.in/'} # Set default proxies
 
 ACADEMICS_URL = 'https://academics1.iitd.ac.in/Academics/'
 
@@ -13,48 +18,25 @@ ACADEMICS_URL = 'https://academics1.iitd.ac.in/Academics/'
 
 def getGradeSheet(username,password):
 
-    def connect(self):      #some code to deal with certificate validation
-        sock = socket.create_connection((self.host, self.port),
-                                self.timeout, self.source_address)
-        if self._tunnel_host:
-            self.sock = sock
-            self._tunnel()
-
-        self.sock = ssl.wrap_socket(sock, self.key_file, self.cert_file, ssl_version=ssl.PROTOCOL_TLSv1)
-
-
-    httplib.HTTPSConnection.connect = connect
     # Browser
-    br = mechanize.Browser()
-
-    # Cookie Jar
-    cj = cookielib.LWPCookieJar()
-    br.set_cookiejar(cj)
-
-    # Browser options
-    br.set_handle_equiv(True)
-    br.set_handle_gzip(True)
-    br.set_handle_redirect(True)
-    br.set_handle_referer(True)
-    br.set_handle_robots(False)
-    br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
-
-    br.addheaders = [('User-agent', 'Chrome')]
+    br = robobrowser.RoboBrowser(session=session)
 
     # The site we will navigate into, handling it's session
-    r = br.open(ACADEMICS_URL)
+    br.open(ACADEMICS_URL)
 
 
     # Select the second (index one) form (the first form is a search query box)
-    br.select_form(nr=0)
+    form = br.get_form(action='index.php?page=tryLogin')
+
+    br.session.headers['Referer'] = ACADEMICS_URL
 
     # User credentials
-    br.form['username'] = username
-    br.form['password'] = password
+    form['username'] = username
+    form['password'] = password
 
     # Login
-    br.submit()
-    soup = BeautifulSoup(str(br.open(br.geturl()).read()),"lxml")
+    br.submit_form(form)
+    soup = BeautifulSoup(str(br.select),"lxml")
     current_grades_link=None
     past_grades_link=None
     for i in soup.find_all('a'):
@@ -74,9 +56,10 @@ def getGradeSheet(username,password):
     grades_str = '' 
     if not(past_grades_link is None):
 
-        gradesheet=br.open("https://academics1.iitd.ac.in/Academics/"+past_grades_link).read()
+        br.open("https://academics1.iitd.ac.in/Academics/"+past_grades_link)
 
-        soup = BeautifulSoup(gradesheet,"html5lib")
+        soup = BeautifulSoup(str(br.select),"html5lib")
+
         soup_without_attributes=remove_attrs(soup)
         final_soup =soup_without_attributes.findAll('table')[0].findAll('table')[1].findAll('table')
         for div in final_soup:
@@ -84,57 +67,71 @@ def getGradeSheet(username,password):
                 if len(x.text) == 0:
                     x.extract()
 
-        limit=len(final_soup)
-        for i in range(2,limit):
-            grades_str += str(final_soup[i])
+    final_soup = final_soup[1].findAll('table')
+    data = {}
+    idx = 0
+    while idx < len(final_soup):
+        semester = {}
+        semester_number = final_soup[idx].findAll('strong')[1].string[-1]
+        idx = idx+1
+        tr = 1
+        grades = {}
+        table_rows = final_soup[idx].findAll('tr')
+        idx = idx+1
+        while tr < len(table_rows)-1:
+            course = {}
+            table_data = table_rows[tr].findAll('td')
+            course_code = table_data[1].string
+            course['course_name'] = table_data[2].string
+            course['course_credits'] = table_data[4].string
+            course['course_grade'] = table_data[5].string
+            grades[course_code] = course
+            tr = tr+1
+        semester_data = final_soup[idx].findAll('strong')
+        semester['grades'] = grades
+        semester['sgpa'] = semester_data[0].string
+        semester['cgpa'] = semester_data[1].string
+        semester['earned_credits'] = semester_data[2].string
+        semester['total_credits'] = semester_data[3].string
+        data[semester_number] = semester
+        idx=idx+1
 
-    return grades_str
+    return json.dumps(data)
 
 
 def getGrades(username,password):
 
-    def connect(self):      #some code to deal with certificate validation
-            sock = socket.create_connection((self.host, self.port),
-                                self.timeout, self.source_address)
-            if self._tunnel_host:
-                self.sock = sock
-                self._tunnel()
+    # def connect(self):      #some code to deal with certificate validation
+    #         sock = socket.create_connection((self.host, self.port),
+    #                             self.timeout, self.source_address)
+    #         if self._tunnel_host:
+    #             self.sock = sock
+    #             self._tunnel()
 
-            self.sock = ssl.wrap_socket(sock, self.key_file, self.cert_file, ssl_version=ssl.PROTOCOL_TLSv1)
+    #         self.sock = ssl.wrap_socket(sock, self.key_file, self.cert_file, ssl_version=ssl.PROTOCOL_TLSv1)
 
 
-    httplib.HTTPSConnection.connect = connect
+    # httplib.HTTPSConnection.connect = connect
     # Browser
-    br = mechanize.Browser()
-
-    # Cookie Jar
-    cj = cookielib.LWPCookieJar()
-    br.set_cookiejar(cj)
-
-    # Browser options
-    br.set_handle_equiv(True)
-    br.set_handle_gzip(True)
-    br.set_handle_redirect(True)
-    br.set_handle_referer(True)
-    br.set_handle_robots(False)
-    br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
-
-    br.addheaders = [('User-agent', 'Chrome')]
+    # Browser
+    br = robobrowser.RoboBrowser(session=session)
 
     # The site we will navigate into, handling it's session
-    r = br.open(ACADEMICS_URL)
+    br.open(ACADEMICS_URL)
 
 
     # Select the second (index one) form (the first form is a search query box)
-    br.select_form(nr=0)
+    form = br.get_form(action='index.php?page=tryLogin')
+
+    br.session.headers['Referer'] = ACADEMICS_URL
 
     # User credentials
-    br.form['username'] = username
-    br.form['password'] = password
+    form['username'] = username
+    form['password'] = password
 
     # Login
-    br.submit()
-    soup = BeautifulSoup(str(br.open(br.geturl()).read()),"lxml")
+    br.submit_form(form)
+    soup = BeautifulSoup(str(br.select),"lxml")
     current_grades_link=None
     past_grades_link=None
     for i in soup.find_all('a'):
@@ -171,3 +168,4 @@ def getGrades(username,password):
 
 
 # if __name__ == "__main__":
+#     print(getGradeSheet("xxx", "xxx"))
