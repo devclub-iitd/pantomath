@@ -1,5 +1,5 @@
-// Public API for academics1
-POST: /api/grades                 // Get user grades of the current semester
+// Grades API -- Academics1
+POST: /api/grades                   // Get user grades of the current semester
     params:
         body:
             username                // kerberos username
@@ -16,6 +16,7 @@ POST: /api/grades                 // Get user grades of the current semester
                 grade: "X"
             }, ...
         } 
+(Note: grades API is not up since it can't be tested for correctness before sem ends)
 
 
 POST: /api/gradesheet             // Get cumulative user gradesheet
@@ -27,8 +28,8 @@ POST: /api/gradesheet             // Get cumulative user gradesheet
         status_code
         error: false/true
         message: "..string"
-        data: {                     // grades json object
-            semester: {             // Semester information
+        data: [                   // semester array of grades. #Semester = index + 1
+            {                    // Semester information
                 cgpa: x.xxx,
                 sgpa: x.xxx,
                 earned_credits: xx,
@@ -42,9 +43,10 @@ POST: /api/gradesheet             // Get cumulative user gradesheet
                     }, ...
                 }   
             }, ...
-        } 
+        ]
 
 
+// Courses API -- Academics1
 GET: /api/registeredCourses         // Get all courses and related information of the registered courses for that person, from our database
     params:
         body:
@@ -208,7 +210,7 @@ POST: /api/getAllDepartmentRecords    // Fetch list of students and entry number
     CANCELLED AS FOR LDAP ITS TOO MUCH DATA TO QUERY AND RETURN    
 
 
-// -------------- (Optional -- Will be added later) ---------------
+// -------------- (Next Version -- Will be added later) ---------------
 
 // Public NGU API
 GET: /api/getNguCredits             // Fetch the NGU credit information of the student

@@ -2,6 +2,7 @@ from flask import request, jsonify
 import json
 import csv
 from .ldap_scrap import get_departmental_records, get_student_info
+from .grades import get_gradesheet, AuthenticationError
 
 
 # List of statuses
@@ -18,6 +19,32 @@ serviceUnavailable = 503
 
 def index():
     return 'Welcome to Pantomath!'
+
+
+## Grades API
+def getGrades():
+    return res(404, 'Grades API Not Available Yet..')
+    
+def getGradesheet():
+    if not ('username' in request.form):
+        return res(400, 'No Username Provided')
+    if not ('password' in request.form):
+        return res(400, 'No Password Provided')
+
+    username = request.form['username']
+    password = request.form['password']
+
+    try:
+        gradesheet = get_gradesheet(username, password)
+    except AuthenticationError as e:
+        return res(403, 'Invalid Login Credentials')
+    except Exception as e:
+        print (e)
+        return res(500, 'Internal Server Error')
+
+    # success
+    return res(200, 'Gradesheet successfully retrieved', gradesheet)
+    
 
 ## LDAP API
 def getDepartmentStudentRecords():
