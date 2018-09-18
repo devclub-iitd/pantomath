@@ -1,4 +1,5 @@
 import ldap
+import datetime
 
 def initialize_ldap ():
     """
@@ -12,18 +13,24 @@ def initialize_ldap ():
         l.protocol_version = ldap.VERSION3
         l.simple_bind(binddn)
     except ldap.LDAPError as e:
-        if type(e.message) == dict and e.message.has_key('desc'):
-            print (e.message['desc'])
-        else: 
-            print (e)
-
         raise ConnectionError("Problem with LDAP Binding")
+
+        # if type(e.message) == dict and e.message.has_key('desc'):
+            # print (e.message['desc'])
+        # else: 
+            # print (e)
+
     return l
 
 
 def perform_search(OU, department, searchFilter, searchAttribute=[]):
     # Set Up LDAP
-    l = initialize_ldap()
+    try:
+        l = initialize_ldap()
+    except Exception:
+        # Print to server logs
+        print ("Error connecting to LDAP", datetime.datetime.now())
+        raise
 
     # Set up Search
     searchScope = ldap.SCOPE_SUBTREE
@@ -89,9 +96,9 @@ def get_departmental_records(category):
     for student in search_results:
         student_info = student[1]
         results.append({
-            "Name": student_info['username'][0],
-            "Entry": student_info['uniqueIITDid'][0],
-            "UID":  student_info['uid'][0]
+            "Name": student_info['username'][0].decode("utf-8"),
+            "Entry": student_info['uniqueIITDid'][0].decode("utf-8"),
+            "UID":  student_info['uid'][0].decode("utf-8")
         })
 
     # Return the results
@@ -127,7 +134,7 @@ def get_student_info(uid, searchAttributes=["department", "category", "username"
     else:
         result = {}
         for attib, val in (search_results[0][1]).items():
-            result[attib] = val[0]
+            result[attib] = val[0].decode("utf-8")
         return result
 
 
@@ -136,21 +143,21 @@ if __name__ == '__main__':
     # l = initialize_ldap()
 
     searchFilter = "uid=cs1150210"
-    searchFilter = "uid=cs1150210"
-    searchFilter = "(&(category=mtech)(department=cse))"
-    searchFilter = "(&(department=cse)(uid=cs116*))"
-    # searchFilter = "(department=cse)"
-    searchFilter = "(uid=cs1160321)"
-    # searchFilter = None
-    searchAttribute = ["gender", "kdl", "username"]   
-    searchAttribute=None
-    # searchAttribute = ["uid", "username", "uniqueIITDid"]   
+    # searchFilter = "uid=cs1150210"
+    # searchFilter = "(&(category=mtech)(department=cse))"
+    # searchFilter = "(&(department=cse)(uid=cs116*))"
+    # # searchFilter = "(department=cse)"
+    # searchFilter = "(uid=cs1160321)"
+    # # searchFilter = None
+    # searchAttribute = ["gender", "kdl", "username"]   
+    # searchAttribute=None
+    # # searchAttribute = ["uid", "username", "uniqueIITDid"]   
 
-    # res = perform_search('IITDpersonDetails', 'cse', searchFilter, searchAttribute)  
+    # # res = perform_search('IITDpersonDetails', 'cse', searchFilter, searchAttribute)  
+    # # print (res)
+
+    # res = get_student_info('cs1160321')
+    # res = get_departmental_records('csz15')
     # print (res)
-
-    res = get_student_info('cs1160321')
-    res = get_departmental_records('csz15')
-    print (res)
     # unbind_ldap(l)
 

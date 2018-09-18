@@ -153,43 +153,59 @@ GET: /api/getRegisteredStudents    // Fetch all the registered students in this 
         message: "..string"
         data: [
             {
-                name: "...",
-                entry: "...",
+                Name: "...",
+                Entry: "...",
                 group: "..."
             }
         ]
 
 
-// Public LDAP API => can be queried from terminal
-GET: /api/getDepartmentStudentRecords    // Fetch list of students and entry numbers in this department
+// LDAP API
+POST: /api/deptStudentRecords    // Fetch list of students and entry numbers in this department
     params:
         body:
-            department_code         // the department code whose data is to be fetched
+            category         // the department code whose data is to be fetched of the form `cs116`
     return:
         status_code
         error: false/true
         message: "..string"
         data: [
             {
-                entry: "..String",
-                name: "..String"
+                "Name": "...",
+                "Entry": "...",
+                "UID": "..."
             }, ...
         ]
 
-GET: /api/getAllDepartmentRecords    // Fetch list of students and entry numbers in all departments
+
+POST: /api/getStudentInfo    // Fetch list of students and entry numbers in this department
     params:
         body:
+            uid         // the User Id of the student you want to query
+
+            // Optional Parameters
+            entry: true/false/anything      // If you want the entry number of user returned
+            dateOfBirth:
+            gender:
+            bloodGroup:
+            suspended:
+            emailalias:
     return:
         status_code
         error: false/true
         message: "..string"
         data: [
             {
-                department: "..String",
-                entry: "..String",
-                name: "..String"
+                "department": "...",
+                "category": "...",          // btech / mtech / dual etc. 
+                "name": "..."           // Name of the person
+                "altEmail": "..."           // Alternate Email Address
+                "<Optional Parameters>": "..."
             }, ...
         ]
+
+POST: /api/getAllDepartmentRecords    // Fetch list of students and entry numbers in all departments
+    CANCELLED AS FOR LDAP ITS TOO MUCH DATA TO QUERY AND RETURN    
 
 
 // -------------- (Optional -- Will be added later) ---------------
