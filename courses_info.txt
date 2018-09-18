@@ -1,9 +1,0 @@
-{
-    course_code: {
-        course_name: "..String",
-        history: {
-            "I 17-18": "Anshul Kumar",
-            ...
-        }
-    }, ...
-}
