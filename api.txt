@@ -47,7 +47,15 @@ POST: /api/gradesheet             // Get cumulative user gradesheet
 
 
 // Courses API -- Academics1
-GET: /api/registeredCourses         // Get all courses and related information of the registered courses for that person, from our database
+POST: /api/updateCoursesDB          // Updates the student.json in our database
+    params:
+        body:
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+
+GET, POST: /api/registeredCourses         // Get all registered courses for given username
     params:
         body:
             username                // kerberos username
@@ -65,101 +73,41 @@ GET: /api/registeredCourses         // Get all courses and related information o
                     ]
         } 
 
-
-POST: /api/getStudentInfo            // Get all relevant Form A information of the student - get from ldap
+GET, POST: /api/allCourses         // Gets information about all the courses floated this semester
     params:
         body:
-            username                // kerberos username
-            password                // kerberos password 
     return:
         status_code
         error: false/true
         message: "..string"
-        data: {                   // Form A information
-            email: "..String",
-            dob: "DD-MM-YYYY",
-            gender: "M/F",
-            bloodGroup: "XY",
-            contactNo.: "..String"
+        data: {           
+            "course_code": {
+                "name": "...",
+                "coordinator": "...",
+                "credit": XX,
+                "limit": XX,
+                "slot": "P",
+                "structure": "L-T-P"
+            }, ...
         } 
 
-
-// verify outh token env variable
-// Private API for academics1
-POST: /api/updateAllOfferedCourses            // Fetch all the offered courses and store in our database
+GET, POST: /api/courseInfo         // Gets information about all this course
     params:
         body:
-            username                // kerberos username
-            password                // kerberos password 
-            devclub_secret          // A secret token for verifying use
+            course_code
     return:
         status_code
         error: false/true
         message: "..string"
+        data: {                   // info of this course
+            "name": "...",
+            "coordinator": "...",
+            "credit": XX,
+            "limit": XX,
+            "slot": "P",
+            "structure": "L-T-P"
+        } 
 
-
-POST: /api/updateAllHistoricalOfferedCourses  // Fetch all the offered courses till now in IITD and store in our database
-    params:
-        body:
-            username                // kerberos username
-            password                // kerberos password 
-            devclub_secret          // A secret token for verifying use
-    return:
-        status_code
-        error: false/true
-        message: "..string"
-
-
-GET: /api/getAllOfferedCourses            // Fetch all the offered courses
-    params:
-        body:
-    return:
-        status_code
-        error: false/true
-        message: "..string"
-
-
-GET: /api/getAllHistoricalOfferedCourses  // Fetch all the offered courses till now in IITD
-    params:
-        body:
-    return:
-        status_code
-        error: false/true
-        message: "..string"
-
-
-// get all profs list => LDAP
-
-
-
-POST: /api/updateRegisteredStudents    // Fetch all the registered students in this course and store in our database
-    params:
-        body:
-            username                // kerberos username
-            password                // kerberos password 
-            course_code             // the course_code whose data is to be fetched
-            devclub_secret          // A secret token for verifying use
-    return:
-        status_code
-        error: false/true
-        message: "..string"
-
-
-GET: /api/getRegisteredStudents    // Fetch all the registered students in this course and store in our database
-    params:
-        body:
-            course_code             // the course_code whose data is to be fetched
-    return:
-        status_code
-        error: false/true
-        message: "..string"
-        data: [
-            {
-                Name: "...",
-                Entry: "...",
-                group: "..."
-            }
-        ]
 
 
 // LDAP API
@@ -209,6 +157,45 @@ POST: /api/getStudentInfo    // Fetch list of students and entry numbers in this
 POST: /api/getAllDepartmentRecords    // Fetch list of students and entry numbers in all departments
     CANCELLED AS FOR LDAP ITS TOO MUCH DATA TO QUERY AND RETURN    
 
+
+// Note: Following 3 APIs not provided yet. 
+POST: /api/updateAllHistoricalOfferedCourses  // Fetch all the offered courses till now in IITD and store in our database
+    params:
+        body:
+            username                // kerberos username
+            password                // kerberos password 
+            devclub_secret          // A secret token for verifying use
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+
+
+GET: /api/getAllHistoricalOfferedCourses  // Fetch all the offered courses till now in IITD
+    params:
+        body:
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+
+GET: /api/getRegisteredStudents    // Fetch all the registered students in this course and store in our database
+    params:
+        body:
+            course_code             // the course_code whose data is to be fetched
+    return:
+        status_code
+        error: false/true
+        message: "..string"
+        data: [
+            {
+                Name: "...",
+                Entry: "...",
+                group: "..."
+            }
+        ]
+
+// get all profs list => LDAP
 
 // -------------- (Next Version -- Will be added later) ---------------
 

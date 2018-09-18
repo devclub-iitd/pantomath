@@ -1,9 +1,10 @@
 from flask import request, jsonify
-import json
-import csv
+import json, os
 from .ldap_scrap import get_departmental_records, get_student_info
 from .grades import get_gradesheet, AuthenticationError
+from .utils import get_student_data
 
+PATH = os.path.dirname(os.path.abspath(__file__))
 
 # List of statuses
 ok = 200
@@ -24,7 +25,7 @@ def index():
 ## Grades API
 def getGrades():
     return res(404, 'Grades API Not Available Yet..')
-    
+
 def getGradesheet():
     if not ('username' in request.form):
         return res(400, 'No Username Provided')
@@ -45,6 +46,80 @@ def getGradesheet():
     # success
     return res(200, 'Gradesheet successfully retrieved', gradesheet)
     
+
+## Courses API ##
+def updateCoursesDB():
+    # Scrap the academics website for course info and store as json files
+    try:
+        get_student_data()
+    except Exception as e:
+        # Some error occured
+        print (e)
+        return res(500, 'Internal Server Error')
+
+    # Success
+    return res(200, 'DB updated Successfully')
+    
+
+def getRegisteredCourses():
+    # Get the registered courses of the given user
+    if (not 'username' in request.form):
+        return res(400, 'No username provided.')
+    
+    username = request.form['username']
+    try:
+        file = open(PATH + "/../DB/student.json", 'rb')
+        data = json.load(file)
+    except Exception as e:
+        print (e)
+        return res(500, 'Internal Server Error')
+    
+    entrynum = username_to_entrynum(username)
+    userdata = data.get(entrynum, None)
+    if userdata is None:
+        return res(404, 'Username is not present in the database')
+
+    # Success
+    return res(200, 'User data successfully retrieved', userdata)
+
+
+def getAllCourses():
+    # Get information about all courses floated
+    try:
+        file = open(PATH + "/../DB/courses.json", 'rb')
+        data = json.load(file)
+    except Exception as e:
+        print (e)
+        return res(500, 'Internal Server Error')
+
+    result = {}
+    for courseCode, courseInfo in data.items():
+        result[courseCode] = formatCourseInfo(courseInfo)
+
+    # Success
+    return res(200, 'All Courses successfully retrieved', result)
+
+
+def getCourseInfo():
+    # Get the infomation about a particular course
+    if (not 'course_code' in request.form):
+        return res(400, 'No course code provided.')
+    
+    courseCode = request.form['course_code']
+    try:
+        file = open(PATH + "/../DB/courses.json", 'rb')
+        data = json.load(file)
+    except Exception as e:
+        print (e)
+        return res(500, 'Internal Server Error')
+
+    courseData = data.get(courseCode, None)
+    if courseData is None:
+        return res(404, 'Course is not present in the database')
+
+    # Success
+    return res(200, 'Course data successfully retrieved', formatCourseInfo(courseData))
+
 
 ## LDAP API
 def getDepartmentStudentRecords():
@@ -122,3 +197,16 @@ def res(code, msg, data=None):
         'data': data 
     }
     return jsonify(response), code
+
+
+def username_to_entrynum(u):
+    return "20" + u[3:5] + u[:3].upper() + u[5:]
+
+def formatCourseInfo(courseInfo):
+    # put the course slot inside course info
+    result = {}
+    for slot, info in courseInfo.items():
+        result = info
+        result['slot'] = slot
+
+    return result
