@@ -19,8 +19,10 @@ serviceUnavailable = 503
 
 
 def index():
-    return 'Welcome to Pantomath!'
-
+    return """
+    <h2> Welcome to Pantomath </h2>
+    <h4> Please find the documentation at <a href="https://pantomath.docs.apiary.io/">https://pantomath.docs.apiary.io/ </a></h4>
+    """
 
 ## Grades API
 def getGrades():
@@ -44,22 +46,56 @@ def getGradesheet():
         return res(500, 'Internal Server Error')
 
     # success
-    return res(200, 'Gradesheet successfully retrieved', gradesheet)
+    return res(200, gradesheet)
     
 
 ## Courses API ##
-def updateCoursesDB():
-    # Scrap the academics website for course info and store as json files
+def getAllCourses():
+    # Get information about all courses floated
     try:
-        get_student_data()
+        file = open(PATH + "/../DB/courses.json", 'rb')
+        data = json.load(file)
     except Exception as e:
-        # Some error occured
         print (e)
         return res(500, 'Internal Server Error')
 
+    result = {}
+    for courseCode, courseInfo in data.items():
+        result[courseCode] = formatCourseInfo(courseInfo)
+
     # Success
-    return res(200, 'DB updated Successfully')
+    return res(200, result)
+
+
+def getCourseInfo():
+    # Get the infomation about a particular course
+    if (not 'course_code' in request.form):
+        return res(400, 'No course code provided.')
     
+    courseCode = request.form['course_code'].upper()
+    try:
+        file = open(PATH + "/../DB/courses.json", 'rb')
+        data = json.load(file)
+    except Exception as e:
+        print (e)
+        return res(500, 'Internal Server Error')
+
+    courseData = data.get(courseCode, None)
+    if courseData is None:
+        return res(404, 'Course is not present in the database')
+
+    # Success
+    return res(200, formatCourseInfo(courseData))
+
+
+def updateCoursesDB():
+    # Update the courses DB i.e. the courses offered this semester
+    return res(404, 'API not available yet...')
+
+def deleteCoursesDB():
+    # Delete the courses DB i.e. the courses offered this semester
+    return res(404, 'API not available yet...')
+
 
 def getRegisteredCourses():
     # Get the registered courses of the given user
@@ -80,46 +116,24 @@ def getRegisteredCourses():
         return res(404, 'Username is not present in the database')
 
     # Success
-    return res(200, 'User data successfully retrieved', userdata)
+    return res(200, userdata)
 
 
-def getAllCourses():
-    # Get information about all courses floated
+def updateRegisteredCourses():
+    # Scrap the academics website for course info and store as json files
     try:
-        file = open(PATH + "/../DB/courses.json", 'rb')
-        data = json.load(file)
+        get_student_data()
     except Exception as e:
+        # Some error occured
         print (e)
         return res(500, 'Internal Server Error')
 
-    result = {}
-    for courseCode, courseInfo in data.items():
-        result[courseCode] = formatCourseInfo(courseInfo)
-
     # Success
-    return res(200, 'All Courses successfully retrieved', result)
+    return res(200, {'status': 'DB updated Successfully'})
 
 
-def getCourseInfo():
-    # Get the infomation about a particular course
-    if (not 'course_code' in request.form):
-        return res(400, 'No course code provided.')
-    
-    courseCode = request.form['course_code']
-    try:
-        file = open(PATH + "/../DB/courses.json", 'rb')
-        data = json.load(file)
-    except Exception as e:
-        print (e)
-        return res(500, 'Internal Server Error')
-
-    courseData = data.get(courseCode, None)
-    if courseData is None:
-        return res(404, 'Course is not present in the database')
-
-    # Success
-    return res(200, 'Course data successfully retrieved', formatCourseInfo(courseData))
-
+def deleteRegisteredCourses():
+    return res(404, 'API not available yet...')
 
 ## LDAP API
 def getDepartmentStudentRecords():
@@ -140,7 +154,7 @@ def getDepartmentStudentRecords():
         return res(400, 'No students of this category found')
 
     # Success
-    return res(200, 'Successfully retrieved departmental records', records)
+    return res(200, records)
 
 
 def getStudentInfo():
@@ -185,18 +199,21 @@ def getStudentInfo():
         results.pop("username")
 
     # Return
-    return res(200, 'Successfully Retrieved Student Info', results)
+    return res(200, results)
 
 
 # Helper functions
-def res(code, msg, data=None):
+def res(code, response):
     # Returns the appropriate response
-    response = {
-        'error': False if code == 200 else True,
-        'message': msg,
-        'data': data 
-    }
-    return jsonify(response), code
+    if (code == 200):
+        # Send the OK response
+        return jsonify(response), 200
+    else:
+        # Send error
+        errorMsg = {
+            "error": response
+        }
+        return jsonify(errorMsg), code
 
 
 def username_to_entrynum(u):

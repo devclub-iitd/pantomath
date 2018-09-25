@@ -11,3 +11,7 @@ $ flask run --host=<IP> --port=<PORT>
 Note: In case of [error installing python-ldap](https://stackoverflow.com/a/4768467/7116413), on a Debian/Ubuntu system:
 `sudo apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev
 `
+
+## Documentation
+
+Documentation is available at https://pantomath.docs.apiary.io/  

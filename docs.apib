@@ -1,0 +1,342 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# pantomath
+
+One Stop platform for all the scraping need of the club.
+
+## Consolidated Gradesheet [/api/gradesheet]
+### Retrieve Gradesheet of the student [POST]
+
++ Request (application/json)
+
+        {
+            "username": "cs1160xxx",
+            "password": "abc$"
+        }
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "cgpa": x.xxx,
+                "sgpa": x.xxx,
+                "earned_credits": XX,
+                "total_credits": XX,
+                "grades": {
+                    "COL100": {
+                        "course_category": "EA",
+                        "course_credits": 4,
+                        "course_grade": "A",
+                        "course_name": "INTRO. TO COMPUTER SCIENCE"
+                    }, ...
+                }
+            }, ...
+        ]
+        
++ Response 400 (application/json)
+
+        {
+            "error": "Bad Request, Error Message"
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "error": "Invalid Login Credentials"
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error"
+        }
+        
+        
+## Semester Grades [/api/grades]
+### Retrieve End Semester Grades of the student [POST]
+
++ Request (application/json)
+
+        {
+            "username": "cs1160xxx",
+            "password": "abc$"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "COL100": {
+                "course_category": "EA",
+                "course_credits": 4,
+                "course_grade": "A",
+                "course_name": "INTRO. TO COMPUTER SCIENCE"
+            }, ...
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "error": "Bad Request, Error Message"
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "error": "Invalid Login Credentials"
+        }
+        
++ Response 404 (application/json)
+
+        {
+            "error": "Grades API Not Available Yet.."
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error"
+        }
+        
+## Student Profile [/api/getStudentInfo]
+### Student Info [POST]
+
++ Request (application/json)
+    
+        {
+            "uid": "cs1160xxx",
+            "entry": "true", (optional)
+            "dateOfBirth": "true", (optional)
+            "gender": "true", (optional)
+            "bloodGroup": "true", (optional)
+            "suspended": "true" (optional)
+        }
+
++ Response 200 (application/json)
+
+        [
+            {
+                "name": "First Second",
+                "department": "cse",
+                "category": "btech",
+                "altEmail": "abc@bbb.com",
+                (optional)
+                "entry": "2016CS10xxx",
+                "dateOfBirth": "YYYYMMDD",
+                "gender": "M",
+                "bloodGroup": "X+",
+                "suspended": "No"
+            }
+        ]
+        
++ Response 400 (application/json)
+
+        {
+            "error": "No uid provided/Invalid UID"
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error"
+        }
+        
+## Department Info [/api/deptStudentRecords]
+### List Department Students Info [POST]
+
++ Request (application/json)
+    
+
++ Response 200 (application/json)
+
+        [
+            {
+                "Name": "First Second",
+                "Entry": "2016CS10NNN",
+                "UID": "cs116nnnn",
+            }
+        ]
+        
++ Response 400 (application/json)
+
+        {
+            "error": "No category provided/Students not found"
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error"
+        }
+
+
+## Courses Collection [/api/courseInfo]
+### List all offered courses in the semester [GET]
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+        {
+            "COL215": {
+                "coordinator": "ANSHUL KUMAR",
+                "credit": 5,
+                "limit": "120",
+                "name": "DIGITAL LOGIC & SYSTEM DESIGN",
+                "slot": "E",
+                "structure": "3-0-4"
+            }, ...
+        },
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error"
+        }
+
+### Get Course Information [POST]
+
++ Request (application/json)
+
+        {
+            course_code: "COL215"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "coordinator": "ANSHUL KUMAR",
+            "credit": 5,
+            "limit": "120",
+            "name": "DIGITAL LOGIC & SYSTEM DESIGN",
+            "slot": "E",
+            "structure": "3-0-4"
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "error": "No course code provided."
+        }
+        
++ Response 404 (application/json)
+
+        {
+            "error": "Course is not present in the database"
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error"
+        }
+        
+### Update all offered courses in the semester [PUT]
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+        {
+            "status": "DB updated Successfully"
+        }
+        
++ Response 404 (application/json)
+    
+        {
+            "error": "API not available yet..."
+        }
+        
+### Delete the courses database of the semester [DELETE]
+
++ Request (application/json)
+
++ Response 200 (application/json)
+    
+        {
+            "status": "DB deleted Successfully"
+        }
+
++ Response 404 (application/json)
+    
+        {
+            "error": "API not available yet..."
+        }
+
+            
+## Student Registered Courses [/api/registeredCourses]
+### List registered courses of Student [POST]
+
++ Request (application/json)
+
+        {
+            username: "cs1160xxx"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "courses": [
+                {
+                    "code": "COL3XX",
+                    "slot": "P"
+                }, ...
+            ],
+            "name": "FIRST SECOND"
+        }
+   
++ Response 400 (application/json)
+
+        {
+            "error": "No username provided."
+        }
+
++ Response 404 (application/json)
+
+        {
+            "error": "Username is not present in the database"
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error"
+        }
+
+### Update registered courses of All Students [PUT]
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+        {
+            "status": "DB updated Successfully"
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error"
+        }
+        
+### Delete the student courses database [DELETE]
++ Request (application/json)
+
++ Response 200 (application/json)
+
+        {
+            "status": "DB deleted Successfully"
+        }
+
++ Response 404 (application/json)
+        
+        {
+            "error": "API not implemented yet.."
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error"
+        }
+        
