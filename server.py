@@ -22,3 +22,8 @@ app.add_url_rule('/api/registeredCourses', view_func=views.deleteRegisteredCours
 ## LDAP API ##
 app.add_url_rule('/api/deptStudentRecords', view_func=views.getDepartmentStudentRecords, methods=['POST'])
 app.add_url_rule('/api/getStudentInfo', view_func=views.getStudentInfo, methods=['POST'])
+
+## Timetable API ##
+app.add_url_rule('/api/schedule', view_func=views.get_schedule, methods=['POST'])
+app.add_url_rule('/api/schedule', view_func=views.updateSchedule, methods=['PUT'])
+app.add_url_rule('/api/schedule', view_func=views.deleteSchedule, methods=['DELETE'])

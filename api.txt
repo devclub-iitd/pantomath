@@ -229,3 +229,63 @@ GET: /api/getSchedule             // Fetch the user schedule
         error: false/true
         message: "..string"
         pdfData: "TBD"
+
+
+/************** Version 2 *************/
+// Timetable API
+GET: /api/schedule
+    params:
+        body:
+            entry:
+    return:
+        [
+            {
+                course_code: XXXNNN,
+                slot: P,
+                room: "LH xxx",
+                schedule: {
+                    day: {
+                        start: HH:MM,
+                        end: HH:MM
+                    }, ...
+                }
+            }, ...
+        ]
+
+PUT: /api/schedule
+    params:
+    return:
+        success/err
+
+DELETE: /api/schedule
+    params:
+    return:
+        success/err
+
+
+// Exam schedule API
+GET: /api/examSchedule
+    params:
+        body:
+            entry:
+            exam_type: M1/M2/MJ
+    return:
+        [
+            {
+                start_time: HH:MM,
+                end_time: HH:MM,
+                date: DD-MM-YYYY,
+                course_code: XXXNNN,
+                room: 'String... LH325/...'
+            }
+        ]
+
+PUT: /api/examSchedule
+    params:
+    return:
+        success/err
+
+DELETE: /api/examSchedule
+    params:
+    return:
+        success/err

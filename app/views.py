@@ -2,7 +2,8 @@ from flask import request, jsonify
 import json, os
 from .ldap_scrap import get_departmental_records, get_student_info
 from .grades import get_gradesheet, AuthenticationError
-from .utils import get_student_data
+from .courses import get_student_data
+from .schedule import update_course_schedule, delete_course_schedule
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -201,6 +202,99 @@ def getStudentInfo():
     # Return
     return res(200, results)
 
+
+## Schedule APIs
+def updateSchedule():
+    """
+    Updates the schedule corresponding to all the courses
+    """
+
+    try:
+        update_course_schedule()
+    except Exception as e:
+        print (e)
+        return res(500, 'Problem updating Course Schedule Information')
+
+    # Return
+    return res(200, {'status': 'DB updated Successfully'})
+
+
+def deleteSchedule():
+    """
+    Deletes the schedule corresponding to all the courses
+    """
+
+    try:
+        delete_course_schedule()
+    except Exception as e:
+        return res(500, 'Problem deleting schedule Database')
+
+    # Success
+    return res(200, {'status': 'DB deleted Successfully'})
+
+
+def get_schedule ():
+    """
+    Fetches the schedule of the given entry number
+    """
+    if not ('entry' in request.form):
+        return res(400, 'Entry number not provided.')
+
+    # Read the courses taken up by the student
+    entry = request.form['entry']
+    try:
+        file = open(PATH + "/../DB/student.json", 'rb')
+        student_course_data = json.load(file)
+    except Exception as e:
+        print (e)
+        return res(500, 'Student Database not present')
+
+    try:
+        student_course_data = student_course_data[entry]["courses"]
+    except Exception as e:
+        print (e)
+        return res(404, 'Student record not available')
+
+    # Slot info
+    try:
+        with open(os.path.join(PATH, '../DB/slot.json')) as f:
+            slot_data = json.load(f)
+    except Exception as e:
+        print (e)
+        return res(500, 'Slot Info not available')
+
+    # For each course get it's corresponding schedule
+    try:
+        file = open(PATH + "/../DB/venue.json")
+        course_venue = json.load(file)
+    except Exception as e:
+        return res(500, 'Schedule Database not present')
+
+    student_schedule = []
+    for course in student_course_data:
+        code = course['code']
+        slot = course['slot']
+
+        if (code in course_venue) and (slot in course_venue[code]):
+            venue = course_venue[code][slot]
+        else:
+            venue = "NA"
+
+        if slot in slot_data:
+            schedule = slot_data[slot]
+        else:
+            schedule = {}
+
+        student_schedule.append({
+            'course_code': code,
+            'slot': slot,
+            'room': venue,
+            'schedule': schedule
+        })
+
+    # Success 
+    return res(200, student_schedule)
+    
 
 # Helper functions
 def res(code, response):
