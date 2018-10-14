@@ -274,7 +274,7 @@ GET: /api/examSchedule
             {
                 start_time: HH:MM,
                 end_time: HH:MM,
-                date: DD-MM-YYYY,
+                date: String (23 Aug 2018 (Thu) ),
                 course_code: XXXNNN,
                 room: 'String... LH325/...'
             }

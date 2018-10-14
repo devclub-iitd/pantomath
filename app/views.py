@@ -4,6 +4,7 @@ from .ldap_scrap import get_departmental_records, get_student_info
 from .grades import get_gradesheet, AuthenticationError
 from .courses import get_student_data
 from .schedule import update_course_schedule, delete_course_schedule
+from .exam import update_exam_timetable, delete_exam_schedule
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -233,7 +234,7 @@ def deleteSchedule():
     return res(200, {'status': 'DB deleted Successfully'})
 
 
-def get_schedule ():
+def getSchedule ():
     """
     Fetches the schedule of the given entry number
     """
@@ -295,6 +296,100 @@ def get_schedule ():
     # Success 
     return res(200, student_schedule)
     
+
+## Exam Schedule APIs ##
+def updateExamSchedule():
+    """
+    Updates the exam schedule corresponding to all the courses
+    """
+
+    try:
+        update_exam_timetable()
+    except Exception as e:
+        print (e)
+        return res(500, 'Problem updating Exam Schedule Information')
+
+    # Return
+    return res(200, {'status': 'DB updated Successfully'})
+
+
+def deleteExamSchedule():
+    """
+    Deletes the exam schedule
+    """
+
+    try:
+        delete_exam_schedule()
+    except Exception as e:
+        return res(500, 'Problem deleting schedule Database')
+
+    # Success
+    return res(200, {'status': 'DB deleted Successfully'})
+
+
+def getExamSchedule ():
+    """
+    Fetches the schedule of the given entry number
+    """
+
+    if not ('entry' in request.form):
+        return res(400, 'Entry number not provided.')
+
+    exam_type = request.form.get('exam_type')
+    if (exam_type is None or not (exam_type == 'M1' or exam_type == 'M2' or exam_type == 'MJ')):
+        return res(400, 'Valid exam type not provided')
+
+    # Read the courses taken up by the student
+    entry = request.form['entry']
+    try:
+        file = open(PATH + "/../DB/student.json", 'rb')
+        student_course_data = json.load(file)
+    except Exception as e:
+        print (e)
+        return res(500, 'Student Database not present')
+
+    try:
+        student_course_data = student_course_data[entry]["courses"]
+    except Exception as e:
+        print (e)
+        return res(404, 'Student record not available')
+
+    # Exam info
+    try:
+        with open(os.path.join(PATH, '../DB/exam.json')) as f:
+            exam_data = json.load(f)
+    except Exception as e:
+        print (e)
+        return res(500, 'Exam Info not available')
+
+    # For each course get it's corresponding schedule
+    exam_schedule = []
+    for course in student_course_data:
+        code = course['code']
+        slot = course['slot']
+
+        if slot in exam_data:
+            slot_date = exam_data[slot]
+        else:
+            slot_date = {}
+
+        if exam_type in slot_date:
+            date = slot_date[exam_type]
+        else:
+            date = "NA"
+
+        exam_schedule.append({
+            'course_code': code,
+            'slot': slot,
+            'date': date,
+            'room': "NA",
+            'start_time': "NA",
+            'end_time': "NA"
+        })
+
+    # Success 
+    return res(200, exam_schedule)
+   
 
 # Helper functions
 def res(code, response):

@@ -79,6 +79,7 @@ def scrap(db_path,write_csv):
         except Exception as e:
             print("Error occurred in course: ", code)
             print(e)
+            raise
 
     with open(os.path.join(db_path,"student.json"), "w") as fl:
         fl.write(json.dumps(students, indent=4, sort_keys=True))
