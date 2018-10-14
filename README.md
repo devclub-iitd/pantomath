@@ -8,10 +8,13 @@ $ export FLASK_APP=server.py
 $ flask run --host=<IP> --port=<PORT>
 ```
 
-Note: In case of [error installing python-ldap](https://stackoverflow.com/a/4768467/7116413), on a Debian/Ubuntu system:
-`sudo apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev
-`
-
+Note: In case of Installation errors -
+1. [error installing python-ldap](https://stackoverflow.com/a/4768467/7116413), on a Debian/Ubuntu system:
+`sudo apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev`
+2. [error with tkinter](https://stackoverflow.com/a/43616757/7116413), on a Debian/Ubuntu system:
+ `sudo apt-get install python3-tk`
+3. [error with cv2](https://stackoverflow.com/a/48533185/7116413), on Debian/Ubuntu system: 
+`pip3 install opencv-python`
 ## Documentation
 
 Documentation is available at https://pantomath.docs.apiary.io/  

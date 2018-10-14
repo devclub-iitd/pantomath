@@ -4,7 +4,7 @@ from .ldap_scrap import get_departmental_records, get_student_info
 from .grades import get_gradesheet, AuthenticationError
 from .courses import get_student_data
 from .schedule import update_course_schedule, delete_course_schedule
-from .exam import update_exam_timetable, delete_exam_schedule
+from .exam import update_exam_timetable, delete_exam_schedule, download_and_segment_pdf, split_pdf, parse_pdfs, extract_schedule
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -303,6 +303,42 @@ def updateExamSchedule():
     Updates the exam schedule corresponding to all the courses
     """
 
+    exam_type = request.form.get('exam_type')
+    if (exam_type is None or not (exam_type == 'minor' or exam_type == 'major')):
+        return res(400, 'Valid exam type not provided')
+
+    pdf_link = request.form.get('pdf_link')
+    if (pdf_link is None):
+        return res(400, 'PDF link not provided')
+    
+    # Fetch the PDF file
+    try:
+        download_and_segment_pdf(exam_type, pdf_link)
+    except Exception as e:
+        print (e)
+        return res(400, 'PDF can\'t be downloaded')
+    
+    # Segment the PDF File
+    try:
+        split_pdf(exam_type)
+    except Exception as e:
+        print (e)
+        return res(500, 'PDF split has a problem')
+
+    # Parse the PDF files
+    try:
+        parse_pdfs(exam_type)
+    except Exception as e:
+        print (e)
+        return res(500, 'Problem parsing the PDF')
+    
+    # Update exam venue and timings
+    try:
+        extract_schedule(exam_type)
+    except Exception as e:
+        print (e)
+        return res(500, 'Problem extracting schedule')
+
     try:
         update_exam_timetable()
     except Exception as e:
@@ -362,6 +398,18 @@ def getExamSchedule ():
         print (e)
         return res(500, 'Exam Info not available')
 
+    # Exam room info
+    try:
+        if (exam_type == 'MJ'):
+            with open(os.path.join(PATH, '../DB/major.json')) as f:
+                exam_room_info = json.load(f)
+        else:
+            with open(os.path.join(PATH, '../DB/minor.json')) as f:
+                exam_room_info = json.load(f)
+    except Exception as e:
+        print (e)
+        exam_room_info = {}
+
     # For each course get it's corresponding schedule
     exam_schedule = []
     for course in student_course_data:
@@ -378,13 +426,16 @@ def getExamSchedule ():
         else:
             date = "NA"
 
+        if code in exam_room_info:
+            schedule = exam_room_info[code]
+        else:
+            schedule = {}
+
         exam_schedule.append({
             'course_code': code,
             'slot': slot,
             'date': date,
-            'room': "NA",
-            'start_time': "NA",
-            'end_time': "NA"
+            'schedule': schedule
         })
 
     # Success 

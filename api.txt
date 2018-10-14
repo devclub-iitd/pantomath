@@ -272,11 +272,18 @@ GET: /api/examSchedule
     return:
         [
             {
-                start_time: HH:MM,
-                end_time: HH:MM,
-                date: String (23 Aug 2018 (Thu) ),
                 course_code: XXXNNN,
-                room: 'String... LH325/...'
+                date: String (23 Aug 2018 (Thu) ),
+                schedule: [
+                    {
+                        room: 'LH 121',
+                        time: {
+                            start: H:MM,
+                            end: H:MM
+                        }
+                    }, ...
+                ],
+                slot: 'A'
             }
         ]
 

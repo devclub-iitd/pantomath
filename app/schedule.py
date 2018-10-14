@@ -54,6 +54,6 @@ def update_schedule_json (db_path):
             venue_json[course][slot] = venue
 
     with open(os.path.join(db_path,"venue.json"), "w") as fl:
-        fl.write(json.dumps(venue_json, indent=4, sort_keys=True))
+        fl.write(json.dumps(venue_json, indent=4))
 
 
