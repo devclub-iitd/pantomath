@@ -5,6 +5,7 @@ from .grades import get_gradesheet, AuthenticationError
 from .courses import get_student_data
 from .schedule import delete_course_schedule, download_venue_pdf, split_venue_pdf, parse_venue_pdfs, extract_venue_info
 from .exam import update_exam_timetable, delete_exam_schedule, download_and_segment_pdf, split_pdf, parse_pdfs, extract_schedule
+from .helper import *
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -31,13 +32,13 @@ def getGrades():
     return res(404, 'Grades API Not Available Yet..')
 
 def getGradesheet():
-    if not ('username' in request.form):
-        return res(400, 'No Username Provided')
-    if not ('password' in request.form):
-        return res(400, 'No Password Provided')
+    username = request.form.get('username')
+    password = request.form.get('password')
 
-    username = request.form['username']
-    password = request.form['password']
+    if bad_name(username):
+        return res(400, 'No Valid Username Provided')
+    if bad_password(password):
+        return res(400, 'No Valid Password Provided')
 
     try:
         gradesheet = get_gradesheet(username, password)
@@ -71,10 +72,11 @@ def getAllCourses():
 
 def getCourseInfo():
     # Get the infomation about a particular course
-    if (not 'course_code' in request.form):
+    courseCode = request.form.get('course_code')
+    if bad_name(courseCode):
         return res(400, 'No course code provided.')
-    
-    courseCode = request.form['course_code'].upper()
+    courseCode = courseCode.upper()
+
     try:
         file = open(PATH + "/../DB/courses.json", 'rb')
         data = json.load(file)
@@ -101,10 +103,10 @@ def deleteCoursesDB():
 
 def getRegisteredCourses():
     # Get the registered courses of the given user
-    if (not 'username' in request.form):
+    username = request.form.get('username')
+    if bad_name(username):
         return res(400, 'No username provided.')
     
-    username = request.form['username']
     try:
         file = open(PATH + "/../DB/student.json", 'rb')
         data = json.load(file)
@@ -139,10 +141,9 @@ def deleteRegisteredCourses():
 
 ## LDAP API
 def getDepartmentStudentRecords():
-    if not ('category' in request.form):
+    category = request.form.get('category')
+    if bad_name(category):
         return res(400, 'No category provided.')
-
-    category = request.form['category']
 
     # Query LDAP
     try:
@@ -160,10 +161,10 @@ def getDepartmentStudentRecords():
 
 
 def getStudentInfo():
-    if not ('uid' in request.form):
+    uid = request.form.get('uid')
+    if bad_name(uid):
         return res(400, 'No uid provided.')
 
-    uid = request.form['uid']
     searchAttributes=["department", "category", "username", "altEmail"]
 
     # Extract extra search attributes
@@ -211,7 +212,7 @@ def updateSchedule():
     """
 
     pdf_link = request.form.get('pdf_link')
-    if (pdf_link is None):
+    if bad_url(pdf_link):
         return res(400, 'PDF link not provided')
 
     # Fetch the PDF file
@@ -264,12 +265,12 @@ def getSchedule ():
     """
     Fetches the schedule of the given entry number
     """
-    if not ('entry' in request.form):
+    entry = request.form.get('entry')
+    if bad_name(entry):
         return res(400, 'Entry number not provided.')
+    entry = entry.upper()
 
     # Read the courses taken up by the student
-    entry = request.form['entry']
-    entry = entry.upper()
     try:
         file = open(PATH + "/../DB/student.json", 'rb')
         student_course_data = json.load(file)
@@ -334,11 +335,11 @@ def updateExamSchedule():
     """
 
     exam_type = request.form.get('exam_type')
-    if (exam_type is None or not (exam_type == 'minor' or exam_type == 'major')):
+    if (bad_name(exam_type) or not (exam_type == 'minor' or exam_type == 'major')):
         return res(400, 'Valid exam type not provided')
 
     pdf_link = request.form.get('pdf_link')
-    if (pdf_link is None):
+    if bad_url(pdf_link):
         return res(400, 'PDF link not provided')
     
     # Fetch the PDF file
@@ -397,17 +398,16 @@ def getExamSchedule ():
     """
     Fetches the schedule of the given entry number
     """
-
-    if not ('entry' in request.form):
+    entry = request.form.get('entry')
+    if bad_name(entry):
         return res(400, 'Entry number not provided.')
+    entry = entry.upper()
 
     exam_type = request.form.get('exam_type')
-    if (exam_type is None or not (exam_type == 'M1' or exam_type == 'M2' or exam_type == 'MJ')):
+    if (bad_name(exam_type) or not (exam_type == 'M1' or exam_type == 'M2' or exam_type == 'MJ')):
         return res(400, 'Valid exam type not provided')
 
     # Read the courses taken up by the student
-    entry = request.form['entry']
-    entry = entry.upper()
     try:
         file = open(PATH + "/../DB/student.json", 'rb')
         student_course_data = json.load(file)
@@ -472,29 +472,3 @@ def getExamSchedule ():
     # Success 
     return res(200, exam_schedule)
    
-
-# Helper functions
-def res(code, response):
-    # Returns the appropriate response
-    if (code == 200):
-        # Send the OK response
-        return jsonify(response), 200
-    else:
-        # Send error
-        errorMsg = {
-            "error": response
-        }
-        return jsonify(errorMsg), code
-
-
-def username_to_entrynum(u):
-    return "20" + u[3:5] + u[:3].upper() + u[5:]
-
-def formatCourseInfo(courseInfo):
-    # put the course slot inside course info
-    result = {}
-    for slot, info in courseInfo.items():
-        result = info
-        result['slot'] = slot
-
-    return result
