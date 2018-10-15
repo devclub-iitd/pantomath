@@ -1,11 +1,11 @@
 # pantomath
 One Stop platform for all our scraping needs
 
-## Running
+## Setting Up
+### Installation
 ```
+$ git clone https://github.com/devclub-iitd/pantomath.git
 $ pip install -r requirements.txt
-$ export FLASK_APP=server.py
-$ flask run --host=<IP> --port=<PORT>
 ```
 
 Note: In case of Installation errors -
@@ -18,6 +18,25 @@ Note: In case of Installation errors -
 4. [error with bcrypt](https://pypi.org/project/bcrypt/), on Debian/Ubuntu system:
 `sudo apt-get install build-essential libffi-dev python-dev`
 
+### Generating Admin Keys
+1. Decide an `admin_secret` and a `db_secret` for your application.
+2. Generate the corresponding keys:
+`$ python utility/genkey.py <admin_secret> <db_secret>`
+3. Copy the `ADMIN_SECRET` and `DB_SECRET` spit out by the app
+4. Export these two keys and add to `env.sh` for future setup
+`$ export ADMIN_SECRET=<ADMIN_SECRET> && export DB_SECRET=<DB_SECRET>`
+5. Decide a `SECRET_KEY` for signing the JWT API keys
+`$ export SECRET_KEY=<SECRET_KEY>`
+
+### Generating API Keys
+1. Head over to http://link/to/pantomath/admin/genKeys
+2. Generate API key for your app by entering the `<admin_secret>`, selecting the APIs needed, and a name for your application.
+
+## Running 
+```
+$ export FLASK_APP=server.py
+$ flask run --host=<IP> --port=<PORT>
+```
 
 ## Documentation
 
@@ -30,3 +49,4 @@ Documentation is available at https://pantomath.docs.apiary.io/
 * Student registered courses
 * Student Daily Schedule
 * Student Exam Schedule
+* Facebook _(@Siddhant)_

@@ -12,7 +12,9 @@ One Stop platform for all the scraping need of the club.
 
         {
             "username": "cs1160xxx",
-            "password": "abc$"
+            "password": "abc$",
+            "api_key": "your-api-key",
+            "application-name": "your-application-name"
         }
         
 + Response 200 (application/json)
@@ -60,7 +62,9 @@ One Stop platform for all the scraping need of the club.
 
         {
             "username": "cs1160xxx",
-            "password": "abc$"
+            "password": "abc$",
+            "api_key": "your-api-key",
+            "application-name": "your-application-name"
         }
         
 + Response 200 (application/json)
@@ -105,11 +109,13 @@ One Stop platform for all the scraping need of the club.
     
         {
             "uid": "cs1160xxx",
-            "entry": "true", (optional)
+            "entry": "", (optional)
             "dateOfBirth": "true", (optional)
             "gender": "true", (optional)
             "bloodGroup": "true", (optional)
-            "suspended": "true" (optional)
+            "suspended": "true" (optional),
+            "api_key": "your-api-key",
+            "application-name": "your-application-name"
         }
 
 + Response 200 (application/json)
@@ -141,11 +147,17 @@ One Stop platform for all the scraping need of the club.
             "error": "Internal Server Error"
         }
         
+        
 ## Department Info [/api/deptStudentRecords]
 ### List Department Students Info [POST]
 
 + Request (application/json)
     
+        {
+            "category": "cs116",
+            "api_key": "your-api-key",
+            "application-name": "your-application-name"
+        }
 
 + Response 200 (application/json)
 
@@ -153,8 +165,8 @@ One Stop platform for all the scraping need of the club.
             {
                 "Name": "First Second",
                 "Entry": "2016CS10NNN",
-                "UID": "cs116nnnn",
-            }
+                "UID": "cs116nnnn"
+            }, ...
         ]
         
 + Response 400 (application/json)
@@ -174,6 +186,11 @@ One Stop platform for all the scraping need of the club.
 ### List all offered courses in the semester [GET]
 
 + Request (application/json)
+
+        {
+            "api_key": "your-api-key",
+            "application-name": "your-application-name"
+        }
 
 + Response 200 (application/json)
 
@@ -199,7 +216,9 @@ One Stop platform for all the scraping need of the club.
 + Request (application/json)
 
         {
-            course_code: "COL215"
+            course_code: "COL215",
+            "api_key": "your-api-key",
+            "application-name": "your-application-name"
         }
         
 + Response 200 (application/json)
@@ -234,6 +253,11 @@ One Stop platform for all the scraping need of the club.
 ### Update all offered courses in the semester [PUT]
 
 + Request (application/json)
+
+        {
+            "admin_secret": "admin_secret_key",
+            "db_secret_key": "db_admin_secret_key"
+        }
 
 + Response 200 (application/json)
 
@@ -270,7 +294,9 @@ One Stop platform for all the scraping need of the club.
 + Request (application/json)
 
         {
-            username: "cs1160xxx"
+            username: "cs1160xxx",
+            "api_key": "your-api-key",
+            "application-name": "your-application-name"
         }
         
 + Response 200 (application/json)
@@ -307,6 +333,11 @@ One Stop platform for all the scraping need of the club.
 
 + Request (application/json)
 
+        {
+            "admin_secret": "admin_secret_key",
+            "db_secret_key": "db_admin_secret_key"
+        }
+
 + Response 200 (application/json)
 
         {
@@ -321,6 +352,11 @@ One Stop platform for all the scraping need of the club.
         
 ### Delete the student courses database [DELETE]
 + Request (application/json)
+
+        {
+            "admin_secret": "admin_secret_key",
+            "db_secret_key": "db_admin_secret_key"
+        }
 
 + Response 200 (application/json)
 
@@ -349,7 +385,9 @@ One Stop platform for all the scraping need of the club.
 + Request (application/json)
 
         {
-            "entry": "2016CS10xxx"
+            "entry": "2016CS10xxx",
+            "api_key": "your-api-key",
+            "application-name": "your-application-name"
         }
         
 + Response 200 (application/json)
@@ -393,7 +431,9 @@ One Stop platform for all the scraping need of the club.
 + Request (application/json)
 
         {
-            "pdf_link": "http://timetable.iitd.ac.in/link/to/room-booking.pdf"
+            "pdf_link": "http://timetable.iitd.ac.in/link/to/room-booking.pdf",
+            "admin_secret": "admin_secret_key",
+            "db_secret_key": "db_admin_secret_key"
         }
     
 + Response 200 (application/json)
@@ -418,6 +458,11 @@ One Stop platform for all the scraping need of the club.
 ### Delete schedule information Database [DELETE]
 + Request (application/json)
 
+        {
+            "admin_secret": "admin_secret_key",
+            "db_secret_key": "db_admin_secret_key"
+        }
+        
 + Response 200 (application/json)
 
         {
@@ -442,7 +487,9 @@ One Stop platform for all the scraping need of the club.
 
         {
             "entry": "2016CS10xxx",
-            "exam_type": "M1/M2/MJ"
+            "exam_type": "M1/M2/MJ",
+            "api_key": "your-api-key",
+            "application-name": "your-application-name"
         }
         
 + Response 200 (application/json)
@@ -489,7 +536,9 @@ One Stop platform for all the scraping need of the club.
 
         {
             "exam_type": "minor/major",
-            "pdf_link": "http://timetable.iitd.ac.in/link/to/exam_schedule.pdf"
+            "pdf_link": "http://timetable.iitd.ac.in/link/to/exam_schedule.pdf",
+            "admin_secret": "admin_secret_key",
+            "db_secret_key": "db_admin_secret_key"
         }
     
 + Response 200 (application/json)
@@ -513,6 +562,11 @@ One Stop platform for all the scraping need of the club.
         
 ### Delete exam schedule information Database [DELETE]
 + Request (application/json)
+
+        {
+            "admin_secret": "admin_secret_key",
+            "db_secret_key": "db_admin_secret_key"
+        }
 
 + Response 200 (application/json)
 
