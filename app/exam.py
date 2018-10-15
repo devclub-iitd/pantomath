@@ -227,6 +227,7 @@ def extract_schedule_csv (csv_file, courses_json):
                     courses_json[course] = []
                 courses_json[course].append({
                     'room': room,
+                    'capacity': capacity,
                     'time': time
                 })
 

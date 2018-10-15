@@ -1,1229 +1,1930 @@
 {
-    "AML310": {
-        "A": "LH 602"
+    "AML701": {
+        "capacity": "56",
+        "room": "III 342 WED"
     },
-    "AML702": {
-        "E": "III 339"
+    "AML713": {
+        "capacity": "90",
+        "room": "IV 254"
     },
-    "AML706": {
-        "H": "LH422"
+    "AML732": {
+        "capacity": "24",
+        "room": "LH 622"
     },
-    "AML793": {
-        "C": "LH 620"
+    "AML733": {
+        "capacity": "90",
+        "room": "IV 254"
     },
-    "AML795": {
-        "B": "LH 620"
+    "AML751": {
+        "capacity": "60",
+        "room": "LH 611"
     },
-    "AML831": {
-        "A": "LH 518"
+    "AML771": {
+        "capacity": "50",
+        "room": "LH421"
     },
-    "AML832": {
-        "A": "VI 404"
+    "AML791": {
+        "capacity": "48",
+        "room": "II 336"
     },
-    "AML835": {
-        "B": "LH 520"
+    "AML792": {
+        "capacity": "138",
+        "room": "VI LT 2 WED"
     },
-    "AMP776": {
-        "F": "V 344"
+    "AML794": {
+        "capacity": "60",
+        "room": "LH 606"
+    },
+    "AML805": {
+        "capacity": "24",
+        "room": "LH 622"
     },
     "APL100": {
-        "AP": "LH 325"
+        "capacity": "500",
+        "room": "LH 325"
     },
     "APL102": {
-        "E": "LH 121"
+        "capacity": "500",
+        "room": "LH 325"
     },
-    "APL705": {
-        "H": "LH 316"
+    "APL103": {
+        "capacity": "150",
+        "room": "LH 308"
     },
-    "APL711": {
-        "K": "LH 519"
+    "APL104": {
+        "capacity": "150",
+        "room": "LH 318"
     },
-    "APL713": {
-        "J": "III 336"
+    "APL106": {
+        "capacity": "150",
+        "room": "LH 310"
     },
-    "APL720": {
-        "M": "LH 613"
+    "APL107": {
+        "capacity": "150",
+        "room": "LH 410"
     },
-    "APL763": {
-        "B": "LH 614"
+    "APL108": {
+        "capacity": "150",
+        "room": "LH 316"
     },
-    "APL767": {
-        "A": "LH 615"
+    "APL700": {
+        "capacity": "60",
+        "room": "VI 404"
     },
-    "APL774": {
-        "J": "LH 606"
+    "APL701": {
+        "capacity": "150",
+        "room": "LH 510"
     },
-    "APL796": {
-        "C": "LH 517"
+    "APL703": {
+        "capacity": "138",
+        "room": "VI LT 1 WED"
     },
-    "APL871": {
-        "B": "LH 613"
+    "APL710": {
+        "capacity": "24",
+        "room": "LH 518"
+    },
+    "APL734": {
+        "capacity": "90",
+        "room": "IV 254"
+    },
+    "APL753": {
+        "capacity": "63",
+        "room": "VI 402"
+    },
+    "APL765": {
+        "capacity": "48",
+        "room": "II 336"
+    },
+    "APL775": {
+        "capacity": "60",
+        "room": "VI 404"
+    },
+    "ASL320": {
+        "capacity": "60",
+        "room": "LH 619"
+    },
+    "ASL350": {
+        "capacity": "60",
+        "room": "LH 517"
     },
     "ASL360": {
-        "M": "LH421"
+        "capacity": "150",
+        "room": "LH 308"
+    },
+    "ASL730": {
+        "capacity": "24",
+        "room": "LH 612"
+    },
+    "ASL733": {
+        "capacity": "52",
+        "room": "V 344"
     },
     "ASL734": {
-        "F": "LH 518"
+        "capacity": "60",
+        "room": "LH 613"
     },
-    "ASL736": {
-        "J": "LH 611"
-    },
-    "ASL737": {
-        "E": "LH 604"
-    },
-    "ASL754": {
-        "D": "LH 614"
-    },
-    "ASL760": {
-        "B": "LH 603"
+    "ASL755": {
+        "capacity": "24",
+        "room": "LH 605"
     },
     "ASL761": {
-        "H": "LH 521"
+        "capacity": "60",
+        "room": "LH 621"
     },
-    "BBL341": {
-        "B": "LH 517"
+    "BBL131": {
+        "capacity": "60",
+        "room": "LH 611"
     },
-    "BBL343": {
-        "J": "LH 512"
+    "BBL132": {
+        "capacity": "150",
+        "room": "LH 318"
     },
-    "BBL431": {
-        "J": "LH 410"
+    "BBL133": {
+        "capacity": "150",
+        "room": "LH 308"
     },
-    "BBL432": {
-        "H": "LH 318"
+    "BBL231": {
+        "capacity": "60",
+        "room": "LH 517"
     },
-    "BBL433": {
-        "D": "LH 606"
+    "BBL331": {
+        "capacity": "60",
+        "room": "LH 519"
     },
-    "BBL434": {
-        "F": "LH 615"
+    "BBL731": {
+        "capacity": "150",
+        "room": "LH 510"
     },
-    "BBL443": {
-        "B": "LH 602"
+    "BBL732": {
+        "capacity": "60",
+        "room": "LH 604"
     },
-    "BBL445": {
-        "E": "LH 602"
+    "BBL733": {
+        "capacity": "138",
+        "room": "VI LT 2 WED"
     },
-    "BBL736": {
-        "B": "LH 611"
+    "BBL734": {
+        "capacity": "60",
+        "room": "LH 521"
     },
-    "BBL740": {
-        "K": "LH 521"
+    "BBL735": {
+        "capacity": "24",
+        "room": "LH 518"
     },
-    "BBL742": {
-        "D": "LH 611"
+    "BBL737": {
+        "capacity": "75",
+        "room": "III 339 WED"
     },
-    "BBL745": {
-        "H": "LH 606"
+    "BBL741": {
+        "capacity": "60",
+        "room": "LH 602"
     },
-    "BBL746": {
-        "F": "LH 606"
+    "BBL743": {
+        "capacity": "60",
+        "room": "LH 519"
     },
-    "BBL747": {
-        "E": "VI 404"
+    "BML710": {
+        "capacity": "24",
+        "room": "LH 520"
     },
-    "BBL749": {
-        "F": "LH 611"
+    "BML720": {
+        "capacity": "24",
+        "room": "LH 518"
     },
-    "BML735": {
-        "AD": "LH 518"
+    "BML770": {
+        "capacity": "60",
+        "room": "LH 615"
     },
-    "BML736": {
-        "D": "LH 521"
+    "BML800": {
+        "capacity": "48",
+        "room": "II 336"
     },
-    "BML740": {
-        "C": "LH 521"
+    "BML810": {
+        "capacity": "24",
+        "room": "LH 622"
     },
-    "BML741": {
-        "E": "LH 605"
+    "BML830": {
+        "capacity": "24",
+        "room": "LH 605"
     },
-    "BML750": {
-        "F": "VI 404"
+    "BML850": {
+        "capacity": "24",
+        "room": "LH 605"
     },
-    "BML820": {
-        "J": "VI 404"
+    "CLD351": {
+        "capacity": "60",
+        "room": "LH 611"
     },
-    "BML860": {
-        "K": "LH 518"
+    "CLL110": {
+        "capacity": "300",
+        "room": "LH 111"
     },
-    "CLL121": {
-        "A": "LH 111"
+    "CLL111": {
+        "capacity": "150",
+        "room": "LH 408"
     },
-    "CLL122": {
-        "D": "LH 111"
+    "CLL113": {
+        "capacity": "150",
+        "room": "LH 318"
     },
-    "CLL231": {
-        "F": "LH 111"
+    "CLL141": {
+        "capacity": "150",
+        "room": "LH 308"
     },
-    "CLL251": {
-        "B": "LH 111"
+    "CLL222": {
+        "capacity": "150",
+        "room": "LH 308"
     },
-    "CLL271": {
-        "D": "LH 527"
+    "CLL252": {
+        "capacity": "300",
+        "room": "LH 108"
     },
-    "CLL352": {
-        "B": "LH 527"
+    "CLL261": {
+        "capacity": "300",
+        "room": "LH 114"
     },
-    "CLL361": {
-        "C": "LH 114"
+    "CLL331": {
+        "capacity": "150",
+        "room": "LH 310"
     },
-    "CLL371": {
-        "E": "LH 527"
+    "CLL701": {
+        "capacity": "150",
+        "room": "LH 526"
     },
-    "CLL475": {
-        "B": "LH422"
+    "CLL702": {
+        "capacity": "150",
+        "room": "LH 526"
     },
-    "CLL722": {
-        "B": "LH 604"
+    "CLL703": {
+        "capacity": "150",
+        "room": "LH 416"
     },
-    "CLL727": {
-        "E": "LH 606"
+    "CLL705": {
+        "capacity": "60",
+        "room": "LH 623"
     },
-    "CLL731": {
-        "A": "LH 114"
+    "CLL723": {
+        "capacity": "60",
+        "room": "LH 606"
     },
-    "CLL733": {
-        "D": "VI LT 2"
+    "CLL725": {
+        "capacity": "60",
+        "room": "LH 606"
     },
-    "CLL766": {
-        "H": "LH 621"
+    "CLL726": {
+        "capacity": "60",
+        "room": "LH 613"
     },
-    "CLL767": {
-        "B": "LH 615"
+    "CLL730": {
+        "capacity": "24",
+        "room": "LH 518"
     },
-    "CLL771": {
-        "F": "LH 621"
+    "CLL736": {
+        "capacity": "24",
+        "room": "LH 518"
     },
-    "CLL772": {
-        "E": "LH 611"
+    "CLL769": {
+        "capacity": "60",
+        "room": "LH 602"
     },
-    "CLL779": {
-        "H": "LH 602"
+    "CLL777": {
+        "capacity": "60",
+        "room": "LH 602"
     },
-    "CLL785": {
-        "H": "LH 604"
+    "CLL780": {
+        "capacity": "60",
+        "room": "LH 621"
     },
-    "CLL786": {
-        "E": "LH 613"
+    "CLL781": {
+        "capacity": "24",
+        "room": "LH 520"
     },
-    "CLL793": {
-        "F": "LH 521"
+    "CLL791": {
+        "capacity": "50",
+        "room": "LH422"
+    },
+    "CLL794": {
+        "capacity": "60",
+        "room": "LH 604"
+    },
+    "CLL798": {
+        "capacity": "138",
+        "room": "VI LT 2 WED"
+    },
+    "CLN101": {
+        "capacity": "150",
+        "room": "LH 308"
+    },
+    "CLQ301": {
+        "capacity": "50",
+        "room": "LH421"
+    },
+    "CLQ302": {
+        "capacity": "60",
+        "room": "LH 517"
+    },
+    "CLV796": {
+        "capacity": "60",
+        "room": "LH 602"
+    },
+    "CLV797": {
+        "capacity": "24",
+        "room": "LH 620"
     },
     "CML100": {
-        "DP": "LH 114"
+        "capacity": "300",
+        "room": "LH 108"
     },
-    "CML521": {
-        "F": "LH421"
+    "CML102": {
+        "capacity": "60",
+        "room": "LH 621"
     },
-    "CML522": {
-        "A": "LH421"
+    "CML103": {
+        "capacity": "150",
+        "room": "LH 408"
     },
-    "CML523": {
-        "D": "LH421"
+    "CML511": {
+        "capacity": "60",
+        "room": "LH 619"
     },
-    "CML524": {
-        "E": "LH421"
+    "CML512": {
+        "capacity": "60",
+        "room": "LH 619"
     },
-    "CML525": {
-        "B": "LH421"
+    "CML513": {
+        "capacity": "60",
+        "room": "LH 619"
     },
-    "CML526": {
-        "C": "LH421"
+    "CML514": {
+        "capacity": "60",
+        "room": "LH 619"
     },
-    "CML663": {
-        "E": "LH 615"
+    "CML515": {
+        "capacity": "60",
+        "room": "LH 619"
     },
-    "CML665": {
-        "D": "LH 605"
+    "CML631": {
+        "capacity": "50",
+        "room": "LH422"
     },
-    "CML675": {
-        "A": "VI LT 1"
+    "CML661": {
+        "capacity": "50",
+        "room": "LH422"
     },
-    "CML724": {
-        "D": "LH 519"
+    "CML664": {
+        "capacity": "50",
+        "room": "LH422"
     },
-    "CML729": {
-        "C": "LH 615"
+    "CML674": {
+        "capacity": "60",
+        "room": "LH 613"
     },
-    "CML737": {
-        "E": "V 344"
+    "CML681": {
+        "capacity": "50",
+        "room": "LH422"
     },
-    "CML738": {
-        "F": "LH 604"
+    "CML684": {
+        "capacity": "50",
+        "room": "LH422"
     },
-    "CML739": {
-        "K": "LH 602"
+    "CML691": {
+        "capacity": "50",
+        "room": "LH422"
     },
-    "CML740": {
-        "A": "VI LT 1"
+    "CML721": {
+        "capacity": "24",
+        "room": "LH 520"
     },
-    "CML801": {
-        "B": "LH 619"
+    "CML723": {
+        "capacity": "60",
+        "room": "VI 404"
+    },
+    "CML726": {
+        "capacity": "24",
+        "room": "LH 612"
+    },
+    "CML731": {
+        "capacity": "24",
+        "room": "LH 603"
+    },
+    "CML733": {
+        "capacity": "24",
+        "room": "LH 520"
+    },
+    "CML734": {
+        "capacity": "24",
+        "room": "LH 520"
+    },
+    "CML741": {
+        "capacity": "24",
+        "room": "LH 612"
     },
     "COL100": {
-        "B": "LH 108"
+        "capacity": "300",
+        "room": "LH 108"
     },
     "COL106": {
-        "F": "LH 108"
+        "capacity": "500",
+        "room": "LH 325"
     },
-    "COL216": {
-        "B": "LH 410"
+    "COL202": {
+        "capacity": "150",
+        "room": "LH 310"
     },
-    "COL226": {
-        "F": "LH 526"
+    "COL215": {
+        "capacity": "150",
+        "room": "LH 408"
     },
-    "COL331": {
-        "E": "LH 318"
+    "COL333": {
+        "capacity": "500",
+        "room": "LH 121"
     },
-    "COL352": {
-        "A": "LH 526"
+    "COL334": {
+        "capacity": "150",
+        "room": "LH 310"
     },
-    "COL362": {
-        "H": "LH 308"
+    "COL341": {
+        "capacity": "150",
+        "room": "LH 308"
     },
-    "COL380": {
-        "C": "LH 410"
+    "COL351": {
+        "capacity": "150",
+        "room": "LH 510"
     },
-    "COL632": {
-        "H": "LH 308"
+    "COL671": {
+        "capacity": "500",
+        "room": "LH 121"
     },
-    "COL633": {
-        "E": "LH 318"
+    "COL672": {
+        "capacity": "150",
+        "room": "LH 310"
     },
-    "COL718": {
-        "B": "IIA 106"
+    "COL702": {
+        "capacity": "75",
+        "room": "IIA 101 WED"
     },
-    "COL724": {
-        "D": "IIA 106"
+    "COL703": {
+        "capacity": "75",
+        "room": "IIA 201 WED"
     },
-    "COL726": {
-        "J": "IIA 101"
+    "COL719": {
+        "capacity": "52",
+        "room": "V 344"
     },
-    "COL728": {
-        "A": "IIA 106"
+    "COL733": {
+        "capacity": "75",
+        "room": "IIA 101 WED"
     },
-    "COL740": {
-        "H": "IIA 201"
+    "COL754": {
+        "capacity": "56",
+        "room": "IIA 305 WED"
     },
-    "COL772": {
-        "AA": "IIA 106"
+    "COL761": {
+        "capacity": "75",
+        "room": "IIA 201 WED"
     },
-    "COL774": {
-        "F": "LH 512"
+    "COL765": {
+        "capacity": "75",
+        "room": "IIA 101 WED"
     },
-    "COL781": {
-        "K": "IIA 201"
+    "COL768": {
+        "capacity": "75",
+        "room": "IIA 101 WED"
     },
-    "COL786": {
-        "H": "IIA 106"
+    "COL780": {
+        "capacity": "75",
+        "room": "IIA 101 WED"
     },
-    "COL862": {
-        "AC": "IIA 106"
+    "COL783": {
+        "capacity": "75",
+        "room": "IIA 201 WED"
     },
-    "COL863": {
-        "AB": "IIA 106"
+    "COL788": {
+        "capacity": "24",
+        "room": "LH 605"
     },
-    "COL867": {
-        "LE": "LH 318"
+    "COL830": {
+        "capacity": "56",
+        "room": "IIA 305 WED"
     },
-    "CRL702": {
-        "E": "LH 621"
+    "COL864": {
+        "capacity": "75",
+        "room": "IIA 201 WED"
     },
-    "CRL704": {
-        "D": "LH 621"
+    "COL865": {
+        "capacity": "56",
+        "room": "IIA 305 WED"
     },
-    "CRL706": {
-        "J": "LH 621"
+    "COL868": {
+        "capacity": "24",
+        "room": "LH 603"
     },
-    "CRL712": {
-        "A": "LH 621"
+    "CRL601": {
+        "capacity": "68",
+        "room": "III 336 WED"
     },
-    "CRL722": {
-        "C": "LH 621"
+    "CRL611": {
+        "capacity": "75",
+        "room": "III 339 WED"
     },
-    "CRL724": {
-        "B": "LH 621"
+    "CRL707": {
+        "capacity": "60",
+        "room": "VI 430"
     },
-    "CRL732": {
-        "D": "LH 520"
+    "CRL711": {
+        "capacity": "60",
+        "room": "LH 604"
+    },
+    "CRL715": {
+        "capacity": "48",
+        "room": "II 336"
+    },
+    "CRL725": {
+        "capacity": "49",
+        "room": "VI 427"
+    },
+    "CRL729": {
+        "capacity": "24",
+        "room": "LH 614"
+    },
+    "CRL733": {
+        "capacity": "60",
+        "room": "LH 606"
     },
     "CVL100": {
-        "C": "LH 325"
+        "capacity": "500",
+        "room": "LH 325"
     },
-    "CVL212": {
-        "B": "LH 416"
+    "CVL111": {
+        "capacity": "150",
+        "room": "LH 308"
     },
-    "CVL222": {
-        "F": "LH 114"
+    "CVL121": {
+        "capacity": "150",
+        "room": "LH 316"
     },
-    "CVL242": {
-        "D": "LH 318"
+    "CVL141": {
+        "capacity": "150",
+        "room": "LH 316"
     },
-    "CVL244": {
-        "C": "LH 416"
+    "CVL243": {
+        "capacity": "150",
+        "room": "LH 526"
     },
-    "CVL261": {
-        "B": "LH 418"
+    "CVL245": {
+        "capacity": "150",
+        "room": "LH 410"
     },
-    "CVL281": {
-        "E": "LH 108"
+    "CVL282": {
+        "capacity": "150",
+        "room": "LH 410"
     },
-    "CVL313": {
-        "F": "LH 519"
+    "CVL284": {
+        "capacity": "24",
+        "room": "LH 605"
     },
-    "CVL342": {
-        "D": "LH 416"
+    "CVL321": {
+        "capacity": "150",
+        "room": "LH 416"
     },
-    "CVL381": {
-        "E": "LH 325"
+    "CVL341": {
+        "capacity": "150",
+        "room": "LH 318"
     },
-    "CVL382": {
-        "H": "LH 614"
+    "CVL421": {
+        "capacity": "24",
+        "room": "LH 518"
     },
-    "CVL422": {
-        "M": "LH 418"
+    "CVL423": {
+        "capacity": "60",
+        "room": "LH 517"
     },
-    "CVL431": {
-        "E": "LH 114"
+    "CVL433": {
+        "capacity": "150",
+        "room": "LH 527"
     },
-    "CVL443": {
-        "H": "LH421"
+    "CVL441": {
+        "capacity": "60",
+        "room": "LH 517"
     },
-    "CVL462": {
-        "C": "LH 602"
+    "CVL442": {
+        "capacity": "24",
+        "room": "LH 520"
     },
-    "CVL482": {
-        "J": "VI 402"
+    "CVL485": {
+        "capacity": "24",
+        "room": "LH 620"
     },
-    "CVL702": {
-        "F": "II 337"
+    "CVL700": {
+        "capacity": "68",
+        "room": "III 336 WED"
     },
-    "CVL703": {
-        "B": "V 344"
+    "CVL701": {
+        "capacity": "68",
+        "room": "III 336 WED"
     },
-    "CVL705": {
-        "D": "II 336"
+    "CVL704": {
+        "capacity": "150",
+        "room": "LH 527"
     },
-    "CVL706": {
-        "E": "IIA 201"
+    "CVL710": {
+        "capacity": "24",
+        "room": "LH 603"
     },
-    "CVL712": {
-        "D": "III 339"
+    "CVL711": {
+        "capacity": "24",
+        "room": "LH 620"
     },
-    "CVL713": {
-        "E": "II 336"
+    "CVL716": {
+        "capacity": "24",
+        "room": "LH 622"
     },
-    "CVL714": {
-        "F": "II 336"
+    "CVL720": {
+        "capacity": "52",
+        "room": "IV 339"
     },
-    "CVL715": {
-        "A": "II 337"
+    "CVL722": {
+        "capacity": "24",
+        "room": "LH 605"
     },
-    "CVL721": {
-        "E": "II 337"
+    "CVL725": {
+        "capacity": "52",
+        "room": "IV 339"
     },
-    "CVL723": {
-        "M": "LH 614"
+    "CVL729": {
+        "capacity": "60",
+        "room": "LH 611"
     },
-    "CVL724": {
-        "B": "LH 114"
+    "CVL730": {
+        "capacity": "56",
+        "room": "IV 323"
     },
-    "CVL728": {
-        "A": "II 336"
+    "CVL731": {
+        "capacity": "56",
+        "room": "IV 323"
     },
-    "CVL734": {
-        "D": "II 337"
+    "CVL732": {
+        "capacity": "56",
+        "room": "IV 323"
     },
-    "CVL735": {
-        "J": "II 336"
+    "CVL733": {
+        "capacity": "24",
+        "room": "LH 605"
     },
-    "CVL746": {
-        "L": "LH 517"
+    "CVL738": {
+        "capacity": "60",
+        "room": "LH 611"
     },
-    "CVL760": {
-        "A": "LH 606"
+    "CVL740": {
+        "capacity": "24",
+        "room": "LH 603"
     },
-    "CVL761": {
-        "C": "III 336"
+    "CVL741": {
+        "capacity": "24",
+        "room": "LH 622"
     },
-    "CVL762": {
-        "B": "III 336"
+    "CVL742": {
+        "capacity": "52",
+        "room": "IV 339"
     },
-    "CVL765": {
-        "D": "V 344"
+    "CVL747": {
+        "capacity": "60",
+        "room": "LH 517"
     },
-    "CVL769": {
-        "D": "III 336"
+    "CVL756": {
+        "capacity": "60",
+        "room": "LH 604"
     },
-    "CVL774": {
-        "D": "IIA 201"
+    "CVL757": {
+        "capacity": "60",
+        "room": "LH 519"
     },
-    "CVL775": {
-        "C": "LH 510"
+    "CVL758": {
+        "capacity": "56",
+        "room": "IV 323"
     },
-    "CVL776": {
-        "E": "VI LT 1"
+    "CVL759": {
+        "capacity": "75",
+        "room": "IIA 101 WED"
     },
-    "CVL778": {
-        "A": "LH 611"
+    "CVL764": {
+        "capacity": "60",
+        "room": "LH 519"
     },
-    "CVL779": {
-        "B": "VI LT 1"
+    "CVL766": {
+        "capacity": "60",
+        "room": "LH 615"
     },
-    "CVL825": {
-        "D": "LH 518"
+    "CVL771": {
+        "capacity": "75",
+        "room": "III 339 WED"
     },
-    "CVL830": {
-        "F": "III 342"
+    "CVL772": {
+        "capacity": "138",
+        "room": "VI LT 1 WED"
     },
-    "CVL838": {
-        "H": "VI 404"
+    "CVL773": {
+        "capacity": "110",
+        "room": "WS 101"
     },
-    "CVL844": {
-        "K": "LH421"
+    "CVL777": {
+        "capacity": "75",
+        "room": "III 339 WED"
     },
-    "CVL847": {
-        "A": "LH 623"
+    "CVL801": {
+        "capacity": "49",
+        "room": "VI 429"
     },
-    "CVL849": {
-        "M": "LH 518"
+    "CVL824": {
+        "capacity": "60",
+        "room": "LH 604"
     },
-    "CVL856": {
-        "E": "LH 622"
+    "CVL831": {
+        "capacity": "60",
+        "room": "VI 404"
     },
-    "CVL859": {
-        "J": "LH 622"
+    "CVL839": {
+        "capacity": "56",
+        "room": "III 342 WED"
     },
-    "CVL861": {
-        "D": "LH 623"
+    "CVL842": {
+        "capacity": "75",
+        "room": "III 339 WED"
     },
-    "CVL864": {
-        "H": "LH 518"
+    "CVL871": {
+        "capacity": "50",
+        "room": "LH422"
     },
-    "CVL875": {
-        "H": "LH 520"
+    "CVP772": {
+        "capacity": "150",
+        "room": "LH 418"
     },
-    "DSL712": {
-        "E": "LH 518"
+    "DSL603": {
+        "capacity": "56",
+        "room": "III 342 WED"
     },
-    "DSL714": {
-        "J": "LH 603"
+    "DSL710": {
+        "capacity": "24",
+        "room": "LH 603"
     },
-    "DSL734": {
-        "H": "LH 603"
+    "DSL711": {
+        "capacity": "52",
+        "room": "IV 339"
     },
-    "DSL737": {
-        "K": "LH 603"
+    "DSL731": {
+        "capacity": "24",
+        "room": "LH 614"
     },
-    "DSL811": {
-        "F": "LH 603"
+    "DSL751": {
+        "capacity": "60",
+        "room": "LH 521"
+    },
+    "DSL782": {
+        "capacity": "24",
+        "room": "LH 612"
+    },
+    "DSL810": {
+        "capacity": "24",
+        "room": "LH 612"
+    },
+    "DSP721": {
+        "capacity": "60",
+        "room": "LH 521"
+    },
+    "DSR832": {
+        "capacity": "60",
+        "room": "LH 613"
     },
     "ELL100": {
-        "E": "LH 310"
+        "capacity": "300",
+        "room": "LH 108"
     },
-    "ELL201": {
-        "B": "LH 325"
+    "ELL202": {
+        "capacity": "150",
+        "room": "LH 408"
+    },
+    "ELL203": {
+        "capacity": "150",
+        "room": "LH 416"
     },
     "ELL205": {
-        "D": "LH 526"
+        "capacity": "300",
+        "room": "LH 108"
     },
-    "ELL212": {
-        "E": "LH 408"
+    "ELL211": {
+        "capacity": "150",
+        "room": "LH 310"
     },
-    "ELL225": {
-        "F": "LH 308"
+    "ELL302": {
+        "capacity": "150",
+        "room": "LH 410"
     },
-    "ELL231": {
-        "A": "LH 517"
+    "ELL304": {
+        "capacity": "150",
+        "room": "LH 418"
     },
-    "ELL301": {
-        "C": "LH 611"
+    "ELL305": {
+        "capacity": "300",
+        "room": "LH 111"
     },
-    "ELL303": {
-        "F": "LH 310"
+    "ELL311": {
+        "capacity": "150",
+        "room": "LH 527"
     },
-    "ELL316": {
-        "E": "LH 519"
+    "ELL319": {
+        "capacity": "60",
+        "room": "LH 604"
     },
-    "ELL332": {
-        "B": "LH 308"
+    "ELL333": {
+        "capacity": "150",
+        "room": "LH 527"
     },
-    "ELL365": {
-        "A": "LH 308"
-    },
-    "ELL400": {
-        "E": "LH 521"
+    "ELL363": {
+        "capacity": "60",
+        "room": "LH 602"
     },
     "ELL409": {
-        "JJ": "VI LT 2"
+        "capacity": "150",
+        "room": "LH 310"
     },
-    "ELL411": {
-        "F": "LH 623"
+    "ELL700": {
+        "capacity": "60",
+        "room": "LH 521"
     },
-    "ELL703": {
-        "A": "IIA 305"
+    "ELL701": {
+        "capacity": "75",
+        "room": "IIA 201 WED"
     },
-    "ELL705": {
-        "B": "IIA 201"
+    "ELL702": {
+        "capacity": "75",
+        "room": "IIA 201 WED"
     },
-    "ELL715": {
-        "J": "IIA 201"
+    "ELL710": {
+        "capacity": "24",
+        "room": "LH 612"
     },
-    "ELL717": {
-        "A": "IIA 101"
+    "ELL711": {
+        "capacity": "150",
+        "room": "LH 512"
     },
-    "ELL718": {
-        "J": "IIA 106"
+    "ELL712": {
+        "capacity": "56",
+        "room": "IIA 305 WED"
     },
-    "ELL719": {
-        "B": "IIA 101"
+    "ELL713": {
+        "capacity": "24",
+        "room": "LH 620"
     },
-    "ELL720": {
-        "H": "IIA 101"
+    "ELL714": {
+        "capacity": "56",
+        "room": "IIA 305 WED"
     },
-    "ELL723": {
-        "F": "IIA 101"
+    "ELL727": {
+        "capacity": "56",
+        "room": "IIA 305 WED"
     },
-    "ELL730": {
-        "C": "IIA 106"
+    "ELL728": {
+        "capacity": "75",
+        "room": "IIA 201 WED"
     },
-    "ELL749": {
-        "L": "IIA 305"
+    "ELL732": {
+        "capacity": "75",
+        "room": "IIA 101 WED"
     },
-    "ELL752": {
-        "M": "IIA 305"
+    "ELL734": {
+        "capacity": "75",
+        "room": "IIA 201 WED"
     },
-    "ELL776": {
-        "D": "IIA 305"
+    "ELL735": {
+        "capacity": "56",
+        "room": "IIA 305 WED"
     },
-    "ELL778": {
-        "M": "IIA 201"
+    "ELL738": {
+        "capacity": "60",
+        "room": "LH 613"
     },
-    "ELL783": {
-        "A": "IIA 201"
+    "ELL740": {
+        "capacity": "24",
+        "room": "LH 520"
+    },
+    "ELL750": {
+        "capacity": "60",
+        "room": "VI 404"
+    },
+    "ELL751": {
+        "capacity": "60",
+        "room": "LH 615"
+    },
+    "ELL753": {
+        "capacity": "68",
+        "room": "III 336 WED"
+    },
+    "ELL758": {
+        "capacity": "52",
+        "room": "IV 339"
+    },
+    "ELL764": {
+        "capacity": "48",
+        "room": "II 336"
+    },
+    "ELL770": {
+        "capacity": "60",
+        "room": "LH 615"
+    },
+    "ELL771": {
+        "capacity": "60",
+        "room": "LH 615"
+    },
+    "ELL775": {
+        "capacity": "60",
+        "room": "LH 521"
+    },
+    "ELL780": {
+        "capacity": "60",
+        "room": "LH 623"
+    },
+    "ELL781": {
+        "capacity": "60",
+        "room": "LH 623"
+    },
+    "ELL782": {
+        "capacity": "90",
+        "room": "IV 254"
     },
     "ELL784": {
-        "C": "IIA 305"
+        "capacity": "138",
+        "room": "VI LT 2 WED"
     },
-    "ELL786": {
-        "D": "IIA 101"
+    "ELL785": {
+        "capacity": "56",
+        "room": "IIA 305 WED"
     },
-    "ELL791": {
-        "JJ": "VI LT 2"
+    "ELL787": {
+        "capacity": "60",
+        "room": "LH 602"
     },
-    "ELL800": {
-        "M": "IIA 106"
+    "ELL793": {
+        "capacity": "75",
+        "room": "IIA 201 WED"
     },
-    "ELL814": {
-        "H": "IIA 305"
+    "ELL801": {
+        "capacity": "75",
+        "room": "IIA 201 WED"
     },
-    "ELL817": {
-        "J": "IIA 305"
+    "ELL804": {
+        "capacity": "52",
+        "room": "IV 339"
     },
-    "ELL850": {
-        "B": "IIA 305"
+    "ELL818": {
+        "capacity": "60",
+        "room": "LH 604"
     },
-    "ELL888": {
-        "M": "VI LT 2"
+    "ELL820": {
+        "capacity": "56",
+        "room": "IIA 305 WED"
+    },
+    "ELL832": {
+        "capacity": "75",
+        "room": "IIA 201 WED"
+    },
+    "ELL834": {
+        "capacity": "24",
+        "room": "LH 612"
+    },
+    "ELL873": {
+        "capacity": "63",
+        "room": "VI 402"
+    },
+    "ELL880": {
+        "capacity": "24",
+        "room": "LH 612"
+    },
+    "ELL881": {
+        "capacity": "50",
+        "room": "LH421"
+    },
+    "ELL890": {
+        "capacity": "60",
+        "room": "LH 615"
+    },
+    "ELV832": {
+        "capacity": "60",
+        "room": "LH 623"
     },
     "ESL300": {
-        "J": "LH421"
+        "capacity": "60",
+        "room": "LH 604"
     },
     "ESL330": {
-        "B": "LH 519"
-    },
-    "ESL340": {
-        "J": "LH422"
-    },
-    "ESL350": {
-        "B": "LH 521"
+        "capacity": "63",
+        "room": "VI 402"
     },
     "ESL360": {
-        "B": "II 336"
+        "capacity": "500",
+        "room": "LH 325"
     },
-    "ESL710": {
-        "B": "LH 623"
-    },
-    "ESL714": {
-        "H": "VI 402"
-    },
-    "ESL718": {
-        "M": "LH 605"
+    "ESL711": {
+        "capacity": "56",
+        "room": "IIA 305 WED"
     },
     "ESL720": {
-        "E": "IIA 305"
-    },
-    "ESL730": {
-        "D": "VI 404"
+        "capacity": "68",
+        "room": "III 336 WED"
     },
     "ESL732": {
-        "H": "LH 611"
-    },
-    "ESL734": {
-        "J": "III 342"
+        "capacity": "52",
+        "room": "V 344"
     },
     "ESL737": {
-        "H": "LH 605"
+        "capacity": "24",
+        "room": "LH 612"
+    },
+    "ESL740": {
+        "capacity": "56",
+        "room": "III 342 WED"
     },
     "ESL742": {
-        "A": "LH 605"
+        "capacity": "49",
+        "room": "VI 427"
+    },
+    "ESL746": {
+        "capacity": "52",
+        "room": "IV 339"
     },
     "ESL755": {
-        "F": "LH 620"
+        "capacity": "24",
+        "room": "LH 603"
     },
-    "ESL871": {
-        "F": "LH 622"
+    "ESL760": {
+        "capacity": "60",
+        "room": "LH 521"
     },
-    "ESL880": {
-        "AD": "LH 520"
+    "ESL768": {
+        "capacity": "52",
+        "room": "V 344"
     },
-    "HSL703": {
-        "J": "LH 612"
+    "ESL770": {
+        "capacity": "60",
+        "room": "VI 404"
     },
-    "HSL713": {
-        "B": "IV 339"
+    "ESL850": {
+        "capacity": "68",
+        "room": "III 336 WED"
     },
-    "HSL745": {
-        "J": "LH 520"
+    "ESL860": {
+        "capacity": "60",
+        "room": "LH 623"
+    },
+    "ESL870": {
+        "capacity": "24",
+        "room": "LH 614"
+    },
+    "ESQ307": {
+        "capacity": "56",
+        "room": "IV 323"
+    },
+    "ESQ309": {
+        "capacity": "52",
+        "room": "IV 339"
+    },
+    "HSL304": {
+        "capacity": "60",
+        "room": "LH 519"
+    },
+    "HSL384": {
+        "capacity": "24",
+        "room": "LH 605"
+    },
+    "HSL704": {
+        "capacity": "60",
+        "room": "LH 621"
     },
     "HSL800": {
-        "M": "LH 510"
-    },
-    "HSL863": {
-        "J": "IV 339"
-    },
-    "HUL211": {
-        "H": "LH 410"
+        "capacity": "300",
+        "room": "LH 114"
     },
     "HUL212": {
-        "M": "LH 308"
+        "capacity": "150",
+        "room": "LH 316"
     },
     "HUL213": {
-        "A": "LH 316"
+        "capacity": "150",
+        "room": "LH 316"
     },
-    "HUL231": {
-        "A": "LH 318"
+    "HUL232": {
+        "capacity": "150",
+        "room": "LH 318"
     },
-    "HUL239": {
-        "M": "LH 310"
+    "HUL237": {
+        "capacity": "150",
+        "room": "LH 310"
     },
     "HUL242": {
-        "A": "LH 108"
+        "capacity": "300",
+        "room": "LH 108"
     },
     "HUL253": {
-        "A": "LH 408"
+        "capacity": "150",
+        "room": "LH 408"
+    },
+    "HUL256": {
+        "capacity": "150",
+        "room": "LH 410"
     },
     "HUL258": {
-        "J": "LH 310"
+        "capacity": "150",
+        "room": "LH 318"
     },
     "HUL261": {
-        "J": "LH 316"
-    },
-    "HUL265": {
-        "A": "LH 416"
+        "capacity": "150",
+        "room": "LH 316"
     },
     "HUL271": {
-        "M": "LH 316"
+        "capacity": "150",
+        "room": "LH 318"
     },
     "HUL272": {
-        "M": "LH 318"
+        "capacity": "150",
+        "room": "LH 408"
     },
     "HUL275": {
-        "M": "LH 408"
+        "capacity": "150",
+        "room": "LH 410"
     },
-    "HUL286": {
-        "M": "LH 410"
+    "HUL289": {
+        "capacity": "150",
+        "room": "LH 416"
+    },
+    "HUL311": {
+        "capacity": "50",
+        "room": "LH421"
     },
     "HUL315": {
-        "M": "LH422"
+        "capacity": "50",
+        "room": "LH421"
     },
-    "HUL316": {
-        "M": "LH 517"
+    "HUL331": {
+        "capacity": "60",
+        "room": "LH 602"
     },
-    "HUL320": {
-        "A": "LH 527"
-    },
-    "HUL333": {
-        "M": "LH 519"
-    },
-    "HUL356": {
-        "M": "LH 521"
-    },
-    "HUL358": {
-        "A": "LH 519"
-    },
-    "HUL359": {
-        "A": "LH 521"
+    "HUL340": {
+        "capacity": "60",
+        "room": "LH 517"
     },
     "HUL360": {
-        "M": "LH 602"
+        "capacity": "50",
+        "room": "LH422"
     },
     "HUL362": {
-        "J": "LH 521"
+        "capacity": "60",
+        "room": "LH 611"
     },
-    "HUL371": {
-        "M": "LH 604"
+    "HUL364": {
+        "capacity": "60",
+        "room": "LH 517"
     },
-    "HUL374": {
-        "J": "LH 602"
+    "HUL370": {
+        "capacity": "60",
+        "room": "LH 602"
     },
-    "HUL381": {
-        "M": "LH 606"
+    "HUL375": {
+        "capacity": "60",
+        "room": "LH 519"
     },
-    "ITL702": {
-        "J": "LH 518"
+    "HUL377": {
+        "capacity": "50",
+        "room": "LH422"
     },
-    "ITL711": {
-        "F": "LH 520"
+    "ITL703": {
+        "capacity": "60",
+        "room": "LH 623"
     },
-    "ITL714": {
-        "B": "LH 605"
+    "ITL705": {
+        "capacity": "24",
+        "room": "LH 622"
     },
     "ITL730": {
-        "C": "LH 518"
+        "capacity": "49",
+        "room": "VI 428"
     },
-    "JOL793": {
-        "D": "LH 603"
+    "JRL301": {
+        "capacity": "60",
+        "room": "LH 604"
     },
-    "MCL131": {
-        "F": "LH 316"
+    "MAL860": {
+        "capacity": "60",
+        "room": "VI 404"
     },
-    "MCL132": {
-        "H": "LH 310"
+    "MCL111": {
+        "capacity": "150",
+        "room": "LH 416"
     },
-    "MCL133": {
-        "F": "LH 318"
+    "MCL134": {
+        "capacity": "150",
+        "room": "LH 418"
     },
-    "MCL136": {
-        "H": "LH 517"
+    "MCL135": {
+        "capacity": "150",
+        "room": "LH 510"
     },
-    "MCL142": {
-        "D": "LH 512"
+    "MCL140": {
+        "capacity": "150",
+        "room": "LH 310"
     },
-    "MCL201": {
-        "E": "LH 416"
+    "MCL141": {
+        "capacity": "150",
+        "room": "LH 512"
     },
-    "MCL212": {
-        "B": "LH 310"
+    "MCL211": {
+        "capacity": "150",
+        "room": "LH 316"
     },
-    "MCL241": {
-        "B": "LH 316"
+    "MCL231": {
+        "capacity": "80",
+        "room": "TX 120"
     },
-    "MCL311": {
-        "E": "LH 418"
+    "MCL242": {
+        "capacity": "150",
+        "room": "LH 510"
     },
-    "MCL321": {
-        "F": "LH 517"
+    "MCL261": {
+        "capacity": "150",
+        "room": "LH 418"
     },
-    "MCL331": {
-        "A": "LH 418"
+    "MCL262": {
+        "capacity": "60",
+        "room": "LH 519"
     },
-    "MCL343": {
-        "J": "LH 519"
+    "MCL316": {
+        "capacity": "60",
+        "room": "LH 521"
     },
-    "MCL344": {
-        "F": "LH 605"
+    "MCL322": {
+        "capacity": "60",
+        "room": "LH 602"
     },
-    "MCL347": {
-        "H": "LH 519"
+    "MCL341": {
+        "capacity": "60",
+        "room": "LH 521"
     },
-    "MCL361": {
-        "D": "LH 310"
+    "MCL345": {
+        "capacity": "60",
+        "room": "LH 611"
     },
-    "MCL443": {
-        "B": "LH 518"
+    "MCL431": {
+        "capacity": "150",
+        "room": "LH 526"
     },
-    "MCL705": {
-        "C": "LH 519"
+    "MCL442": {
+        "capacity": "24",
+        "room": "LH 520"
     },
-    "MCL730": {
-        "B": "LH 612"
+    "MCL701": {
+        "capacity": "60",
+        "room": "LH 613"
     },
-    "MCL733": {
-        "A": "LH 613"
+    "MCL702": {
+        "capacity": "60",
+        "room": "LH 613"
     },
-    "MCL736": {
-        "D": "LH 613"
+    "MCL703": {
+        "capacity": "60",
+        "room": "LH 623"
     },
-    "MCL741": {
-        "C": "LH 613"
+    "MCL704": {
+        "capacity": "60",
+        "room": "LH 623"
     },
-    "MCL743": {
-        "F": "LH 613"
+    "MCL721": {
+        "capacity": "60",
+        "room": "LH 517"
     },
-    "MCL745": {
-        "E": "III 336"
+    "MCL729": {
+        "capacity": "90",
+        "room": "IV 254"
     },
-    "MCL747": {
-        "J": "LH 418"
+    "MCL731": {
+        "capacity": "48",
+        "room": "II 336"
     },
-    "MCL748": {
-        "H": "LH 613"
+    "MCL735": {
+        "capacity": "48",
+        "room": "II 336"
     },
-    "MCL754": {
-        "D": "IV 339"
+    "MCL742": {
+        "capacity": "60",
+        "room": "LH 623"
     },
-    "MCL759": {
-        "K": "LH 613"
+    "MCL761": {
+        "capacity": "24",
+        "room": "LH 612"
     },
-    "MCL770": {
-        "E": "IIA 106"
+    "MCL765": {
+        "capacity": "68",
+        "room": "III 336 WED"
     },
-    "MCL771": {
-        "H": "III 336"
+    "MCL769": {
+        "capacity": "60",
+        "room": "LH 615"
     },
-    "MCL782": {
-        "B": "LH 510"
+    "MCL781": {
+        "capacity": "60",
+        "room": "LH 613"
     },
-    "MCL784": {
-        "F": "VI 402"
+    "MCL787": {
+        "capacity": "110",
+        "room": "WS 101"
     },
-    "MCL786": {
-        "E": "LH 612"
+    "MCL796": {
+        "capacity": "56",
+        "room": "III 342 WED"
     },
-    "MCL813": {
-        "A": "III 336"
+    "MCL812": {
+        "capacity": "24",
+        "room": "LH 620"
     },
-    "MCL814": {
-        "F": "LH 612"
+    "MCL816": {
+        "capacity": "60",
+        "room": "LH 611"
     },
-    "MCL821": {
-        "J": "LH 615"
+    "MCL819": {
+        "capacity": "24",
+        "room": "LH 614"
     },
-    "MCL823": {
-        "E": "LH 603"
+    "MCL837": {
+        "capacity": "48",
+        "room": "II 336"
     },
-    "MCL825": {
-        "D": "LH 615"
+    "MCL838": {
+        "capacity": "24",
+        "room": "LH 605"
     },
-    "MCL826": {
-        "H": "IV 339"
-    },
-    "MCL865": {
-        "F": "III 336"
+    "MCL840": {
+        "capacity": "24",
+        "room": "LH 612"
     },
     "MCP100": {
-        "PAL": "VI 301"
+        "capacity": "300",
+        "room": "LH 114"
     },
     "MCP101": {
-        "B1": "LH 121"
+        "capacity": "500",
+        "room": "LH 121"
     },
-    "MSL301": {
-        "M": "LH 416"
+    "MCP361": {
+        "capacity": "68",
+        "room": "III 336 WED"
     },
-    "MSL303": {
-        "A": "LH 510"
+    "MCQ301": {
+        "capacity": "60",
+        "room": "LH 517"
+    },
+    "MSL302": {
+        "capacity": "150",
+        "room": "LH 418"
+    },
+    "MSL304": {
+        "capacity": "60",
+        "room": "LH 521"
+    },
+    "MSL803": {
+        "capacity": "150",
+        "room": "LH 310"
+    },
+    "MSL843": {
+        "capacity": "138",
+        "room": "VI LT 1 WED"
+    },
+    "MSL855": {
+        "capacity": "138",
+        "room": "VI LT 1 WED"
+    },
+    "MSL862": {
+        "capacity": "138",
+        "room": "VI LT 1 WED"
+    },
+    "MSL875": {
+        "capacity": "138",
+        "room": "VI LT 1 WED"
+    },
+    "MSL876": {
+        "capacity": "138",
+        "room": "VI LT 1 WED"
+    },
+    "MSL885": {
+        "capacity": "138",
+        "room": "VI LT 1 WED"
+    },
+    "MSL892": {
+        "capacity": "138",
+        "room": "VI LT 1 WED"
     },
     "MTL100": {
-        "D": "LH 316"
+        "capacity": "300",
+        "room": "LH 111"
     },
     "MTL101": {
-        "CP": "LH 512"
+        "capacity": "150",
+        "room": "LH 408"
     },
-    "MTL102": {
-        "E": "LH 510"
+    "MTL104": {
+        "capacity": "500",
+        "room": "LH 325"
     },
-    "MTL103": {
-        "D": "LH 325"
+    "MTL105": {
+        "capacity": "150",
+        "room": "LH 512"
     },
     "MTL106": {
-        "D": "LH 121"
+        "capacity": "300",
+        "room": "LH 114"
     },
-    "MTL108": {
-        "D": "LH 410"
+    "MTL107": {
+        "capacity": "300",
+        "room": "LH 108"
     },
-    "MTL122": {
-        "F": "LH 408"
+    "MTL146": {
+        "capacity": "24",
+        "room": "LH 605"
     },
-    "MTL390": {
-        "F": "LH 410"
+    "MTL180": {
+        "capacity": "150",
+        "room": "LH 526"
     },
-    "MTL411": {
-        "K": "LH 517"
+    "MTL260": {
+        "capacity": "24",
+        "room": "LH 518"
     },
-    "MTL506": {
-        "J": "MZ 163"
+    "MTL342": {
+        "capacity": "150",
+        "room": "LH 527"
     },
-    "MTL507": {
-        "C": "MZ 163"
+    "MTL458": {
+        "capacity": "150",
+        "room": "LH 308"
     },
-    "MTL508": {
-        "B": "MZ 163"
+    "MTL501": {
+        "capacity": "138",
+        "room": "VI LT 1 WED"
     },
-    "MTL509": {
-        "A": "MZ 163"
+    "MTL502": {
+        "capacity": "138",
+        "room": "VI LT 1 WED"
     },
-    "MTL510": {
-        "E": "MZ 163"
+    "MTL503": {
+        "capacity": "150",
+        "room": "LH 318"
     },
-    "MTL625": {
-        "B": "III 339"
+    "MTL504": {
+        "capacity": "150",
+        "room": "LH 408"
     },
-    "MTL725": {
-        "AD": "LH 517"
+    "MTL505": {
+        "capacity": "138",
+        "room": "VI LT 2 WED"
     },
-    "MTL732": {
-        "AC": "LH 308"
+    "MTL601": {
+        "capacity": "150",
+        "room": "LH 512"
     },
-    "MTL739": {
-        "C": "LH 520"
+    "MTL602": {
+        "capacity": "60",
+        "room": "LH 517"
     },
-    "MTL742": {
-        "J": "LH 614"
+    "MTL603": {
+        "capacity": "150",
+        "room": "LH 527"
     },
-    "MTL746": {
-        "H": "III 339"
+    "MTL704": {
+        "capacity": "50",
+        "room": "LH421"
     },
-    "MTL776": {
-        "M": "LH 621"
+    "MTL712": {
+        "capacity": "150",
+        "room": "LH 510"
     },
-    "MTL782": {
-        "B": "LH 512"
+    "MTL717": {
+        "capacity": "60",
+        "room": "LH 521"
     },
-    "MTL785": {
-        "AD": "LH 604"
+    "MTL733": {
+        "capacity": "70",
+        "room": "MZ 194"
     },
-    "MTL792": {
-        "AB": "LH 518"
+    "MTL737": {
+        "capacity": "24",
+        "room": "LH 605"
     },
-    "NEN101": {
-        "PAL": "VI 427"
+    "MTL743": {
+        "capacity": "70",
+        "room": "MZ 194"
     },
-    "PTL702": {
-        "B": "VI 404"
+    "MTL760": {
+        "capacity": "63",
+        "room": "VI 402"
     },
-    "PTL706": {
-        "M": "LH 620"
+    "MTL763": {
+        "capacity": "150",
+        "room": "LH 410"
     },
-    "PTL709": {
-        "D": "LH 612"
+    "MTL766": {
+        "capacity": "24",
+        "room": "LH 518"
     },
-    "PTL711": {
-        "E": "LH 620"
+    "MTL773": {
+        "capacity": "63",
+        "room": "VI 402"
     },
-    "PTL712": {
-        "F": "IV 339"
+    "MTL781": {
+        "capacity": "70",
+        "room": "MZ 194"
     },
-    "PTL716": {
-        "J": "LH 605"
+    "MTL783": {
+        "capacity": "60",
+        "room": "LH 521"
+    },
+    "NEN100": {
+        "capacity": "60",
+        "room": "LH 621"
+    },
+    "PTL701": {
+        "capacity": "50",
+        "room": "LH421"
+    },
+    "PTL703": {
+        "capacity": "24",
+        "room": "LH 520"
+    },
+    "PTL705": {
+        "capacity": "24",
+        "room": "LH 622"
+    },
+    "PTL707": {
+        "capacity": "24",
+        "room": "LH 612"
+    },
+    "PTL714": {
+        "capacity": "24",
+        "room": "LH 614"
+    },
+    "PTL724": {
+        "capacity": "24",
+        "room": "LH 518"
+    },
+    "PTL726": {
+        "capacity": "24",
+        "room": "LH 518"
     },
     "PYL100": {
-        "A": "LH 121"
+        "capacity": "300",
+        "room": "LH 111"
     },
     "PYL102": {
-        "H": "LH 108"
+        "capacity": "150",
+        "room": "LH 318"
     },
-    "PYL111": {
-        "E": "LH 512"
+    "PYL113": {
+        "capacity": "24",
+        "room": "LH 603"
     },
-    "PYL112": {
-        "A": "LH 512"
+    "PYL115": {
+        "capacity": "150",
+        "room": "LH 527"
     },
-    "PYL114": {
-        "J": "LH 318"
+    "PYL116": {
+        "capacity": "150",
+        "room": "LH 510"
     },
-    "PYL202": {
-        "F": "LH 416"
+    "PYL201": {
+        "capacity": "60",
+        "room": "LH 521"
     },
-    "PYL204": {
-        "D": "LH 517"
+    "PYL203": {
+        "capacity": "150",
+        "room": "LH 410"
     },
-    "PYL302": {
-        "E": "LH 517"
+    "PYL303": {
+        "capacity": "60",
+        "room": "LH 519"
     },
-    "PYL312": {
-        "D": "LH 602"
+    "PYL322": {
+        "capacity": "24",
+        "room": "LH 603"
     },
-    "PYL313": {
-        "B": "LH 318"
+    "PYL324": {
+        "capacity": "24",
+        "room": "LH 520"
     },
-    "PYL552": {
-        "E": "LH422"
+    "PYL423": {
+        "capacity": "24",
+        "room": "LH 622"
     },
-    "PYL556": {
-        "C": "LH422"
+    "PYL434": {
+        "capacity": "24",
+        "room": "LH 518"
     },
-    "PYL558": {
-        "F": "LH422"
+    "PYL551": {
+        "capacity": "500",
+        "room": "LH 121"
     },
-    "PYL560": {
-        "D": "LH422"
+    "PYL553": {
+        "capacity": "60",
+        "room": "LH 519"
     },
-    "PYL563": {
-        "A": "LH422"
+    "PYL555": {
+        "capacity": "60",
+        "room": "LH 606"
     },
-    "PYL653": {
-        "K": "LH 622"
+    "PYL557": {
+        "capacity": "150",
+        "room": "LH 308"
     },
-    "PYL704": {
-        "J": "LH 619"
+    "PYL567": {
+        "capacity": "60",
+        "room": "LH 517"
     },
-    "PYL705": {
-        "E": "LH 619"
+    "PYL569": {
+        "capacity": "50",
+        "room": "LH421"
+    },
+    "PYL650": {
+        "capacity": "24",
+        "room": "LH 622"
+    },
+    "PYL655": {
+        "capacity": "75",
+        "room": "III 339 WED"
+    },
+    "PYL657": {
+        "capacity": "60",
+        "room": "LH 619"
+    },
+    "PYL701": {
+        "capacity": "60",
+        "room": "LH 611"
+    },
+    "PYL702": {
+        "capacity": "50",
+        "room": "LH421"
+    },
+    "PYL703": {
+        "capacity": "24",
+        "room": "LH 605"
     },
     "PYL707": {
-        "D": "LH 604"
+        "capacity": "150",
+        "room": "LH 526"
     },
-    "PYL725": {
-        "H": "LH 619"
+    "PYL723": {
+        "capacity": "50",
+        "room": "LH421"
     },
-    "PYL726": {
-        "K": "LH 604"
+    "PYL724": {
+        "capacity": "60",
+        "room": "LH 621"
     },
-    "PYL727": {
-        "M": "LH 623"
+    "PYL739": {
+        "capacity": "24",
+        "room": "LH 620"
     },
-    "PYL728": {
-        "F": "LH 614"
-    },
-    "PYL729": {
-        "AD": "LH 621"
+    "PYL740": {
+        "capacity": "24",
+        "room": "LH 614"
     },
     "PYL741": {
-        "K": "LH 619"
+        "capacity": "60",
+        "room": "LH 606"
     },
-    "PYL742": {
-        "M": "LH 615"
-    },
-    "PYL743": {
-        "A": "LH 604"
+    "PYL745": {
+        "capacity": "24",
+        "room": "LH 614"
     },
     "PYL747": {
-        "D": "LH 619"
+        "capacity": "60",
+        "room": "LH 623"
     },
-    "PYL748": {
-        "A": "LH 619"
+    "PYL749": {
+        "capacity": "50",
+        "room": "LH421"
     },
     "PYL751": {
-        "H": "LH 623"
+        "capacity": "60",
+        "room": "LH 621"
     },
-    "PYL752": {
-        "L": "LH 604"
+    "PYL753": {
+        "capacity": "50",
+        "room": "LH421"
     },
-    "PYL754": {
-        "B": "LH 318"
+    "PYL755": {
+        "capacity": "60",
+        "room": "LH 613"
     },
-    "PYL757": {
-        "C": "LH 604"
+    "PYL759": {
+        "capacity": "60",
+        "room": "LH 621"
     },
-    "PYL760": {
-        "F": "LH 619"
+    "PYL791": {
+        "capacity": "68",
+        "room": "III 336 WED"
     },
-    "PYL761": {
-        "J": "LH 623"
+    "PYL793": {
+        "capacity": "60",
+        "room": "LH 611"
     },
-    "PYL770": {
-        "M": "LH 619"
-    },
-    "PYL772": {
-        "K": "LH 623"
-    },
-    "PYL792": {
-        "E": "LH 623"
+    "PYL795": {
+        "capacity": "60",
+        "room": "LH 615"
     },
     "PYL800": {
-        "B": "VI LT 2"
+        "capacity": "150",
+        "room": "LH 418"
+    },
+    "PYL892": {
+        "capacity": "48",
+        "room": "II 336"
+    },
+    "PYQ301": {
+        "capacity": "60",
+        "room": "LH 602"
     },
     "RDL700": {
-        "J": "LH 604"
+        "capacity": "60",
+        "room": "LH 621"
     },
     "RDL701": {
-        "F": "LH 602"
+        "capacity": "24",
+        "room": "LH 603"
+    },
+    "RDL705": {
+        "capacity": "60",
+        "room": "LH 611"
     },
     "RDL710": {
-        "F": "III 339"
+        "capacity": "60",
+        "room": "LH 615"
     },
     "RDL722": {
-        "F": "LH 527"
+        "capacity": "300",
+        "room": "LH 111"
     },
-    "RDL726": {
-        "M": "LH 603"
-    },
-    "RDL740": {
-        "B": "LH 526"
+    "RDL724": {
+        "capacity": "60",
+        "room": "LH 606"
     },
     "RDL760": {
-        "J": "LH 613"
+        "capacity": "60",
+        "room": "LH 519"
+    },
+    "RDQ302": {
+        "capacity": "48",
+        "room": "II 336"
+    },
+    "RDQ304": {
+        "capacity": "60",
+        "room": "LH 517"
     },
     "SBL100": {
-        "C": "LH 121"
+        "capacity": "500",
+        "room": "LH 121"
     },
     "SBL201": {
-        "F": "LH 418"
+        "capacity": "24",
+        "room": "LH 518"
     },
-    "SBL701": {
-        "M": "LH 520"
+    "SBL702": {
+        "capacity": "24",
+        "room": "LH 605"
     },
-    "SBL704": {
-        "E": "LH 520"
+    "SBL703": {
+        "capacity": "56",
+        "room": "IV 323"
     },
-    "SIL765": {
-        "B": "LH 606"
+    "SBL711": {
+        "capacity": "63",
+        "room": "VI 402"
     },
-    "SIL801": {
-        "AB": "LH 520"
+    "SBL713": {
+        "capacity": "56",
+        "room": "III 342 WED"
     },
-    "TXL211": {
-        "D": "LH 418"
+    "SBV750": {
+        "capacity": "24",
+        "room": "LH 614"
     },
-    "TXL221": {
-        "E": "LH 526"
+    "TXL111": {
+        "capacity": "150",
+        "room": "LH 416"
     },
-    "TXL231": {
-        "B": "LH 408"
+    "TXL130": {
+        "capacity": "300",
+        "room": "LH 114"
     },
-    "TXL241": {
-        "F": "LH 510"
+    "TXL212": {
+        "capacity": "150",
+        "room": "LH 512"
     },
-    "TXL361": {
-        "D": "LH 510"
+    "TXL222": {
+        "capacity": "500",
+        "room": "LH 325"
     },
-    "TXL371": {
-        "C": "LH 318"
+    "TXL232": {
+        "capacity": "500",
+        "room": "LH 121"
     },
-    "TXL372": {
-        "J": "LH 416"
+    "TXL242": {
+        "capacity": "300",
+        "room": "LH 114"
     },
-    "TXL715": {
-        "B": "II 337"
+    "TXL321": {
+        "capacity": "24",
+        "room": "LH 603"
     },
-    "TXL725": {
-        "A": "TX 120"
+    "TXL381": {
+        "capacity": "150",
+        "room": "LH 526"
     },
-    "TXL748": {
-        "F": "TX 120"
+    "TXL710": {
+        "capacity": "110",
+        "room": "WS 101"
     },
-    "TXL754": {
-        "B": "LH 622"
+    "TXL711": {
+        "capacity": "80",
+        "room": "TX 120"
     },
-    "TXL756": {
-        "J": "TX 120"
+    "TXL712": {
+        "capacity": "80",
+        "room": "TX 120"
     },
-    "TXL766": {
-        "B": "TX 120"
+    "TXL713": {
+        "capacity": "300",
+        "room": "LH 108"
     },
-    "TXL771": {
-        "J": "LH 620"
+    "TXL719": {
+        "capacity": "50",
+        "room": "LH421"
     },
-    "TXL773": {
-        "H": "LH 615"
+    "TXL721": {
+        "capacity": "80",
+        "room": "TX 120"
     },
-    "TXL775": {
-        "D": "TX 120"
+    "TXL722": {
+        "capacity": "24",
+        "room": "LH 614"
     },
-    "TXL777": {
-        "H": "TX 120"
+    "TXL724": {
+        "capacity": "110",
+        "room": "WS 101"
     },
-    "TXL782": {
-        "F": "VI LT 1"
+    "TXL731": {
+        "capacity": "80",
+        "room": "TX 120"
     },
-    "TXL783": {
-        "E": "TX 120"
+    "TXL732": {
+        "capacity": "24",
+        "room": "LH 603"
+    },
+    "TXL747": {
+        "capacity": "50",
+        "room": "LH421"
+    },
+    "TXL749": {
+        "capacity": "80",
+        "room": "TX 120"
+    },
+    "TXL750": {
+        "capacity": "60",
+        "room": "LH 604"
+    },
+    "TXL752": {
+        "capacity": "110",
+        "room": "WS 101"
+    },
+    "TXL753": {
+        "capacity": "80",
+        "room": "TX 120"
+    },
+    "TXL755": {
+        "capacity": "60",
+        "room": "LH 602"
+    },
+    "TXL772": {
+        "capacity": "24",
+        "room": "LH 614"
+    },
+    "TXL774": {
+        "capacity": "24",
+        "room": "LH 614"
+    },
+    "TXL781": {
+        "capacity": "110",
+        "room": "WS 101"
+    },
+    "TXQ301": {
+        "capacity": "300",
+        "room": "LH 108"
     },
     "VEL700": {
-        "M": "LH 611"
-    },
-    "VLFM": {
-        "PMP": "V 418"
+        "capacity": "60",
+        "room": "LH 602"
     }
 }

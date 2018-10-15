@@ -3,7 +3,7 @@ import json, os
 from .ldap_scrap import get_departmental_records, get_student_info
 from .grades import get_gradesheet, AuthenticationError
 from .courses import get_student_data
-from .schedule import update_course_schedule, delete_course_schedule
+from .schedule import delete_course_schedule, download_venue_pdf, split_venue_pdf, parse_venue_pdfs, extract_venue_info
 from .exam import update_exam_timetable, delete_exam_schedule, download_and_segment_pdf, split_pdf, parse_pdfs, extract_schedule
 
 PATH = os.path.dirname(os.path.abspath(__file__))
@@ -210,11 +210,37 @@ def updateSchedule():
     Updates the schedule corresponding to all the courses
     """
 
+    pdf_link = request.form.get('pdf_link')
+    if (pdf_link is None):
+        return res(400, 'PDF link not provided')
+
+    # Fetch the PDF file
     try:
-        update_course_schedule()
+        download_venue_pdf(pdf_link)
     except Exception as e:
         print (e)
-        return res(500, 'Problem updating Course Schedule Information')
+        return res(400, 'PDF can\'t be downloaded')
+
+    # Segment the PDF file
+    try:
+        split_venue_pdf()
+    except Exception as e:
+        print (e)
+        return res(500, 'PDF split has a problem')
+
+    # Parse the PDF files
+    try:
+        parse_venue_pdfs()
+    except Exception as e:
+        print (e)
+        return res(500, 'Problem parsing the PDF')
+    
+    # Extract the venue information and store in venue.json
+    try:
+        extract_venue_info()
+    except Exception as e:
+        print (e)
+        return res(500, 'Problem extracting venue info')
 
     # Return
     return res(200, {'status': 'DB updated Successfully'})
@@ -276,10 +302,12 @@ def getSchedule ():
         code = course['code']
         slot = course['slot']
 
-        if (code in course_venue) and (slot in course_venue[code]):
-            venue = course_venue[code][slot]
+        if (code in course_venue):
+            venue = course_venue[code]['room']
+            room_capacity = course_venue[code]['capacity']
         else:
             venue = "NA"
+            room_capacity = "NA"
 
         if slot in slot_data:
             schedule = slot_data[slot]
@@ -290,6 +318,7 @@ def getSchedule ():
             'course_code': code,
             'slot': slot,
             'room': venue,
+            'room_capacity': room_capacity,
             'schedule': schedule
         })
 

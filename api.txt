@@ -277,6 +277,7 @@ GET: /api/examSchedule
                 schedule: [
                     {
                         room: 'LH 121',
+                        capacity: Number,
                         time: {
                             start: H:MM,
                             end: H:MM
