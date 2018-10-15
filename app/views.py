@@ -269,6 +269,7 @@ def getSchedule ():
 
     # Read the courses taken up by the student
     entry = request.form['entry']
+    entry = entry.upper()
     try:
         file = open(PATH + "/../DB/student.json", 'rb')
         student_course_data = json.load(file)
@@ -406,6 +407,7 @@ def getExamSchedule ():
 
     # Read the courses taken up by the student
     entry = request.form['entry']
+    entry = entry.upper()
     try:
         file = open(PATH + "/../DB/student.json", 'rb')
         student_course_data = json.load(file)

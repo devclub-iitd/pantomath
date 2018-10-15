@@ -24,11 +24,11 @@ app.add_url_rule('/api/deptStudentRecords', view_func=views.getDepartmentStudent
 app.add_url_rule('/api/getStudentInfo', view_func=views.getStudentInfo, methods=['POST'])
 
 ## Timetable API ##
-app.add_url_rule('/api/schedule', view_func=views.getSchedule, methods=['POST'])
+app.add_url_rule('/api/schedule', view_func=views.getSchedule, methods=['POST', 'GET'])
 app.add_url_rule('/api/schedule', view_func=views.updateSchedule, methods=['PUT'])
 app.add_url_rule('/api/schedule', view_func=views.deleteSchedule, methods=['DELETE'])
 
 ## Exam Schedule API ##
-app.add_url_rule('/api/examSchedule', view_func=views.updateExamSchedule, methods=['PUT'])
+app.add_url_rule('/api/examSchedule', view_func=views.updateExamSchedule, methods=['PUT', 'GET'])
 app.add_url_rule('/api/examSchedule', view_func=views.deleteExamSchedule, methods=['DELETE'])
 app.add_url_rule('/api/examSchedule', view_func=views.getExamSchedule, methods=['POST'])

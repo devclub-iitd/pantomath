@@ -242,7 +242,8 @@ GET: /api/schedule
             {
                 course_code: XXXNNN,
                 slot: P,
-                room: "LH xxx",
+                room: "LH xxx --or-- NA",
+                room_capacity: "300 --or-- NA"
                 schedule: {
                     day: {
                         start: HH:MM,
@@ -259,6 +260,7 @@ PUT: /api/schedule
 
 DELETE: /api/schedule
     params:
+        pdf_link: http://timetable.iitd.ac.in/link/to/schedule.pdf
     return:
         success/err
 

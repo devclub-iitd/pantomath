@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://scrapper-nothosted.devclub.in/
 
 # pantomath
 
@@ -340,3 +340,190 @@ One Stop platform for all the scraping need of the club.
             "error": "Internal Server Error"
         }
         
+
+        
+## Student Daily Schedule [/api/schedule]
+*CAUTION*: Updation takes long time.
+### Get Student Timetable [GET]
+
++ Request (application/json)
+
+        {
+            "entry": "2016CS10xxx"
+        }
+        
++ Response 200 (application/json)
+
+        [
+            {
+                course_code: XXXNNN,
+                slot: P,
+                room: "LH xxx --or-- NA",
+                room_capacity: "300 --or-- NA"
+                schedule: {
+                    day: {
+                        start: HH:MM,
+                        end: HH:MM
+                    }, ...
+                }
+            }, ...
+        ]
+   
++ Response 400 (application/json)
+
+        {
+            "error": "Entry number not provided"
+        }
+
++ Response 404 (application/json)
+
+        {
+            "error": "Student record not available"
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error Message"
+        }
+        
+        
+### Update schedule information Database [PUT]
+
++ Request (application/json)
+
+        {
+            "pdf_link": "http://timetable.iitd.ac.in/link/to/room-booking.pdf"
+        }
+    
++ Response 200 (application/json)
+
+        {
+            "status": "DB updated Successfully"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "error": "PDF Link not provided / has a problem"
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error Message"
+        }
+        
+        
+### Delete schedule information Database [DELETE]
++ Request (application/json)
+
++ Response 200 (application/json)
+
+        {
+            "status": "DB deleted Successfully"
+        }
+
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error Message"
+        }
+                
+        
+        
+## Student Exam Schedule [/api/getSchedule]
+*CAUTION*: Updation takes long time.
+
+### Get Student Exam Timetable [GET]
+
++ Request (application/json)
+
+        {
+            "entry": "2016CS10xxx",
+            "exam_type": "M1/M2/MJ"
+        }
+        
++ Response 200 (application/json)
+
+        [
+            {
+                course_code: XXXNNN,
+                date: String (23 Aug 2018 (Thu) ),
+                schedule: [
+                    {
+                        room: 'LH 121',
+                        capacity: Number,
+                        time: {
+                            start: H:MM,
+                            end: H:MM
+                        }
+                    }, ...
+                ],
+                slot: 'A'
+            }
+        ]
+   
++ Response 400 (application/json)
+
+        {
+            "error": "Entry number not provided / Valid exam type not provided"
+        }
+
++ Response 404 (application/json)
+
+        {
+            "error": "Student record not available"
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error Message"
+        }
+        
+        
+### Update exam schedule information Database [PUT]
++ Request (application/json)
+
+        {
+            "exam_type": "minor/major",
+            "pdf_link": "http://timetable.iitd.ac.in/link/to/exam_schedule.pdf"
+        }
+    
++ Response 200 (application/json)
+
+        {
+            "status": "DB updated Successfully"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "error": "PDF Link not provided / has a problem"
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error Message"
+        }
+        
+        
+### Delete exam schedule information Database [DELETE]
++ Request (application/json)
+
++ Response 200 (application/json)
+
+        {
+            "status": "DB deleted Successfully"
+        }
+
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error Message"
+        }
+                
