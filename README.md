@@ -15,6 +15,8 @@ Note: In case of Installation errors -
  `sudo apt-get install python3-tk`
 3. [error with cv2](https://stackoverflow.com/a/48533185/7116413), on Debian/Ubuntu system: 
 `pip3 install opencv-python`
+4. [error with bcrypt](https://pypi.org/project/bcrypt/), on Debian/Ubuntu system:
+`sudo apt-get install build-essential libffi-dev python-dev`
 
 
 ## Documentation

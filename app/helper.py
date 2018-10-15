@@ -4,6 +4,7 @@ Contains helper functions and validations
 
 from flask import request, jsonify
 import re, json, os
+from .auth import bad_api, validate_admin, validate_db_admin, decode_payload
 
 def res(code, response):
     # Returns the appropriate response
@@ -53,6 +54,86 @@ def bad_password(password):
     """
     return bad_input(password) or re.match('^[A-Za-z0-9@#$%^&\*\.+=]+$', password) is None
 
+
+def bad_api_list(api_list):
+    """
+    checks for the validity of the list
+    """
+    if (api_list is None) or (type(api_list) is not list) or (len(api_list) < 1):
+        return False
+
+    for api in api_list:
+        if bad_api(api):
+            return False
+        
+    return True
+
+
+def bad_payload(payload):
+    """
+    Check the format of the decoded payload
+    """
+    return (payload is None) or 
+            (type(payload) is not dict) or 
+            (payload.get('application_name') is None) or 
+            (payload.get('api_list') is None) or
+            (type(payload.get('api_list')) is not list) or
+            (len(payload.get('api_list')) < 1)
+
+
+def has_access(application_name, api_name, payload):
+    """
+    Check if this application has the access to this API 
+    by examining the payload
+    """
+    if application_name != payload.get('application_name'):
+        return False
+
+    for api in payload.get('api_list'):
+        if api == api_name:
+            return True
+
+    return False
+    
+
+def api_authenticated(api_name, form):
+    """
+    Check the API access
+    """
+    api_key = form.get('api_key')
+    if bad_input(api_key):
+        return 400
+
+    application_name = form.get('application_name')
+    if bad_name(application_name):
+        return 400
+
+    try:
+        payload = decode_payload(api_key)
+        if not has_access(application_name, api_name, payload):
+            return 401
+    except Exception as e:
+        print (e)
+        return 401
+        return res(401, 'Invalid API key')
+
+    return 200
+
+
+def has_db_rights(form):
+    """
+    Checks if the caller has appropriate rights to modify DB
+    """
+    admin_secret = form.get('admin_secret')
+    db_secret = form.get('db_secret')
+    if bad_password(admin_secret) or bad_password(db_secret):
+        return 400
+    
+    if not validate_admin(admin_secret) or not validate_db_admin(db_secret) :
+        return 401
+
+    return 200
+    
 
 def username_to_entrynum(u):
     return "20" + u[3:5] + u[:3].upper() + u[5:]

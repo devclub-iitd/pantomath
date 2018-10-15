@@ -1,4 +1,5 @@
 from flask import request, jsonify
+from flask import current_app as app
 import json, os
 from .ldap_scrap import get_departmental_records, get_student_info
 from .grades import get_gradesheet, AuthenticationError
@@ -6,6 +7,7 @@ from .courses import get_student_data
 from .schedule import delete_course_schedule, download_venue_pdf, split_venue_pdf, parse_venue_pdfs, extract_venue_info
 from .exam import update_exam_timetable, delete_exam_schedule, download_and_segment_pdf, split_pdf, parse_pdfs, extract_schedule
 from .helper import *
+from .auth import *
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -29,9 +31,27 @@ def index():
 
 ## Grades API
 def getGrades():
+    # Check API access
+    status = api_authenticated('GRADES', request.form)
+    if (status == 400):
+        return res(400, 'API key or application name not provided')
+    elif (status == 401):
+        return res(401, 'Invalid API key')
+
     return res(404, 'Grades API Not Available Yet..')
 
 def getGradesheet():
+    """
+    Retrieve the gradesheet of the user
+    """
+
+    # Check API access
+    status = api_authenticated('GRADES', request.form)
+    if (status == 400):
+        return res(400, 'API key or application name not provided')
+    elif (status == 401):
+        return res(401, 'Invalid API key')
+
     username = request.form.get('username')
     password = request.form.get('password')
 
@@ -43,7 +63,7 @@ def getGradesheet():
     try:
         gradesheet = get_gradesheet(username, password)
     except AuthenticationError as e:
-        return res(403, 'Invalid Login Credentials')
+        return res(401, 'Invalid Login Credentials')
     except Exception as e:
         print (e)
         return res(500, 'Internal Server Error')
@@ -54,7 +74,17 @@ def getGradesheet():
 
 ## Courses API ##
 def getAllCourses():
-    # Get information about all courses floated
+    """
+    Get information about all courses floated
+    """
+    
+    # Check API access
+    status = api_authenticated('COURSES', request.form)
+    if (status == 400):
+        return res(400, 'API key or application name not provided')
+    elif (status == 401):
+        return res(401, 'Invalid API key')
+
     try:
         file = open(PATH + "/../DB/courses.json", 'rb')
         data = json.load(file)
@@ -71,6 +101,14 @@ def getAllCourses():
 
 
 def getCourseInfo():
+    
+    # Check API access
+    status = api_authenticated('COURSES', request.form)
+    if (status == 400):
+        return res(400, 'API key or application name not provided')
+    elif (status == 401):
+        return res(401, 'Invalid API key')
+
     # Get the infomation about a particular course
     courseCode = request.form.get('course_code')
     if bad_name(courseCode):
@@ -93,15 +131,34 @@ def getCourseInfo():
 
 
 def updateCoursesDB():
+    status = has_db_rights(request.form)
+    if status == 400:
+        res.send('admin_secret or db_secret not provided')
+    elif status == 401:
+        res.send('Incorrect admin_secret or db_secret')
+
     # Update the courses DB i.e. the courses offered this semester
     return res(404, 'API not available yet...')
 
 def deleteCoursesDB():
+    status = has_db_rights(request.form)
+    if status == 400:
+        res.send('admin_secret or db_secret not provided')
+    elif status == 401:
+        res.send('Incorrect admin_secret or db_secret')
+
     # Delete the courses DB i.e. the courses offered this semester
     return res(404, 'API not available yet...')
 
 
 def getRegisteredCourses():
+    # Check API access
+    status = api_authenticated('STU_COURSES', request.form)
+    if (status == 400):
+        return res(400, 'API key or application name not provided')
+    elif (status == 401):
+        return res(401, 'Invalid API key')
+
     # Get the registered courses of the given user
     username = request.form.get('username')
     if bad_name(username):
@@ -124,6 +181,12 @@ def getRegisteredCourses():
 
 
 def updateRegisteredCourses():
+    status = has_db_rights(request.form)
+    if status == 400:
+        res.send('admin_secret or db_secret not provided')
+    elif status == 401:
+        res.send('Incorrect admin_secret or db_secret')
+
     # Scrap the academics website for course info and store as json files
     try:
         get_student_data()
@@ -137,10 +200,24 @@ def updateRegisteredCourses():
 
 
 def deleteRegisteredCourses():
+    status = has_db_rights(request.form)
+    if status == 400:
+        res.send('admin_secret or db_secret not provided')
+    elif status == 401:
+        res.send('Incorrect admin_secret or db_secret')
+
     return res(404, 'API not available yet...')
+
 
 ## LDAP API
 def getDepartmentStudentRecords():
+    # Check API access
+    status = api_authenticated('LDAP', request.form)
+    if (status == 400):
+        return res(400, 'API key or application name not provided')
+    elif (status == 401):
+        return res(401, 'Invalid API key')
+
     category = request.form.get('category')
     if bad_name(category):
         return res(400, 'No category provided.')
@@ -161,6 +238,13 @@ def getDepartmentStudentRecords():
 
 
 def getStudentInfo():
+    # Check API access
+    status = api_authenticated('LDAP', request.form)
+    if (status == 400):
+        return res(400, 'API key or application name not provided')
+    elif (status == 401):
+        return res(401, 'Invalid API key')
+
     uid = request.form.get('uid')
     if bad_name(uid):
         return res(400, 'No uid provided.')
@@ -211,6 +295,12 @@ def updateSchedule():
     Updates the schedule corresponding to all the courses
     """
 
+    status = has_db_rights(request.form)
+    if status == 400:
+        res.send('admin_secret or db_secret not provided')
+    elif status == 401:
+        res.send('Incorrect admin_secret or db_secret')
+
     pdf_link = request.form.get('pdf_link')
     if bad_url(pdf_link):
         return res(400, 'PDF link not provided')
@@ -252,6 +342,12 @@ def deleteSchedule():
     Deletes the schedule corresponding to all the courses
     """
 
+    status = has_db_rights(request.form)
+    if status == 400:
+        res.send('admin_secret or db_secret not provided')
+    elif status == 401:
+        res.send('Incorrect admin_secret or db_secret')
+
     try:
         delete_course_schedule()
     except Exception as e:
@@ -265,6 +361,13 @@ def getSchedule ():
     """
     Fetches the schedule of the given entry number
     """
+    # Check API access
+    status = api_authenticated('SCHEDULE', request.form)
+    if (status == 400):
+        return res(400, 'API key or application name not provided')
+    elif (status == 401):
+        return res(401, 'Invalid API key')
+
     entry = request.form.get('entry')
     if bad_name(entry):
         return res(400, 'Entry number not provided.')
@@ -334,6 +437,12 @@ def updateExamSchedule():
     Updates the exam schedule corresponding to all the courses
     """
 
+    status = has_db_rights(request.form)
+    if status == 400:
+        res.send('admin_secret or db_secret not provided')
+    elif status == 401:
+        res.send('Incorrect admin_secret or db_secret')
+
     exam_type = request.form.get('exam_type')
     if (bad_name(exam_type) or not (exam_type == 'minor' or exam_type == 'major')):
         return res(400, 'Valid exam type not provided')
@@ -385,6 +494,12 @@ def deleteExamSchedule():
     Deletes the exam schedule
     """
 
+    status = has_db_rights(request.form)
+    if status == 400:
+        res.send('admin_secret or db_secret not provided')
+    elif status == 401:
+        res.send('Incorrect admin_secret or db_secret')
+
     try:
         delete_exam_schedule()
     except Exception as e:
@@ -398,6 +513,12 @@ def getExamSchedule ():
     """
     Fetches the schedule of the given entry number
     """
+    status = api_authenticated('EXAM_SCHEDULE', request.form)
+    if (status == 400):
+        return res(400, 'API key or application name not provided')
+    elif (status == 401):
+        return res(401, 'Invalid API key')
+
     entry = request.form.get('entry')
     if bad_name(entry):
         return res(400, 'Entry number not provided.')
@@ -472,3 +593,38 @@ def getExamSchedule ():
     # Success 
     return res(200, exam_schedule)
    
+
+def generateAPIkeys():
+    """
+    Generate the API key for the given application with access rights to the given apps
+    """
+    admin_secret = request.form.get('admin_secret')
+    if (bad_password(admin_secret)):
+        return res(400, 'Please provide a valid Admin Secret')
+
+    # Check the password
+    if (not validate_admin(admin_secret)):
+        return res(401, 'Incorrect Admin Secret')
+
+    application_name = request.form.get('application_name')
+    if (bad_name(application_name)):
+        return res(400, 'Please provide an Alpha-numeric application name')
+
+    requested_apis = request.form.get('requested_apis')
+    if (bad_api_list(requested_apis)):
+        return res(400, 'Please provide valid set of requested APIs')
+
+    try:
+        payload = {
+            'application_name': application_name,
+            'api_list': requested_apis
+        }
+
+        key = encode_payload (payload)
+        return res(200, {
+            'access_key': key
+        })
+
+    except Exception as e:
+        print (e)
+        return res(500, 'Failed to generate API key')

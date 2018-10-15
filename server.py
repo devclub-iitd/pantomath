@@ -3,6 +3,11 @@ from app import views
 
 app = Flask(__name__)
 
+## Configuration
+app.config.from_object('config.Development')
+
+## Views and API
+## Static
 app.add_url_rule('/', view_func=views.index)
 
 ## Grades API ##
@@ -32,3 +37,6 @@ app.add_url_rule('/api/schedule', view_func=views.deleteSchedule, methods=['DELE
 app.add_url_rule('/api/examSchedule', view_func=views.updateExamSchedule, methods=['PUT', 'GET'])
 app.add_url_rule('/api/examSchedule', view_func=views.deleteExamSchedule, methods=['DELETE'])
 app.add_url_rule('/api/examSchedule', view_func=views.getExamSchedule, methods=['POST'])
+
+
+## Admin API ##

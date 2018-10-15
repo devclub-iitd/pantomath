@@ -299,3 +299,17 @@ DELETE: /api/examSchedule
     params:
     return:
         success/err
+
+
+
+/********** ADMIN API **********/
+POST: /admin/genAPIkey          // Generate the API key for the given application for asked APIs
+    params:
+        admin_secret: 'sldfld#$'
+        application_name: 'campusbot'
+        requested_apis: []
+    return:
+        {
+            access_key: '100-day-expiry-key'
+        }
+
