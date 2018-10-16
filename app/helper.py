@@ -60,25 +60,28 @@ def bad_api_list(api_list):
     checks for the validity of the list
     """
     if (api_list is None) or (type(api_list) is not list) or (len(api_list) < 1):
-        return False
+        return True
 
     for api in api_list:
-        if bad_api(api):
-            return False
+        if bad_input(api) or bad_api(api):
+            print ('bad api')
+            return True
         
-    return True
+    return False
 
 
 def bad_payload(payload):
     """
     Check the format of the decoded payload
     """
-    return (payload is None) or 
+    return (
+            (payload is None) or
             (type(payload) is not dict) or 
             (payload.get('application_name') is None) or 
             (payload.get('api_list') is None) or
             (type(payload.get('api_list')) is not list) or
             (len(payload.get('api_list')) < 1)
+    )
 
 
 def has_access(application_name, api_name, payload):
@@ -100,11 +103,11 @@ def api_authenticated(api_name, form):
     """
     Check the API access
     """
-    api_key = form.get('api_key')
+    api_key = form.get('Api-Key')
     if bad_input(api_key):
         return 400
 
-    application_name = form.get('application_name')
+    application_name = form.get('Application-Name')
     if bad_name(application_name):
         return 400
 

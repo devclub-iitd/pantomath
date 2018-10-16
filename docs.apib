@@ -7,14 +7,16 @@ One Stop platform for all the scraping need of the club.
 
 ## Consolidated Gradesheet [/api/gradesheet]
 ### Retrieve Gradesheet of the student [POST]
++ Headers
 
-+ Request (application/json)
+        Api-Key: your-api-key
+        Application-Name: your-application-name
+
++ Request (application/x-www-form-urlencoded)
 
         {
             "username": "cs1160xxx",
-            "password": "abc$",
-            "api_key": "your-api-key",
-            "application-name": "your-application-name"
+            "password": "abc$"
         }
         
 + Response 200 (application/json)
@@ -58,13 +60,16 @@ One Stop platform for all the scraping need of the club.
 ## Semester Grades [/api/grades]
 ### Retrieve End Semester Grades of the student [POST]
 
-+ Request (application/json)
++ Headers
+
+        Api-Key: your-api-key
+        Application-Name: your-application-name
+        
++ Request (application/x-www-form-urlencoded)
 
         {
             "username": "cs1160xxx",
-            "password": "abc$",
-            "api_key": "your-api-key",
-            "application-name": "your-application-name"
+            "password": "abc$"
         }
         
 + Response 200 (application/json)
@@ -102,10 +107,51 @@ One Stop platform for all the scraping need of the club.
             "error": "Internal Server Error"
         }
         
-## Student Profile [/api/getStudentInfo]
+## Student Records & Profile [/api/studentRecords]
+### List Department Students [GET]
+
++ Headers
+
+        Api-Key: your-api-key
+        Application-Name: your-application-name
+        
++ Request (application/x-www-form-urlencoded)
+    
+        {
+            "category": "cs116",
+        }
+
++ Response 200 (application/json)
+
+        [
+            {
+                "Name": "First Second",
+                "Entry": "2016CS10NNN",
+                "UID": "cs116nnnn"
+            }, ...
+        ]
+        
++ Response 400 (application/json)
+
+        {
+            "error": "No category provided/Students not found"
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "error": "Internal Server Error"
+        }
+
+
 ### Student Info [POST]
 
-+ Request (application/json)
++ Headers
+
+        Api-Key: your-api-key
+        Application-Name: your-application-name
+        
++ Request (application/x-www-form-urlencoded)
     
         {
             "uid": "cs1160xxx",
@@ -114,8 +160,6 @@ One Stop platform for all the scraping need of the club.
             "gender": "true", (optional)
             "bloodGroup": "true", (optional)
             "suspended": "true" (optional),
-            "api_key": "your-api-key",
-            "application-name": "your-application-name"
         }
 
 + Response 200 (application/json)
@@ -147,50 +191,16 @@ One Stop platform for all the scraping need of the club.
             "error": "Internal Server Error"
         }
         
-        
-## Department Info [/api/deptStudentRecords]
-### List Department Students Info [POST]
-
-+ Request (application/json)
     
-        {
-            "category": "cs116",
-            "api_key": "your-api-key",
-            "application-name": "your-application-name"
-        }
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "Name": "First Second",
-                "Entry": "2016CS10NNN",
-                "UID": "cs116nnnn"
-            }, ...
-        ]
-        
-+ Response 400 (application/json)
-
-        {
-            "error": "No category provided/Students not found"
-        }
-        
-+ Response 500 (application/json)
-
-        {
-            "error": "Internal Server Error"
-        }
-
-
 ## Courses Collection [/api/courseInfo]
 ### List all offered courses in the semester [GET]
 
-+ Request (application/json)
++ Headers
 
-        {
-            "api_key": "your-api-key",
-            "application-name": "your-application-name"
-        }
+        Api-Key: your-api-key
+        Application-Name: your-application-name
+        
++ Request (application/x-www-form-urlencoded)
 
 + Response 200 (application/json)
 
@@ -213,12 +223,15 @@ One Stop platform for all the scraping need of the club.
 
 ### Get Course Information [POST]
 
-+ Request (application/json)
++ Headers
+
+        Api-Key: your-api-key
+        Application-Name: your-application-name
+        
++ Request (application/x-www-form-urlencoded)
 
         {
-            course_code: "COL215",
-            "api_key": "your-api-key",
-            "application-name": "your-application-name"
+            course_code: "COL215"
         }
         
 + Response 200 (application/json)
@@ -252,7 +265,7 @@ One Stop platform for all the scraping need of the club.
         
 ### Update all offered courses in the semester [PUT]
 
-+ Request (application/json)
++ Request (application/x-www-form-urlencoded)
 
         {
             "admin_secret": "admin_secret_key",
@@ -273,7 +286,12 @@ One Stop platform for all the scraping need of the club.
         
 ### Delete the courses database of the semester [DELETE]
 
-+ Request (application/json)
++ Request (application/x-www-form-urlencoded)
+
+        {
+            "admin_secret": "admin_secret_key",
+            "db_secret_key": "db_admin_secret_key"
+        }
 
 + Response 200 (application/json)
     
@@ -291,12 +309,15 @@ One Stop platform for all the scraping need of the club.
 ## Student Registered Courses [/api/registeredCourses]
 ### List registered courses of Student [POST]
 
-+ Request (application/json)
++ Headers
+
+        Api-Key: your-api-key
+        Application-Name: your-application-name
+        
++ Request (application/x-www-form-urlencoded)
 
         {
-            username: "cs1160xxx",
-            "api_key": "your-api-key",
-            "application-name": "your-application-name"
+            username: "cs1160xxx"
         }
         
 + Response 200 (application/json)
@@ -330,8 +351,7 @@ One Stop platform for all the scraping need of the club.
         }
 
 ### Update registered courses of All Students [PUT]
-
-+ Request (application/json)
++ Request (application/x-www-form-urlencoded)
 
         {
             "admin_secret": "admin_secret_key",
@@ -351,7 +371,7 @@ One Stop platform for all the scraping need of the club.
         }
         
 ### Delete the student courses database [DELETE]
-+ Request (application/json)
++ Request (application/x-www-form-urlencoded)
 
         {
             "admin_secret": "admin_secret_key",
@@ -382,12 +402,15 @@ One Stop platform for all the scraping need of the club.
 *CAUTION*: Updation takes long time.
 ### Get Student Timetable [GET]
 
-+ Request (application/json)
++ Headers
+
+        Api-Key: your-api-key
+        Application-Name: your-application-name
+        
++ Request (application/x-www-form-urlencoded)
 
         {
-            "entry": "2016CS10xxx",
-            "api_key": "your-api-key",
-            "application-name": "your-application-name"
+            "entry": "2016CS10xxx"
         }
         
 + Response 200 (application/json)
@@ -428,7 +451,7 @@ One Stop platform for all the scraping need of the club.
         
 ### Update schedule information Database [PUT]
 
-+ Request (application/json)
++ Request (application/x-www-form-urlencoded)
 
         {
             "pdf_link": "http://timetable.iitd.ac.in/link/to/room-booking.pdf",
@@ -456,7 +479,7 @@ One Stop platform for all the scraping need of the club.
         
         
 ### Delete schedule information Database [DELETE]
-+ Request (application/json)
++ Request (application/x-www-form-urlencoded)
 
         {
             "admin_secret": "admin_secret_key",
@@ -483,13 +506,16 @@ One Stop platform for all the scraping need of the club.
 
 ### Get Student Exam Timetable [GET]
 
-+ Request (application/json)
++ Headers
+
+        Api-Key: your-api-key
+        Application-Name: your-application-name
+        
++ Request (application/x-www-form-urlencoded)
 
         {
             "entry": "2016CS10xxx",
-            "exam_type": "M1/M2/MJ",
-            "api_key": "your-api-key",
-            "application-name": "your-application-name"
+            "exam_type": "M1/M2/MJ"
         }
         
 + Response 200 (application/json)
@@ -532,7 +558,7 @@ One Stop platform for all the scraping need of the club.
         
         
 ### Update exam schedule information Database [PUT]
-+ Request (application/json)
++ Request (application/x-www-form-urlencoded)
 
         {
             "exam_type": "minor/major",
@@ -561,7 +587,7 @@ One Stop platform for all the scraping need of the club.
         
         
 ### Delete exam schedule information Database [DELETE]
-+ Request (application/json)
++ Request (application/x-www-form-urlencoded)
 
         {
             "admin_secret": "admin_secret_key",

@@ -32,7 +32,7 @@ def index():
 ## Grades API
 def getGrades():
     # Check API access
-    status = api_authenticated('GRADES', request.form)
+    status = api_authenticated('GRADES', request.headers)
     if (status == 400):
         return res(400, 'API key or application name not provided')
     elif (status == 401):
@@ -44,9 +44,8 @@ def getGradesheet():
     """
     Retrieve the gradesheet of the user
     """
-
     # Check API access
-    status = api_authenticated('GRADES', request.form)
+    status = api_authenticated('GRADES', request.headers)
     if (status == 400):
         return res(400, 'API key or application name not provided')
     elif (status == 401):
@@ -77,9 +76,8 @@ def getAllCourses():
     """
     Get information about all courses floated
     """
-    
     # Check API access
-    status = api_authenticated('COURSES', request.form)
+    status = api_authenticated('COURSES', request.headers)
     if (status == 400):
         return res(400, 'API key or application name not provided')
     elif (status == 401):
@@ -103,7 +101,7 @@ def getAllCourses():
 def getCourseInfo():
     
     # Check API access
-    status = api_authenticated('COURSES', request.form)
+    status = api_authenticated('COURSES', request.headers)
     if (status == 400):
         return res(400, 'API key or application name not provided')
     elif (status == 401):
@@ -153,14 +151,14 @@ def deleteCoursesDB():
 
 def getRegisteredCourses():
     # Check API access
-    status = api_authenticated('STU_COURSES', request.form)
+    status = api_authenticated('STU_COURSES', request.headers)
     if (status == 400):
         return res(400, 'API key or application name not provided')
     elif (status == 401):
         return res(401, 'Invalid API key')
 
     # Get the registered courses of the given user
-    username = request.form.get('username')
+    username = request.args.get('username')
     if bad_name(username):
         return res(400, 'No username provided.')
     
@@ -212,13 +210,13 @@ def deleteRegisteredCourses():
 ## LDAP API
 def getDepartmentStudentRecords():
     # Check API access
-    status = api_authenticated('LDAP', request.form)
+    status = api_authenticated('LDAP', request.headers)
     if (status == 400):
         return res(400, 'API key or application name not provided')
     elif (status == 401):
         return res(401, 'Invalid API key')
 
-    category = request.form.get('category')
+    category = request.args.get('category')
     if bad_name(category):
         return res(400, 'No category provided.')
 
@@ -239,7 +237,7 @@ def getDepartmentStudentRecords():
 
 def getStudentInfo():
     # Check API access
-    status = api_authenticated('LDAP', request.form)
+    status = api_authenticated('LDAP', request.headers)
     if (status == 400):
         return res(400, 'API key or application name not provided')
     elif (status == 401):
@@ -362,13 +360,13 @@ def getSchedule ():
     Fetches the schedule of the given entry number
     """
     # Check API access
-    status = api_authenticated('SCHEDULE', request.form)
+    status = api_authenticated('SCHEDULE', request.headers)
     if (status == 400):
         return res(400, 'API key or application name not provided')
     elif (status == 401):
         return res(401, 'Invalid API key')
 
-    entry = request.form.get('entry')
+    entry = request.args.get('entry')
     if bad_name(entry):
         return res(400, 'Entry number not provided.')
     entry = entry.upper()
@@ -513,18 +511,18 @@ def getExamSchedule ():
     """
     Fetches the schedule of the given entry number
     """
-    status = api_authenticated('EXAM_SCHEDULE', request.form)
+    status = api_authenticated('EXAM_SCHEDULE', request.headers)
     if (status == 400):
         return res(400, 'API key or application name not provided')
     elif (status == 401):
         return res(401, 'Invalid API key')
 
-    entry = request.form.get('entry')
+    entry = request.args.get('entry')
     if bad_name(entry):
         return res(400, 'Entry number not provided.')
     entry = entry.upper()
 
-    exam_type = request.form.get('exam_type')
+    exam_type = request.args.get('exam_type')
     if (bad_name(exam_type) or not (exam_type == 'M1' or exam_type == 'M2' or exam_type == 'MJ')):
         return res(400, 'Valid exam type not provided')
 
@@ -598,7 +596,12 @@ def generateAPIkeys():
     """
     Generate the API key for the given application with access rights to the given apps
     """
-    admin_secret = request.form.get('admin_secret')
+    if request.json is None:
+        return res(400, "Request Content-Type should be of type application/json")
+    if type(request.json) is not dict:
+        return res(400, "Request should be a JSON object")
+
+    admin_secret = request.json.get('admin_secret')
     if (bad_password(admin_secret)):
         return res(400, 'Please provide a valid Admin Secret')
 
@@ -606,11 +609,11 @@ def generateAPIkeys():
     if (not validate_admin(admin_secret)):
         return res(401, 'Incorrect Admin Secret')
 
-    application_name = request.form.get('application_name')
+    application_name = request.json.get('application_name')
     if (bad_name(application_name)):
         return res(400, 'Please provide an Alpha-numeric application name')
 
-    requested_apis = request.form.get('requested_apis')
+    requested_apis = request.json.get('requested_apis')
     if (bad_api_list(requested_apis)):
         return res(400, 'Please provide valid set of requested APIs')
 

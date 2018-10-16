@@ -6,7 +6,8 @@ import bcrypt
 import jwt
 import datetime
 from flask import current_app as app
-from .helper import *
+# from helper import res
+# import .helper
 
 ## List of APIS available
 API_LIST = {
@@ -26,8 +27,9 @@ def validate_admin (admin_secret):
 
     try:
         admin_secret = admin_secret.encode()
-        hash = app.config['ADMIN_KEY']
+        hashed = app.config['ADMIN_SECRET'].encode()
         return bcrypt.checkpw(admin_secret, hashed)
+
     except Exception as e:
         print (e)
         return False
@@ -40,7 +42,7 @@ def validate_db_admin (db_secret):
 
     try:
         db_secret = db_secret.encode()
-        hash = app.config['DB_KEY']
+        hashed = app.config['DB_SECRET'].encode()
         return bcrypt.checkpw(db_secret, hashed)
     except Exception as e:
         print (e)
@@ -51,7 +53,7 @@ def bad_api(api):
     """
     Validate if the given API is valid or not
     """
-    return (bad_input(api) or (not api.isalpha()) or (not api.isupper()) or (API_LIST.get(api) is None)
+    return (not api.isalpha()) or (not api.isupper()) or (API_LIST.get(api) is None)
 
     
 def encode_payload(payload):

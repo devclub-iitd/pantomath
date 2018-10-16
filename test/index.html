@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <script src="/test/jquery.min.js"></script>
+</head>
+
+<body>
+    Hi.
+    <script>
+        // $.ajax({
+        //     type: 'POST',
+        //     url: '/api/gradesheet',
+        //     data: JSON.stringify({
+        //         'api_key': 'lsdjfldsfj'
+        //     }),
+        //     // crossDomain: true,
+        //     contentType: 'application/json; charset=utf-8',
+        //     // dataType: 'json',
+        //     success: function (responseData, textStatus, jqXHR) {
+        //         console.log(responseData, textStatus);
+        //     },
+        //     error: function (jqXHR, textStatus, errorThrown) {
+        //         console.log(textStatus, errorThrown);
+        //         console.log(jqXHR.responseJSON);
+        //     }
+        // })
+
+        $.ajax({
+            type: 'GET',
+            url: '/api/courseInfo',
+            headers: {
+                'Api-Key': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcHBsaWNhdGlvbl9uYW1lIjoiZ2VuZXJhbCIsImFwaV9saXN0IjpbIkdSQURFUyIsIkNPVVJTRVMiXX0.UUuCOOKUljYDBtj_DBqQ6FiH6P-UefHOuf8eykUDbNU',
+                'Application-Name': 'general'
+            },
+            data: {  
+                'course_code': 'col333'
+            },
+            // crossDomain: true,
+            contentType: 'application/x-www-form-urlencoded',
+            // dataType: 'json',
+            success: function (responseData, textStatus, jqXHR) {
+                console.log(responseData, textStatus);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+                console.log(jqXHR.responseJSON);
+            }
+        })
+
+    </script>
+</body>
+
+</html>
