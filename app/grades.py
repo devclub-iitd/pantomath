@@ -4,13 +4,16 @@ import socket
 import ssl
 import robobrowser
 import http
+import requests
 from requests import Session
 import json
+
+requests.packages.urllib3.disable_warnings()
 
 session = Session()
 session.verify = False # Skip SSL verification
 session.proxies = {'http': 'http://proxy22.iitd.ac.in/'} # Set default proxies
-
+session.headers.update()
 ACADEMICS_URL = 'https://academics1.iitd.ac.in/Academics/'
 
 class AuthenticationError(Exception):
@@ -19,7 +22,7 @@ class AuthenticationError(Exception):
 def get_gradesheet(username,password):
 
     # Browser
-    br = robobrowser.RoboBrowser(session=session)
+    br = robobrowser.RoboBrowser(session=session, parser='lxml')
 
     # The site we will navigate into, handling it's session
     br.open(ACADEMICS_URL)
@@ -93,8 +96,8 @@ def get_gradesheet(username,password):
         semester['grades'] = grades
         semester['sgpa'] = float(semester_data[0].string[-5:])
         semester['cgpa'] = float(semester_data[1].string[-5:])
-        semester['earned_credits'] = int(semester_data[2].string[-2:])
-        semester['total_credits'] = int(semester_data[3].string[-2:])
+        semester['earned_credits'] = float(semester_data[2].string[-2:])
+        semester['total_credits'] = float(semester_data[3].string[-2:])
         # data[semester_number] = semester
         data.append(semester)
         idx=idx+1
@@ -170,5 +173,5 @@ def getGrades(username,password):
     return grades_str
 
 
-if __name__ == "__main__":
-    print(getGradeSheet("xxx", "xxx"))
+# if __name__ == "__main__":
+#     print(get_gradesheet("xxx ", "xxx"))
