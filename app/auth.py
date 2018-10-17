@@ -14,9 +14,9 @@ API_LIST = {
     'GRADES': True,
     'LDAP': True,
     'COURSES': True,
-    'STU_COURSES': True,
+    'STUCOURSES': True,
     'SCHEDULE': True,
-    'EXAM_SCHEDULE': True,
+    'EXAMSCHEDULE': True,
     'FACEBOOK': True
 }
 

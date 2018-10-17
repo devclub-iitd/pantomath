@@ -58,11 +58,13 @@ def bad_api_list(api_list):
     """
     checks for the validity of the list
     """
+    print (api_list)
     if (api_list is None) or (type(api_list) is not list) or (len(api_list) < 1):
         return True
 
     for api in api_list:
         if bad_input(api) or bad_api(api):
+            print (api)
             return True
         
     return False

@@ -5,7 +5,7 @@ One Stop platform for all our scraping needs
 ### Installation
 ```
 $ git clone https://github.com/devclub-iitd/pantomath.git
-$ pip install -r requirements.txt
+$ pip3 install -r requirements.txt
 ```
 
 Note: In case of Installation errors -
@@ -21,7 +21,7 @@ Note: In case of Installation errors -
 ### Generating Admin Keys
 1. Decide an `admin_secret` and a `db_secret` for your application.
 2. Generate the corresponding keys:
-`$ python utility/genkey.py <admin_secret> <db_secret>`
+`$ python3 utility/genkey.py <admin_secret> <db_secret>`
 3. Copy the `ADMIN_SECRET` and `DB_SECRET` spit out by the app
 4. Export these two keys and add to `env.sh` for future setup
 `$ export ADMIN_SECRET=<ADMIN_SECRET> && export DB_SECRET=<DB_SECRET>`
@@ -30,7 +30,7 @@ Note: In case of Installation errors -
 
 ### Updating Database and Generating API Keys
 1. Start the app as described in next section.
-2. Head over to http://pantomath/admin
+2. Head over to http://pantomath/admin (in your browser)
 3. Update all the databases from http://pantomath/admin/db
 3. Generate API key for your app from http://pantomath/admin/keys by entering the `<admin_secret>`, selecting the APIs needed, and a name for your application.
 
