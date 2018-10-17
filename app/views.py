@@ -5,6 +5,7 @@ from .grades import get_gradesheet, AuthenticationError
 from .courses import get_student_data
 from .schedule import delete_course_schedule, download_venue_pdf, split_venue_pdf, parse_venue_pdfs, extract_venue_info
 from .exam import update_exam_timetable, delete_exam_schedule, download_and_segment_pdf, split_pdf, parse_pdfs, extract_schedule
+from .courses_list import get_course_list
 from .helper import *
 
 PATH = os.path.dirname(os.path.abspath(__file__))
@@ -60,7 +61,7 @@ def getAllCourses():
         data = json.load(file)
     except Exception as e:
         print (e)
-        return res(500, 'Internal Server Error')
+        return res(500, 'Internal Server Error')    
 
     result = {}
     for courseCode, courseInfo in data.items():
@@ -94,7 +95,24 @@ def getCourseInfo():
 
 def updateCoursesDB():
     # Update the courses DB i.e. the courses offered this semester
-    return res(404, 'API not available yet...')
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    if bad_name(username):
+        return res(400, 'No Valid Username Provided')
+    if bad_password(password):
+        return res(400, 'No Valid Password Provided')
+
+    try:
+        msg = get_course_list(username, password)
+    except AuthenticationError as e:
+        return res(403, 'Invalid Login Credentials')
+    except Exception as e:
+        print (e)
+        return res(500, 'Internal Server Error')
+
+    # success
+    return res(200, msg)
 
 def deleteCoursesDB():
     # Delete the courses DB i.e. the courses offered this semester

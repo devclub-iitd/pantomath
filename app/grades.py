@@ -93,8 +93,8 @@ def get_gradesheet(username,password):
         semester['grades'] = grades
         semester['sgpa'] = float(semester_data[0].string[-5:])
         semester['cgpa'] = float(semester_data[1].string[-5:])
-        semester['earned_credits'] = int(semester_data[2].string[-2:])
-        semester['total_credits'] = int(semester_data[3].string[-2:])
+        semester['earned_credits'] = float(semester_data[2].string[-2:])
+        semester['total_credits'] = float(semester_data[3].string[-2:])
         # data[semester_number] = semester
         data.append(semester)
         idx=idx+1
@@ -170,5 +170,5 @@ def getGrades(username,password):
     return grades_str
 
 
-if __name__ == "__main__":
-    print(getGradeSheet("xxx", "xxx"))
+# if __name__ == "__main__":
+#     print(getGradeSheet("xxx", "xxx"))
