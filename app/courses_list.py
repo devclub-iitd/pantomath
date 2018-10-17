@@ -4,8 +4,11 @@ import socket
 import ssl
 import robobrowser
 import http
+import requests
 from requests import Session
 import json
+
+requests.packages.urllib3.disable_warnings()
 
 session = Session()
 session.verify = False # Skip SSL verification
@@ -19,7 +22,7 @@ class AuthenticationError(Exception):
 def get_course_list(username,password):
 
     # Browser
-    br = robobrowser.RoboBrowser(session=session)
+    br = robobrowser.RoboBrowser(session=session, parser='lxml')
 
     # The site we will navigate into, handling it's session
     br.open(ACADEMICS_URL)

@@ -4,13 +4,16 @@ import socket
 import ssl
 import robobrowser
 import http
+import requests
 from requests import Session
 import json
+
+requests.packages.urllib3.disable_warnings()
 
 session = Session()
 session.verify = False # Skip SSL verification
 session.proxies = {'http': 'http://proxy22.iitd.ac.in/'} # Set default proxies
-
+session.headers.update()
 ACADEMICS_URL = 'https://academics1.iitd.ac.in/Academics/'
 
 class AuthenticationError(Exception):
@@ -19,7 +22,7 @@ class AuthenticationError(Exception):
 def get_gradesheet(username,password):
 
     # Browser
-    br = robobrowser.RoboBrowser(session=session)
+    br = robobrowser.RoboBrowser(session=session, parser='lxml')
 
     # The site we will navigate into, handling it's session
     br.open(ACADEMICS_URL)
@@ -171,4 +174,4 @@ def getGrades(username,password):
 
 
 # if __name__ == "__main__":
-#     print(getGradeSheet("xxx", "xxx"))
+#     print(get_gradesheet("xxx ", "xxx"))
