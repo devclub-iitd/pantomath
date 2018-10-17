@@ -37,7 +37,6 @@ def bad_url (url):
         r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})' # ...or ip
         r'(?::\d+)?' # optional port
         r'(?:/?|[/?]\S+)$', re.IGNORECASE)
-
     return bad_input(url) or (re.match(regex, url) is None)
 
 
@@ -64,7 +63,6 @@ def bad_api_list(api_list):
 
     for api in api_list:
         if bad_input(api) or bad_api(api):
-            print ('bad api')
             return True
         
     return False
@@ -116,7 +114,6 @@ def api_authenticated(api_name, form):
         if not has_access(application_name, api_name, payload):
             return 401
     except Exception as e:
-        print (e)
         return 401
         return res(401, 'Invalid API key')
 

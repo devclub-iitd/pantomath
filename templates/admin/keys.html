@@ -1,0 +1,105 @@
+<html>
+
+<head>
+    <title>Pantomath</title>
+    <link rel="shortcut icon" type="image/ico" href="/stc/img/favicon.ico" />
+    <script src="/stc/lib/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Welcome!</h1>
+    <h4>Generate API Keys</h4>
+    <form id="keys" action='/admin/genAPIkey'>
+        <label for='admin_secret'>Your Admin Secret</label>
+        <input type='password' name='admin_secret' placeholder='My Precious' required>
+        <br />
+        <label for='application_name'>Enter Application Name</label>
+        <input type='text' name='application_name' placeholder='theHelloWorldApp' required>
+        <br /> <br>
+        <fieldset>
+            <legend>Choose the APIs for the app</legend>
+            <input type='checkbox' name='0' value='GRADES' />
+            <label for='0'>Grades API</label>
+            <br>
+            <input type='checkbox' name='1' value='LDAP' />
+            <label for='1'>Student Profile API</label>
+            <br>
+            <input type='checkbox' name='2' value='COURSES' />
+            <label for='2'>Courses List API</label>
+            <br>
+            <input type='checkbox' name='3' value='STU_COURSES' />
+            <label for='3'>Student Registered Courses API</label>
+            <br>
+            <input type='checkbox' name='4' value='SCHEDULE' />
+            <label for='4'>Student Daily Schedule API</label>
+            <br>
+            <input type='checkbox' name='5' value='EXAM_SCHEDULE' />
+            <label for='5'>Student Exam Schedule API</label>
+        </fieldset>
+        <br><br>
+        <label for='generate'>Generate the API Key: </label>
+        <br>
+        <input type='submit' name='generate' value='Generate'>
+    </form>
+    <br>
+    <div style="margin: 2%; text-align: center; display: none" id='loading'>
+        <figure>
+            <img src='/stc/img/loading.gif'>
+        </figure>
+        <h3>Generating the API key</h3>
+    </div>
+
+    <script>
+        // Handle form submission
+        $('#keys').submit(function (e) {
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+            $('#loading').show();
+
+            let form = $(this);
+            let url = form.attr('action');
+
+            let data = {
+                'requested_apis': []
+            };
+            let inputs = document.getElementsByTagName('input');
+            for (var i = 0; i < inputs.length; i++) {
+                let inp = inputs[i];
+                if (inp.name == 'admin_secret') {
+                    data['admin_secret'] = inp.value;
+                } else if (inp.name == 'application_name') {
+                    data['application_name'] = inp.value;
+                } else if (inp.type == 'checkbox' && inp.checked === true) {
+                    data.requested_apis.push(inp.value);
+                }
+            }
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                success: function (responseData, textStatus, jqXHR) {
+                    $('#loading').hide();
+                    setTimeout(() => {
+                        prompt('Enjoy your access key\n(Press Ctrl+C to copy to clipboard)', responseData.access_key);
+                        window.location = '/';
+                    }, 100);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#loading').hide();
+                    setTimeout(() => {
+                        if (!jqXHR.responseJSON) {
+                            alert('BAD REQUEST');
+                        } else {
+                            alert(jqXHR.responseJSON.error);
+                        }
+                    }, 100);
+                }
+            });
+
+            console.log('form submitted')
+        });
+    </script>
+</body>
+
+</html>

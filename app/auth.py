@@ -31,7 +31,6 @@ def validate_admin (admin_secret):
         return bcrypt.checkpw(admin_secret, hashed)
 
     except Exception as e:
-        print (e)
         return False
 
 
@@ -45,7 +44,6 @@ def validate_db_admin (db_secret):
         hashed = app.config['DB_SECRET'].encode()
         return bcrypt.checkpw(db_secret, hashed)
     except Exception as e:
-        print (e)
         return False
 
 

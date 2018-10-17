@@ -23,12 +23,6 @@ badGateway = 502
 serviceUnavailable = 503
 
 
-def index():
-    return """
-    <h2> Welcome to Pantomath </h2>
-    <h4> Please find the documentation at <a href="https://pantomath.docs.apiary.io/">https://pantomath.docs.apiary.io/ </a></h4>
-    """
-
 ## Grades API
 def getGrades():
     # Check API access
@@ -131,9 +125,9 @@ def getCourseInfo():
 def updateCoursesDB():
     status = has_db_rights(request.form)
     if status == 400:
-        res.send('admin_secret or db_secret not provided')
+        return res(400, 'admin_secret or db_secret not provided')
     elif status == 401:
-        res.send('Incorrect admin_secret or db_secret')
+        return res(401, 'Incorrect admin_secret or db_secret')
 
     # Update the courses DB i.e. the courses offered this semester
     return res(404, 'API not available yet...')
@@ -141,9 +135,9 @@ def updateCoursesDB():
 def deleteCoursesDB():
     status = has_db_rights(request.form)
     if status == 400:
-        res.send('admin_secret or db_secret not provided')
+        return res(400, 'admin_secret or db_secret not provided')
     elif status == 401:
-        res.send('Incorrect admin_secret or db_secret')
+        return res(401, 'Incorrect admin_secret or db_secret')
 
     # Delete the courses DB i.e. the courses offered this semester
     return res(404, 'API not available yet...')
@@ -181,9 +175,9 @@ def getRegisteredCourses():
 def updateRegisteredCourses():
     status = has_db_rights(request.form)
     if status == 400:
-        res.send('admin_secret or db_secret not provided')
+        return res(400, 'admin_secret or db_secret not provided')
     elif status == 401:
-        res.send('Incorrect admin_secret or db_secret')
+        return res(401, 'Incorrect admin_secret or db_secret')
 
     # Scrap the academics website for course info and store as json files
     try:
@@ -200,9 +194,9 @@ def updateRegisteredCourses():
 def deleteRegisteredCourses():
     status = has_db_rights(request.form)
     if status == 400:
-        res.send('admin_secret or db_secret not provided')
+        return res(400, 'admin_secret or db_secret not provided')
     elif status == 401:
-        res.send('Incorrect admin_secret or db_secret')
+        return res(401, 'Incorrect admin_secret or db_secret')
 
     return res(404, 'API not available yet...')
 
@@ -295,13 +289,13 @@ def updateSchedule():
 
     status = has_db_rights(request.form)
     if status == 400:
-        res.send('admin_secret or db_secret not provided')
+        return res(400, 'admin_secret or db_secret not provided')
     elif status == 401:
-        res.send('Incorrect admin_secret or db_secret')
+        return res(401, 'Incorrect admin_secret or db_secret')
 
     pdf_link = request.form.get('pdf_link')
     if bad_url(pdf_link):
-        return res(400, 'PDF link not provided')
+        return res(400, 'Valid PDF link not provided')
 
     # Fetch the PDF file
     try:
@@ -342,9 +336,9 @@ def deleteSchedule():
 
     status = has_db_rights(request.form)
     if status == 400:
-        res.send('admin_secret or db_secret not provided')
+        return res(400, 'admin_secret or db_secret not provided')
     elif status == 401:
-        res.send('Incorrect admin_secret or db_secret')
+        return res(401, 'Incorrect admin_secret or db_secret')
 
     try:
         delete_course_schedule()
@@ -437,9 +431,9 @@ def updateExamSchedule():
 
     status = has_db_rights(request.form)
     if status == 400:
-        res.send('admin_secret or db_secret not provided')
+        return res(400, 'admin_secret or db_secret not provided')
     elif status == 401:
-        res.send('Incorrect admin_secret or db_secret')
+        return res(401, 'Incorrect admin_secret or db_secret')
 
     exam_type = request.form.get('exam_type')
     if (bad_name(exam_type) or not (exam_type == 'minor' or exam_type == 'major')):
@@ -494,9 +488,9 @@ def deleteExamSchedule():
 
     status = has_db_rights(request.form)
     if status == 400:
-        res.send('admin_secret or db_secret not provided')
+        return res(400, 'admin_secret or db_secret not provided')
     elif status == 401:
-        res.send('Incorrect admin_secret or db_secret')
+        return res(401, 'Incorrect admin_secret or db_secret')
 
     try:
         delete_exam_schedule()

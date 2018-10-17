@@ -28,9 +28,11 @@ Note: In case of Installation errors -
 5. Decide a `SECRET_KEY` for signing the JWT API keys
 `$ export SECRET_KEY=<SECRET_KEY>`
 
-### Generating API Keys
-1. Head over to http://link/to/pantomath/admin/genKeys
-2. Generate API key for your app by entering the `<admin_secret>`, selecting the APIs needed, and a name for your application.
+### Updating Database and Generating API Keys
+1. Start the app as described in next section.
+2. Head over to http://pantomath/admin
+3. Update all the databases from http://pantomath/admin/db
+3. Generate API key for your app from http://pantomath/admin/keys by entering the `<admin_secret>`, selecting the APIs needed, and a name for your application.
 
 ## Running 
 ```

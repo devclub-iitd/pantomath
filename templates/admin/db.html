@@ -1,0 +1,107 @@
+<html>
+
+<head>
+    <title>Pantomath</title>
+    <link rel="shortcut icon" type="image/ico" href="/stc/img/favicon.ico" />
+    <script src="/stc/lib/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Welcome!</h1>
+    <h4>Modify some database</h4>
+    <form id="db">
+        <label for='admin_secret'>Your Admin Secret*</label>
+        <input type='password' name='admin_secret' placeholder='My Precious'>
+        <br />
+        <label for='db_secret'>Your DB Secret*</label>
+        <input type='password' name='db_secret' placeholder='My Precious'>
+        <br />
+        <label for='action'>Choose an Action</label>
+        <select name='action'>
+            <option value='UcourseInfo'>Update Semester Courses Database</option>
+            <option value='DcourseInfo'>Delete Semester Courses Database</option>
+            <option value='UregisteredCourses'>Update Student Registered Courses Database</option>
+            <option value='DregisteredCourses'>Delete Student Registered Courses Database</option>
+            <option value='Uschedule'>Update Student Schedule Database</option>
+            <option value='Dschedule'>Delete Student Schedule Database</option>
+            <option value='UexamSchedule'>Update Exam Schedule Database</option>
+            <option value='DexamSchedule'>Delete Exam Schedule Database</option>
+        </select>
+        <br /> <br />
+        <label for='username'>Kerberos Username:</label>
+        <input type='text' name='username' placeholder='provide username for modifying courses DB' size='40'>
+        <br />
+        <label for='password'>Kerberos Password:</label>
+        <input type='password' name='password' placeholder='provide password for modifying courses DB' size='40'>
+        <br><br>
+        <label for='pdf_link'>PDF Link of Daily/Exam Schedule:</label>
+        <input type='text' name='pdf_link' placeholder='http://timetable.iitd.ac.in/Room-Allotment.pdf/or/minor.pdf' size='50'>
+        <br />
+        <label for='exam_type'>Exam type for modifying Exam Schedule:</label>
+        <input type='text' name='exam_type' placeholder='minor/major'>
+        <br><br>
+        <label for='modify'>Ready? </label>
+        <input type='submit' name='modify'>
+    </form>
+    <br>
+    <div style="margin: 2%; text-align: center; display: none;" id='loading'>
+        <figure>
+            <img src='/stc/img/loading.gif'>
+        </figure>
+        <h3>Performing the Action</h3>
+        <h4>It may take a while...</h4>
+    </div>
+
+    <script>
+        // Handle form submission
+        $('#db').submit(function (e) {
+            e.preventDefault(); // avoid to execute the actual submit of the form
+            $('#loading').show();
+
+            let form = $(this);
+
+            let action = $('select');
+            let url = '/api/' + action.val().slice(1);
+            let type = action.val()[0] === 'U' ? "PUT" : "DELETE";
+
+            let data = {
+            };
+            let inputs = document.getElementsByTagName('input');
+            for (var i = 0; i < inputs.length; i++) {
+                let inp = inputs[i];
+                if (inp.name == 'admin_secret') {
+                    data['admin_secret'] = inp.value;
+                } else if (inp.name == 'db_secret') {
+                    data['db_secret'] = inp.value;
+                }
+            }
+
+            console.log(data, url, type, form.serialize());
+
+            $.ajax({
+                type: type,
+                url: url,
+                data: form.serialize(),
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (responseData, textStatus, jqXHR) {
+                    $('#loading').hide();
+                    setTimeout(() => {
+                        alert(responseData.status);
+                    }, 100);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#loading').hide();
+                    setTimeout(() => {
+                        if (!jqXHR.responseJSON) {
+                            alert('BAD REQUEST');
+                        } else {
+                            alert(jqXHR.responseJSON.error);
+                        }
+                    }, 100);
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>
