@@ -21,7 +21,7 @@ def clean_string(s):
     return " ".join(s.upper().split())
 
 def scrap(db_path,write_csv, username, password):
-    with open(os.path.join(db_path,"courses1.json"), "r") as fl:
+    with open(os.path.join(db_path,"courses.json"), "r") as fl:
         course_json = json.loads(fl.read())
 
     # Sample Command 
@@ -117,7 +117,7 @@ def scrap(db_path,write_csv, username, password):
 
 
 def get_student_data(username, password, write_csv=False):
-    DATABASE_PATH = os.pardir+"/DB"
+    DATABASE_PATH = os.getcwd()+"/DB/"
     WRITE_CSV = False
     scrap(DATABASE_PATH,WRITE_CSV, username, password)
 

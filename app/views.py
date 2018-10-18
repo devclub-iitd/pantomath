@@ -24,7 +24,7 @@ badGateway = 502
 serviceUnavailable = 503
 
 
-## Grades API
+## Grades API ##
 def getGrades():
     # Check API access
     status = api_authenticated('GRADES', request.headers)
@@ -33,7 +33,16 @@ def getGrades():
     elif (status == 401):
         return res(401, 'Invalid API key')
 
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    if bad_name(username):
+        return res(400, 'No Valid Username Provided')
+    if bad_password(password):
+        return res(400, 'No Valid Password Provided')
+
     return res(404, 'Grades API Not Available Yet..')
+
 
 def getGradesheet():
     """
@@ -65,6 +74,7 @@ def getGradesheet():
     # success
     return res(200, gradesheet)
     
+## End Grades API ##
 
 ## Courses API ##
 def getAllCourses():
@@ -105,7 +115,7 @@ def getCourseInfo():
     # Get the infomation about a particular course
     courseCode = request.form.get('course_code')
     if bad_name(courseCode):
-        return res(400, 'No course code provided.')
+        return res(400, 'No valid course code provided.')
     courseCode = courseCode.upper()
 
     try:
@@ -150,6 +160,7 @@ def updateCoursesDB():
     # success
     return res(200, msg)
 
+
 def deleteCoursesDB():
     status = has_db_rights(request.form)
     if status == 400:
@@ -160,10 +171,12 @@ def deleteCoursesDB():
     # Delete the courses DB i.e. the courses offered this semester
     return res(404, 'API not available yet...')
 
+## End Courses API ##
 
+## STU Courses API ##
 def getRegisteredCourses():
     # Check API access
-    status = api_authenticated('STU_COURSES', request.headers)
+    status = api_authenticated('STUCOURSES', request.headers)
     if (status == 400):
         return res(400, 'API key or application name not provided')
     elif (status == 401):
@@ -197,9 +210,17 @@ def updateRegisteredCourses():
     elif status == 401:
         return res(401, 'Incorrect admin_secret or db_secret')
 
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    if bad_name(username):
+        return res(400, 'No Valid Username Provided')
+    if bad_password(password):
+        return res(400, 'No Valid Password Provided')
+
     # Scrap the academics website for course info and store as json files
     try:
-        get_student_data()
+        get_student_data(username, password)
     except Exception as e:
         # Some error occured
         print (e)
@@ -218,8 +239,9 @@ def deleteRegisteredCourses():
 
     return res(404, 'API not available yet...')
 
+## End STU Courses API ##
 
-## LDAP API
+## LDAP API ##
 def getDepartmentStudentRecords():
     # Check API access
     status = api_authenticated('LDAP', request.headers)
@@ -298,8 +320,9 @@ def getStudentInfo():
     # Return
     return res(200, results)
 
+## End LDAP API ##
 
-## Schedule APIs
+## Schedule APIs ##
 def updateSchedule():
     """
     Updates the schedule corresponding to all the courses
@@ -440,6 +463,7 @@ def getSchedule ():
     # Success 
     return res(200, student_schedule)
     
+## End Schedule APIs ##
 
 ## Exam Schedule APIs ##
 def updateExamSchedule():
@@ -523,7 +547,7 @@ def getExamSchedule ():
     """
     Fetches the schedule of the given entry number
     """
-    status = api_authenticated('EXAM_SCHEDULE', request.headers)
+    status = api_authenticated('EXAMSCHEDULE', request.headers)
     if (status == 400):
         return res(400, 'API key or application name not provided')
     elif (status == 401):
@@ -603,7 +627,9 @@ def getExamSchedule ():
     # Success 
     return res(200, exam_schedule)
    
+## End Exam Schedule APIs ##
 
+## Admin API ##
 def generateAPIkeys():
     """
     Generate the API key for the given application with access rights to the given apps
@@ -643,3 +669,5 @@ def generateAPIkeys():
     except Exception as e:
         print (e)
         return res(500, 'Failed to generate API key')
+
+## End Admin API ##

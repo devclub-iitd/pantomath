@@ -27,6 +27,7 @@ Note: In case of Installation errors -
 `$ export ADMIN_SECRET=<ADMIN_SECRET> && export DB_SECRET=<DB_SECRET>`
 5. Decide a `SECRET_KEY` for signing the JWT API keys
 `$ export SECRET_KEY=<SECRET_KEY>`
+6. **Alternatively**, a `sample_env.sh` is provided. The values correspond to `<ADMIN_SECRET>=adminpazz` and `<DB_SECRET>=datapazz`.
 
 ### Updating Database and Generating API Keys
 1. Start the app as described in next section.
@@ -36,6 +37,7 @@ Note: In case of Installation errors -
 
 ## Running 
 ```
+$ . env.sh
 $ export FLASK_APP=server.py
 $ flask run --host=<IP> --port=<PORT>
 ```
