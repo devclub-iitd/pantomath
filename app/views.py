@@ -674,6 +674,34 @@ def generateAPIkeys():
         return res(500, 'Failed to generate API key')
 
 
+def removeAPIkeys():
+    """
+    Revoke the API key for the specified application
+    """
+    if request.form is None:
+        return res(400, 'Please submit form data')
+
+    admin_secret = request.form.get('admin_secret')
+    if (bad_password(admin_secret)):
+        return res(400, 'Please provide a valid Admin Secret')
+
+    # Check the password
+    if (not validate_admin(admin_secret)):
+        return res(401, 'Incorrect Admin Secret')
+
+    application_name = request.form.get('application_name')
+    if (bad_name(application_name)):
+        return res(400, 'Please provide an Alpha-numeric application name')
+
+    try:
+        revoke_api_access(application_name)
+        return res(200, {
+            'status': 'Access Revoked Successfully'
+        })
+    except Exception as e:
+        return res(500, 'Problem Occurred while revoking access')
+
+
 def listAPIkeys():
     """
     List which apps have access to which APIs
@@ -690,6 +718,7 @@ def listAPIkeys():
 
     try:
         api_list = list_api_access()
+        print (api_list)
         return res(200, api_list)
     except:
         return res(500, 'Error fetching API List')

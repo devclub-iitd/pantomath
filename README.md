@@ -35,6 +35,7 @@ Note: In case of Installation errors -
 3. Update all the databases from http://pantomath/admin/db
 4. Generate API key for your app from http://pantomath/admin/genkeys by entering the `<admin_secret>`, selecting the APIs needed, and a name for your application.
 5. To list all registered API keys for your app, head over to http://pantomath/admin/keys
+6. To revoke access to some application, head over to http://pantomath/admin/revoke
 
 ## Running 
 ```

@@ -145,9 +145,22 @@ def list_api_access():
         raise
 
     try:
-        list = {}
-        for app, app_details in accessData.items():
-            list[app] = app_details['api_list']
-        return list
+        return accessData
+    except:
+        raise
+
+
+def revoke_api_access(application):
+    """
+    Revoke the API access of this application
+    """
+    try:
+        file = open(PATH + '/../DB/access.json', 'r')
+        accessData = json.load(file)
+        if (application in accessData):
+            accessData.pop(application, None)
+
+        with open(PATH + '/../DB/access.json', 'w') as f:
+            f.write(json.dumps(accessData, indent=4, sort_keys=True))        
     except:
         raise

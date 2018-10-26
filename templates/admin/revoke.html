@@ -8,21 +8,24 @@
 
 <body>
     <h1>Welcome!</h1>
-    <h4>List API Keys</h4>
-    <form id="keys" action='/admin/listAPIkeys'>
+    <h4>Revoke API Access</h4>
+    <form id="keys" action='/admin/keys'>
         <label for='admin_secret'>Your Admin Secret</label>
         <input type='password' name='admin_secret' placeholder='My Precious' required>
-        <br /><br />
-        <label for='list'>List all API Keys: </label>
-        <br> 
-        <input type='submit' name='list' value='List'>
+        <br />
+        <label for='application_name'>Enter Application Name</label>
+        <input type='text' name='application_name' placeholder='theHelloWorldApp' required>
+        <br /> <br>
+        <label for='revoke'>Revoke API Access: </label>
+        <br>
+        <input type='submit' name='revoke' value='Revoke!'>
     </form>
     <br>
     <div style="margin: 2%; text-align: center; display: none" id='loading'>
         <figure>
             <img src='/stc/img/loading.gif'>
         </figure>
-        <h3>Fetching keys for you</h3>
+        <h3>Revoking access</h3>
     </div>
 
     <script>
@@ -33,18 +36,17 @@
 
             let form = $(this);
             let url = form.attr('action');
-            let data = form.serialize();
 
             $.ajax({
-                type: "POST",
+                type: "DELETE",
                 url: url,
-                data: data,
+                data: form.serialize(),
                 contentType: 'application/x-www-form-urlencoded',
                 success: function (responseData, textStatus, jqXHR) {
                     $('#loading').hide();
                     setTimeout(() => {
-                        console.log(responseData);
-                        fillData(responseData);
+                        alert(responseData.status);
+                        window.location = '/admin';
                     }, 100);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -61,31 +63,6 @@
 
             console.log('form submitted')
         });
-
-        function fillData(responseData) {
-            console.log(responseData);
-            let table = document.createElement('table');
-            for (let app in responseData) {
-                let tr = document.createElement('tr');
-
-                var td1 = document.createElement('td');
-                var td2 = document.createElement('td');
-
-                var text1 = document.createTextNode(app);
-                var text2 = document.createTextNode(responseData[app]['timestamp'] + '   ');
-                var text3 = document.createTextNode(responseData[app]['api_list']);
-
-                td1.appendChild(text1);
-                td2.appendChild(text2);
-                td2.appendChild(text3);
-                tr.appendChild(td1);
-                tr.appendChild(td2);
-
-                table.appendChild(tr);
-            };
-            console.log(table);
-            document.body.appendChild(table);
-        }
     </script>
 </body>
 

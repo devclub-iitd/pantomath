@@ -44,7 +44,8 @@ def index():
     return send_from_directory('templates', 'index.html')
 
 ## Admin API ##
-app.add_url_rule('/admin/genAPIkey', view_func=views.generateAPIkeys, methods=['POST'])
+app.add_url_rule('/admin/keys', view_func=views.generateAPIkeys, methods=['POST'])
+app.add_url_rule('/admin/keys', view_func=views.removeAPIkeys, methods=['DELETE'])
 app.add_url_rule('/admin/listAPIkeys', view_func=views.listAPIkeys, methods=['POST'])
 
 @app.route('/admin')
@@ -58,6 +59,10 @@ def send_admin_db():
 @app.route('/admin/genkeys')
 def send_admin_keys():
     return send_from_directory('templates/admin', 'keys.html')
+
+@app.route('/admin/revoke')
+def revoke_keys():
+    return send_from_directory('templates/admin', 'revoke.html')
 
 @app.route('/admin/keys')
 def list_admin_keys():
