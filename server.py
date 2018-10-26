@@ -45,6 +45,7 @@ def index():
 
 ## Admin API ##
 app.add_url_rule('/admin/genAPIkey', view_func=views.generateAPIkeys, methods=['POST'])
+app.add_url_rule('/admin/listAPIkeys', view_func=views.listAPIkeys, methods=['POST'])
 
 @app.route('/admin')
 def send_admin():
@@ -54,9 +55,13 @@ def send_admin():
 def send_admin_db():
     return send_from_directory('templates/admin', 'db.html')
 
-@app.route('/admin/keys')
+@app.route('/admin/genkeys')
 def send_admin_keys():
     return send_from_directory('templates/admin', 'keys.html')
+
+@app.route('/admin/keys')
+def list_admin_keys():
+    return send_from_directory('templates/admin', 'listkeys.html')
 
 ## Some Static Web-pages for testing ##
 # @app.route('/test/<path:path>')

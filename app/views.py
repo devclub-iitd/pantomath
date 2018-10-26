@@ -656,11 +656,14 @@ def generateAPIkeys():
         return res(400, 'Please provide valid set of requested APIs')
 
     try:
+        timestamp = get_timestamp()
         payload = {
             'application_name': application_name,
-            'api_list': requested_apis
+            'api_list': requested_apis,
+            'timestamp': timestamp
         }
 
+        update_api_access(payload)
         key = encode_payload (payload)
         return res(200, {
             'access_key': key
@@ -669,5 +672,26 @@ def generateAPIkeys():
     except Exception as e:
         print (e)
         return res(500, 'Failed to generate API key')
+
+
+def listAPIkeys():
+    """
+    List which apps have access to which APIs
+    """
+    if request.form is None:
+        return res(400, 'Please submit form data')
+
+    admin_secret = request.form.get('admin_secret')
+    if bad_password(admin_secret):
+        return res(400, 'Please provide valid Admin Secret')
+
+    if not validate_admin(admin_secret):
+        return res(401, 'Incorrect Admin Secret')
+
+    try:
+        api_list = list_api_access()
+        return res(200, api_list)
+    except:
+        return res(500, 'Error fetching API List')
 
 ## End Admin API ##

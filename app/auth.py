@@ -5,9 +5,12 @@ Contains API authentication functions and helper functions
 import bcrypt
 import jwt
 import datetime
+import os, json
 from flask import current_app as app
 # from helper import res
 # import .helper
+
+PATH = os.path.dirname(os.path.abspath(__file__))
 
 ## List of APIS available
 API_LIST = {
@@ -77,3 +80,74 @@ def decode_payload(encoded_payload):
     payload = jwt.decode(encoded_payload, jwt_secret, algorithms='HS256')
 
     return payload
+
+
+def update_api_access(info):
+    """
+    Updates the API access of the given app
+    """
+    try:
+        file = open(PATH + "/../DB/access.json", 'r')
+        accessData = json.load(file)
+    except:
+        raise
+
+    try:
+        accessData[info['application_name']] = {
+            'api_list': info['api_list'],
+            'timestamp': info['timestamp']
+        }
+    except Exception as e:
+        print (e)
+        raise
+
+    try:
+        with open(PATH + '/../DB/access.json', 'w') as f:
+            f.write(json.dumps(accessData, indent=4, sort_keys=True))
+    except:
+        raise
+
+
+def check_api_access(info):
+    """
+    Checks whether the payload is valid depending on latest timestamp
+    """
+
+    try:
+        file = open(PATH + '/../DB/access.json', 'r')
+        accessData = json.load(file)
+    except:
+        return False
+
+    try:
+        application = info['application_name']
+        applicationData = accessData.get(application)
+
+        if applicationData is None:
+            return False
+
+        timestamp = applicationData["timestamp"]
+        if info['timestamp'] == timestamp:
+            return True 
+        return False
+    except:
+        return False
+
+    
+def list_api_access():
+    """
+    List all apps with their API access
+    """
+    try:
+        file = open(PATH + '/../DB/access.json', 'r')
+        accessData = json.load(file)
+    except:
+        raise
+
+    try:
+        list = {}
+        for app, app_details in accessData.items():
+            list[app] = app_details['api_list']
+        return list
+    except:
+        raise

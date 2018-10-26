@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <title>Pantomath</title>
+    <link rel="shortcut icon" type="image/ico" href="/stc/img/favicon.ico" />
+    <script src="/stc/lib/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Welcome!</h1>
+    <h4>List API Keys</h4>
+    <form id="keys" action='/admin/listAPIkeys'>
+        <label for='admin_secret'>Your Admin Secret</label>
+        <input type='password' name='admin_secret' placeholder='My Precious' required>
+        <br /><br />
+        <label for='list'>List all API Keys: </label>
+        <br> 
+        <input type='submit' name='list' value='List'>
+    </form>
+    <br>
+    <div style="margin: 2%; text-align: center; display: none" id='loading'>
+        <figure>
+            <img src='/stc/img/loading.gif'>
+        </figure>
+        <h3>Fetching keys for you</h3>
+    </div>
+
+    <script>
+        // Handle form submission
+        $('#keys').submit(function (e) {
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+            $('#loading').show();
+
+            let form = $(this);
+            let url = form.attr('action');
+            let data = form.serialize();
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data,
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (responseData, textStatus, jqXHR) {
+                    $('#loading').hide();
+                    setTimeout(() => {
+                        console.log(responseData);
+                        fillData(responseData);
+                    }, 100);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#loading').hide();
+                    setTimeout(() => {
+                        if (!jqXHR.responseJSON) {
+                            alert('BAD REQUEST');
+                        } else {
+                            alert(jqXHR.responseJSON.error);
+                        }
+                    }, 100);
+                }
+            });
+
+            console.log('form submitted')
+        });
+
+        function fillData(responseData) {
+            console.log(responseData);
+            let table = document.createElement('table');
+            for (let app in responseData) {
+                let tr = document.createElement('tr');
+
+                var td1 = document.createElement('td');
+                var td2 = document.createElement('td');
+
+                var text1 = document.createTextNode(app);
+                var text2 = document.createTextNode(responseData[app]);
+
+                td1.appendChild(text1);
+                td2.appendChild(text2);
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+
+                table.appendChild(tr);
+            };
+            console.log(table);
+            document.body.appendChild(table);
+        }
+    </script>
+</body>
+
+</html>

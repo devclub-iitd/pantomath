@@ -4,7 +4,8 @@ Contains helper functions and validations
 
 from flask import request, jsonify
 import re, json, os
-from .auth import bad_api, validate_admin, validate_db_admin, decode_payload
+from .auth import bad_api, validate_admin, validate_db_admin, decode_payload, check_api_access
+import time, datetime
 
 def res(code, response):
     # Returns the appropriate response
@@ -92,6 +93,10 @@ def has_access(application_name, api_name, payload):
     if application_name != payload.get('application_name'):
         return False
 
+    # Check timestamp
+    if check_api_access(payload) is False:
+        return False
+        
     for api in payload.get('api_list'):
         if api == api_name:
             return True
@@ -136,6 +141,15 @@ def has_db_rights(form):
 
     return 200
     
+
+def get_timestamp():
+    """
+    returns current timestamp
+    useful for marking api generation time
+    """
+    ts = time.time()
+    return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+
 
 def username_to_entrynum(u):
     return "20" + u[3:5] + u[:3].upper() + u[5:]
