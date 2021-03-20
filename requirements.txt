@@ -7,7 +7,7 @@ Flask==1.0.2
 html2text==2018.1.9
 idna==2.7
 itsdangerous==0.24
-Jinja2==2.11.1
+Jinja2==2.11.3
 ldap3==2.5.1
 html5lib==1.0.1
 lxml==4.2.4
